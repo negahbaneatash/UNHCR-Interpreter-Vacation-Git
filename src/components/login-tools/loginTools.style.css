@@ -1,0 +1,75 @@
+
+
+
+.toast{
+    height: 200px;
+    width: auto;
+}
+.jumbotron{
+    height: 300px;
+    
+}
+
+.button-container{
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(
+    to left,
+    rgb(131, 161, 235) 0%,
+    rgb(201, 212, 223) 100%
+  )
+    
+    
+}
+
+.btn-spvsr-lgn{
+    min-width: 165px;
+  width: auto;
+  height: auto;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 15px;
+  background-color: rgb(214, 80, 80);
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed';
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-spvsr-lgn:hover{
+
+        background-color: white;
+        color: black;
+        
+        /* opacity: 1; */
+        /* border: 1px solid black; */
+    
+}
+
+.btn-intp-lgn{
+    min-width: 165px;
+  width: auto;
+  height: auto;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 15px;
+  background-color: #4c8bf5;
+    color: white;
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed';
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+}
+.btn-intp-lgn:hover{
+    
+    background-color: white;
+    color: blue;
+    /* border: 1px solid black; */
+    
+}

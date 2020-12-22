@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import LoginPage from './pages/login-page/login-page.compo';
+import CustomCalendar  from "./components/custom-calendar/customCalendar.compo";
+
+import { Switch,Route } from "react-router-dom";
+import LeaveSubmissionPage from './pages/leave-submission-page/leaveSubmissionPage.compo';
+
+class UNLeave extends React.Component {
+  
+  state = {
+    count: 0
+  }
+
+constructor(){
+  super()
+  this.myFunctionWithThis = this.myFunction.bind(this)
 }
 
-export default App;
+  myFunction (){
+    console.log(this)
+  }
+  
+  render(){
+    return (
+      <div >
+        <Switch>
+          <Route path='/interpreter/:interpreterId' component={LeaveSubmissionPage} />
+          <Route path='/supervisor' />
+          <Route path='/' component={LoginPage}/>
+        </Switch>
+      </div>
+    );
+}
+}
+
+export default UNLeave;
