@@ -6,6 +6,7 @@ import CustomCalendar  from "./components/custom-calendar/customCalendar.compo";
 
 import { Switch,Route } from "react-router-dom";
 import LeaveSubmissionPage from './pages/leave-submission-page/leaveSubmissionPage.compo';
+import InterpreterSignin from './components/interpreter-signin/interpreterSignin.compo';
 
 class UNLeave extends React.Component {
   
@@ -26,7 +27,8 @@ constructor(){
     return (
       <div >
         <Switch>
-          <Route path='/interpreter/:interpreterId' component={LeaveSubmissionPage} />
+          <Route path='/interpreter/Signin' component={InterpreterSignin}/> 
+          <Route path='/interpreter/:interpreterId' component={LeaveSubmissionPage} />          
           <Route path='/supervisor' />
           <Route path='/' component={LoginPage}/>
         </Switch>

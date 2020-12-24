@@ -10,6 +10,7 @@ import SupervisorToast from '../supervisor-toast/supervisorToast.compo'
 import InterpreterCardContainer from '../interpreter-card-container/interpreterCardContainer.compo'
 import CustomCalendar from '../custom-calendar/customCalendar.compo'
 import { Link } from 'react-router-dom'
+import { myFirebaseProject } from '../../firebase/firebaseConfig'
 
 
 
@@ -78,6 +79,8 @@ class LoginTools extends React.Component{
 
     render(){
         const {isShowing,showCalendar}=this.state;
+        console.log("from render")
+        console.log(myFirebaseProject.name)
         return (
             <div className="interpreter-login">            
                 <Container>
@@ -93,7 +96,7 @@ class LoginTools extends React.Component{
                     {showCalendar ? <CustomCalendar/> : null}
                 </Container>
                 <div>
-                    
+                
                 
                 </div>
             </div>
