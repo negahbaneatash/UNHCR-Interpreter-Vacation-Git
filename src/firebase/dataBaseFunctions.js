@@ -36,8 +36,8 @@ export const  getAllInterpreters = async ()=>{
     const myQuryReftoInterpretersCollection = myFirestore.collection('Interpreters')
     const mySnapshFromInterpretersCollection = await myQuryReftoInterpretersCollection.get();
     const interpreters=[];
-    mySnapshFromInterpretersCollection.docs.map(doc=>{
-      interpreters += doc.data()
+    mySnapshFromInterpretersCollection.docs.map((doc,index)=>{
+      interpreters[index] = doc.data()
     })
-    console.log('from get all', interpreters)
+    return interpreters;
 }

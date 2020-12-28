@@ -15,16 +15,7 @@ class LoginTools extends React.Component{
     constructor(){
         super()
         this.state = {
-            interpreters: [
-                {id:"1Per50Abou", name: 'Abouzar', gmail: 'abouzar.azarpira@gmail.com', Group: 'Persian', AL1:'', AL2:''},
-                {id:"2Urd32Sami", name: 'Abdol Sami upd', gmail:'sami@gmail.com', Group: 'Urdu', AL1:{submitted:true,approved:false,rejected:false}, AL2:''},
-                {id:3, name: 'Salim', gmail:'salim@gmail.com', Group: 'Rohingya', AL1:'', AL2:''},
-                {id:4, name: 'Joseph', Group: 'Myanmar', AL1:'', AL2:''},
-                {id:5, name: 'Afra', Group: 'Tamil', AL1:'', AL2:''},
-                {id:6, name: 'Sabreen', Group: 'Arabic', AL1:'', AL2:''},
-                {id:7, name: 'Mahmud', Group: 'Somali', AL1:'', AL2:''},
-                {id:"8Per54Amo", name: 'Amo Abouz', gmail: 'negahbaneatash@gmail.com', Group: 'Iran', AL1:'', AL2:''},                        
-            ],
+            interpreters: [],
             isShowing: false,
             searchField:'',
             isSupervisor: true,
@@ -32,8 +23,10 @@ class LoginTools extends React.Component{
         }    
     }
     
-    componentDidMount(){
-        getAllInterpreters()
+    async componentDidMount(){
+        const dbInterpreters =await getAllInterpreters()
+        console.log('interpreters array',dbInterpreters)
+        this.setState({...this.state,interpreters:[...this.state.interpreters,...dbInterpreters]}, ()=>{console.log(this.state)})
     }
 
     toggleShow=()=>{

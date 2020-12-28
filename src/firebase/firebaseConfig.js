@@ -36,17 +36,3 @@ export const  addInterpreterToDB = async (Interpreter)=>{
 }
 
 
-export const  getAllInterpreters = async ()=>{
-  const myQuryRefCollectionFromDB = firebase.firestore().collection('Interpreters')
-  const mySnapshCollectionOfDB = await myQuryRefCollectionFromDB.get();
-  mySnapshCollectionOfDB.docs.map(doc=>{
-    console.log('from get all')
-    console.log(doc.data())
-  })
-  const myTest = await firebase.firestore().collection("Interpreters").doc('sami@gmail.com').collection('Jan-2021').get()
-  myTest.docs.map((doc)=>{
-    console.log(doc.data())
-  })
-  
-  
-}
