@@ -13,7 +13,7 @@ class LeaveSubmissionPage extends Component{
 
 
     render(){
-        console.log(this.props)
+        console.log("from leave submission",this.props)
         return(
             
             <React.Fragment>

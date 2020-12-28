@@ -9,12 +9,15 @@ class InterpreterSignin extends Component {
 
     handleClick=()=>{
         const provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then((user)=>{
+        firebase.auth().signInWithRedirect(provider)
+        firebase.auth().getRedirectResult().then((user)=>{
             console.log(user)
         })
     }
 
     render(){
+        console.log('from intpsignin',this.props)
+        console.log('again from intpsignin')
         return(
         <button onClick={this.handleClick}>Sign In With Google</button>
     )}

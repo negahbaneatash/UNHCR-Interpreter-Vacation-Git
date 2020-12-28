@@ -1,6 +1,7 @@
 import React from 'react'
 import {Toast} from 'react-bootstrap'
 
+import { withRouter } from "react-router-dom";
 
 
 const SupervisorToast = function(props){
@@ -11,7 +12,9 @@ const SupervisorToast = function(props){
                 This is Supervisor Toast
             </Toast.Header>
             <Toast.Body>
-                this is body
+                <span> This is Kausar </span>
+                <button onClick={()=>{props.history.push('/supervisor/addinterpreter')}}>Add an Interpreter</button>
+                
                 {/* <input type='text' onChange={this.handleChange}/> */}
             </Toast.Body>
         </Toast>                        
@@ -20,4 +23,4 @@ const SupervisorToast = function(props){
 
 )}
 
-export default SupervisorToast;
+export default withRouter(SupervisorToast);
