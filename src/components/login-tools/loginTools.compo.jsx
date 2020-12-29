@@ -7,28 +7,19 @@ import '../login-tools/loginTools.style.css'
 import InterpreterToast from '../interpreter-toast/interpreterToast.compo'
 import SupervisorToast from '../supervisor-toast/supervisorToast.compo'
 import InterpreterCardContainer from '../interpreter-card-container/interpreterCardContainer.compo'
-import CustomCalendar from '../custom-calendar/customCalendar.compo'
 import { getAllInterpreters } from '../../firebase/dataBaseFunctions'
 
 
 class LoginTools extends React.Component{
-    constructor(){
-        super()
-        this.state = {
-            interpreters: [],
+    constructor(props){
+        super(props)
+        this.state = {            
             isShowing: false,
             searchField:'',
-            isSupervisor: true,
-            showCalendar:false,
+            isSupervisor: true,            
         }    
     }
     
-    async componentDidMount(){
-        const dbInterpreters =await getAllInterpreters()
-        console.log('interpreters array',dbInterpreters)
-        this.setState({...this.state,interpreters:[...this.state.interpreters,...dbInterpreters]}, ()=>{console.log(this.state)})
-    }
-
     toggleShow=()=>{
         this.setState({...this.state, isShowing:!this.state.isShowing}, ()=>{console.log('from toggleshow', this.state.isShowing)})        
     }
@@ -61,7 +52,8 @@ class LoginTools extends React.Component{
     }
 
     render(){
-        const {isShowing,showCalendar}=this.state;
+        console.log('from logintools',this.props)
+        const {isShowing}=this.state;
         return (
             <div className="interpreter-login">            
                 <Container>
@@ -72,8 +64,7 @@ class LoginTools extends React.Component{
                         </div>                     
                         {this.showToast()}               
                     </Jumbotron>                    
-                    {this.state.isSupervisor ? null : <InterpreterCardContainer state={this.state} handleClick={this.handleClickCard}/>}
-                    {showCalendar ? <CustomCalendar/> : null}
+                    {this.state.isSupervisor ? null : <InterpreterCardContainer searchField={this.state.searchField} interpreters={this.props.interpreters} />}                    
                 </Container>                
             </div>
         )
