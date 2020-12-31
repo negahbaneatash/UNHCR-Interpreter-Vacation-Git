@@ -15,7 +15,7 @@ export const addAnInterpreterToDB =async (name,nickname,group,email,phone,uid=nu
         al1:false,
         al2:false,
     }
-    const myQueryRefToAnInterpreterDoc= myFirestore.collection("Interpreters").doc(`${interpreterObj.email}`)
+    const myQueryRefToAnInterpreterDoc= myFirestore.collection("Interpreters").doc(`${interpreterObj.email.toLowerCase()}`)
     const mySnapshotFromAnInterpreterDoc= await myQueryRefToAnInterpreterDoc.get();
     if (mySnapshotFromAnInterpreterDoc.exist) {
         console.log('this Interpreter with this email address already exist in the database')        

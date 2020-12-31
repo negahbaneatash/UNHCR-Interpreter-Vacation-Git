@@ -16,8 +16,6 @@ class InterpreterSignin extends Component {
     }
 
     render(){
-        console.log('from intpsignin',this.props)
-        console.log('again from intpsignin')
         return(
         <button onClick={this.handleClick}>Sign In With Google</button>
     )}

@@ -33,13 +33,14 @@ handleSubmit=(event)=>{
 }
 render(){
     const {name,nickname,group,email,phone}=this.state;
+    
     return(
     <form onSubmit={this.handleSubmit}>
-        <input type="text" name='name' value={name} onChange={this.handleChange}/>
-        <input type="text" name='nickname' value={nickname} onChange={this.handleChange}/>
-        <input type="text" name='group' value={group} onChange={this.handleChange}/>
-        <input type="text" name='email' value={email} onChange={this.handleChange}/>
-        <input type="text" name='phone' value={phone} onChange={this.handleChange}/>
+        <input type="text" name='name' placeholder='name' value={name} onChange={this.handleChange}/>
+        <input type="text" name='nickname' placeholder='nickname' value={nickname} onChange={this.handleChange}/>
+        <input type="text" name='group' placeholder='group' value={group} onChange={this.handleChange}/>
+        <input type="text" name='email' placeholder='email' value={email} onChange={this.handleChange}/>
+        <input type="text" name='phone' placeholder='phone' value={phone} onChange={this.handleChange}/>
         <button type='submit' name='submit' >Add This Interpreter</button>
     </form>
     )    

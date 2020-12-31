@@ -5,11 +5,11 @@ import './App.css';
 
 import HomePage from './pages/home-page/homePage.compo';
 import LeaveSubmissionPage from './pages/leave-submission-page/leaveSubmissionPage.compo';
-import InterpreterSignin from './components/interpreter-signin/interpreterSignin.compo';
 import { AddInterpreterPage } from './pages/add-interpreter-page/addInterpreterPage.compo'
 
 import { myFireauth } from './firebase/firebaseConfig';
 import { getAllInterpreters } from "./firebase/dataBaseFunctions";
+import InterpreterSigninPage from './pages/interpreter-signin-page/interpreterSigninPage.compo';
 
 
 class UNLeave extends React.Component {  
@@ -27,10 +27,9 @@ class UNLeave extends React.Component {
 
   async componentDidMount(){
     this.unsubscribeTheUser=myFireauth.onAuthStateChanged((user)=>{
-      this.setState({theUser:user},()=>console.log('from appjs state',this.state.theUser))
+      this.setState({theUser:user})
     })
-    const dbInterpreters =await getAllInterpreters()
-        console.log('interpreters array',dbInterpreters)
+    const dbInterpreters =await getAllInterpreters()        
         this.setState({...this.state,interpreters:[...this.state.interpreters,...dbInterpreters]})
   }
 
@@ -42,11 +41,11 @@ class UNLeave extends React.Component {
     return (
       <div >
         <Switch>
-          <Route path='/interpreter/signin' component={InterpreterSignin}/> 
+          <Route path='/interpreter/signin' component={InterpreterSigninPage}   /> 
           <Route path='/interpreter/:interpreterId' component={LeaveSubmissionPage} />   
           <Route path='/supervisor/addinterpreter' component={AddInterpreterPage}/>
           <Route path='/supervisor' />
-          <Route path='/' render={(props)=>{return <HomePage {...props} interpreters={this.state.interpreters}/>}} />
+          <Route path='/' render={(props)=>{return <HomePage {...props} theState={this.state}/>}} />
         </Switch>
       </div>
     );

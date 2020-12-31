@@ -21,7 +21,7 @@ class LoginTools extends React.Component{
     }
     
     toggleShow=()=>{
-        this.setState({...this.state, isShowing:!this.state.isShowing}, ()=>{console.log('from toggleshow', this.state.isShowing)})        
+        this.setState({...this.state, isShowing:!this.state.isShowing})        
     }
 
     handleChange=(event)=>{
@@ -51,11 +51,10 @@ class LoginTools extends React.Component{
         else return <InterpreterToast showIt={this.state.isShowing} onVorod={this.handleChange} onExit={this.toggleShow  }/>      
     }
 
-    render(){
-        console.log('from logintools',this.props)
+    render(){        
         const {isShowing}=this.state;
         return (
-            <div className="interpreter-login">            
+            <div className="interpreter-login">       
                 <Container>
                     <Jumbotron className='jumbotron'>
                         <div className= 'button-container'>               
@@ -64,7 +63,7 @@ class LoginTools extends React.Component{
                         </div>                     
                         {this.showToast()}               
                     </Jumbotron>                    
-                    {this.state.isSupervisor ? null : <InterpreterCardContainer searchField={this.state.searchField} interpreters={this.props.interpreters} />}                    
+                    {this.state.isSupervisor ? null : <InterpreterCardContainer searchField={this.state.searchField} theState={this.props.theState} />}                    
                 </Container>                
             </div>
         )
