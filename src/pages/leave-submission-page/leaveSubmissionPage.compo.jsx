@@ -9,11 +9,13 @@ import InterpreterLeaveSubmission from '../../components/interpreter-leave-submi
 
 class LeaveSubmissionPage extends Component{
 
-
+    componentDidMount(){
+        console.log('from LeaveSubmissionPage componentDidMount')
+    }
 
 
     render(){
-        console.log("from leave submission",this.props)
+        console.log('from LeaveSubmissionPage render')
         return(
             
             <React.Fragment>

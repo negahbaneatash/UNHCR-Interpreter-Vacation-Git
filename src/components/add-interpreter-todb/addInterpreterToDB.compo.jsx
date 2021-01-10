@@ -17,7 +17,9 @@ export default class AddInterpreterToDB extends React.Component{
         }
     }
 
-
+componentDidMount(){
+    console.log('from addInterpreterToDB componentDidMount')
+}
 handleChange=(event)=>{
     const {name,value}=event.target;
     this.setState({
@@ -32,6 +34,7 @@ handleSubmit=(event)=>{
     addAnInterpreterToDB(name,nickname,group,email,phone)
 }
 render(){
+    console.log('from addInterpreterToDB render')
     const {name,nickname,group,email,phone}=this.state;
     
     return(

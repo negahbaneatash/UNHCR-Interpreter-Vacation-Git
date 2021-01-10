@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 
 
 const SupervisorToast = function(props){
+    console.log('from SupervisorToast func')
     return(
     <div className='supervisor-toast'>
         <Toast  show={props.showIt} onClose={props.onExit}>

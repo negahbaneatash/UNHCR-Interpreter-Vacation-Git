@@ -1,10 +1,18 @@
 import { React } from "react";
-import InterpreterLeaveSubmission from "../../components/interpreter-leave-submission/interpreterLeaveSubmission.compo";
+import { Redirect } from "react-router-dom";
+
+
 import InterpreterSignin from "../../components/interpreter-signin/interpreterSignin.compo";
 
 
-const InterpreterSigninPage = ()=>{    
-        return <InterpreterSignin/>    
+const InterpreterSigninPage = (props)=>{
+        console.log('from interpreterSigninPage func props:',props)               
+        const {theInterpreter,theUser}=props;
+        if (theUser && theInterpreter) {
+                return theInterpreter.email===theUser.email ? <Redirect to='/interpreter/submitleave'/> : <InterpreterSignin/>            
+        }else{
+                return <InterpreterSignin/>
+        }        
 }
 
 export default InterpreterSigninPage;

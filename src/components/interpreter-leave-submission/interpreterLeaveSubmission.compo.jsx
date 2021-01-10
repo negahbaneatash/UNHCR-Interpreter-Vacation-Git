@@ -15,7 +15,9 @@ class InterpreterLeaveSubmission extends React.Component {
         tempLeave2:'',
         Alert:''
     }
-    
+    componentDidMount(){
+        console.log('from InterpreterLeaveSubmission componentDidMount')
+    }
     handleClickDay=(value)=>{
         if (this.state.tempLeave1 === '') {
             this.setState({...this.state, tempLeave1:value})
@@ -36,6 +38,7 @@ class InterpreterLeaveSubmission extends React.Component {
     
 
     render(){
+        console.log('from InterpreterLeaveSubmission render')
         const {tempLeave1,tempLeave2} = this.state;
         return(
             <div>

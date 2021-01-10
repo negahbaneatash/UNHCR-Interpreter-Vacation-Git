@@ -7,7 +7,9 @@ import { BrowserRouter } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
+  
   <React.StrictMode>
+  {console.log('from index.js ReactDom.render')}  
     <BrowserRouter>
       <UNLeave/>
     </BrowserRouter>    

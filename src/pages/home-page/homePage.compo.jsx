@@ -3,7 +3,8 @@ import LoginTools from "../../components/login-tools/loginTools.compo";
 
 
 const HomePage = (props)=>{    
-    return <LoginTools theState={props.theState}/>
+    console.log('from homepage func')
+    return <LoginTools theState={props.theState} setTheInterpreter={props.setTheInterpreter}/>
 }
 
 export default HomePage;

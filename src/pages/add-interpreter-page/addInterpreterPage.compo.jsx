@@ -3,6 +3,7 @@ import AddInterpreterToDB from "../../components/add-interpreter-todb/addInterpr
 
 
 export const AddInterpreterPage =()=>{
+    console.log('from AddInterpreterPage func')
     return <AddInterpreterToDB/>
 }
 

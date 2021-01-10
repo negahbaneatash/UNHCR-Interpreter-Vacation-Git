@@ -7,7 +7,7 @@ import '../login-tools/loginTools.style.css'
 import InterpreterToast from '../interpreter-toast/interpreterToast.compo'
 import SupervisorToast from '../supervisor-toast/supervisorToast.compo'
 import InterpreterCardContainer from '../interpreter-card-container/interpreterCardContainer.compo'
-import { getAllInterpreters } from '../../firebase/dataBaseFunctions'
+
 
 
 class LoginTools extends React.Component{
@@ -19,14 +19,16 @@ class LoginTools extends React.Component{
             isSupervisor: true,            
         }    
     }
-    
+    componentDidMount(){
+        console.log('from loginTool componentDidMount')
+    }
     toggleShow=()=>{
         this.setState({...this.state, isShowing:!this.state.isShowing})        
     }
 
     handleChange=(event)=>{
         const textInput = event.target.value;
-        this.setState({...this.state, searchField:textInput}, ()=>{console.log(textInput)})    
+        this.setState({...this.state, searchField:textInput})    
     }
 
     whoIsThis(IntpOrSpvsr){
@@ -39,8 +41,7 @@ class LoginTools extends React.Component{
             default:
                 this.setState({...this.state, isSupervisor:false})
                 break;
-        }
-        console.log(this.state.isSupervisor)
+        }        
     }
 
     showToast(){
@@ -52,7 +53,8 @@ class LoginTools extends React.Component{
     }
 
     render(){        
-        const {isShowing}=this.state;
+        console.log('from loginTool render')
+        const {isShowing}=this.state;        
         return (
             <div className="interpreter-login">       
                 <Container>
@@ -63,7 +65,7 @@ class LoginTools extends React.Component{
                         </div>                     
                         {this.showToast()}               
                     </Jumbotron>                    
-                    {this.state.isSupervisor ? null : <InterpreterCardContainer searchField={this.state.searchField} theState={this.props.theState} />}                    
+                    {this.state.isSupervisor ? null : <InterpreterCardContainer searchField={this.state.searchField} theState={this.props.theState} setTheInterpreter={this.props.setTheInterpreter} />}                    
                 </Container>                
             </div>
         )
