@@ -9,7 +9,7 @@ function InterpreterCardContainer(props) {
     console.log('from InterpreterCardContainer func')
     return(
     <div className='interpreter-card-container'>
-        {props.theState.interpreters.filter((intp)=>{return(intp.name.toLowerCase().includes(props.searchField.toLowerCase()))}).map((intp)=><InterpreterCard key={intp.email} theUser={props.theState.theUser} interpreter={intp} setTheInterpreter={props.setTheInterpreter}/>)}
+        {props.theState.interpreters.filter((intp)=>{return(intp.name.toLowerCase().includes(props.searchField.toLowerCase()))}).map((intp)=><InterpreterCard key={intp.email} interpreter={intp} setTheInterpreter={props.setTheInterpreter}/>)}
 
     </div>
 )}
