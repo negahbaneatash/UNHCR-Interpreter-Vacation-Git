@@ -8,9 +8,9 @@ import InterpreterSignin from "../../components/interpreter-signin/interpreterSi
 
 const InterpreterSigninPage = (props)=>{
         console.log('from interpreterSigninPage func props:',props)               
-        const {theInterpreter,theUser}=props;
-        if (theUser && theInterpreter) {
-                return theInterpreter.email===theUser.email ? <Redirect to='/interpreter/submitleave'/> : <InterpreterSignin/>            
+        const {theInterpreter1,theUser}=props;
+        if (theUser && theInterpreter1) {
+                return theInterpreter1.email===theUser.email ? <Redirect to='/interpreter/submitleave'/> : <InterpreterSignin/>            
         }else{
                 return <InterpreterSignin/>
         }        
@@ -18,7 +18,7 @@ const InterpreterSigninPage = (props)=>{
 
 const mapStateToProps =(state)=>({
         theUser:state.User.theUser,
-        theInterpreter:state.Interpreter.theInterpreter
+        theInterpreter1:state.Interpreter.theInterpreter
 })
 
 export default connect(mapStateToProps)(InterpreterSigninPage);

@@ -2,6 +2,7 @@ import React from 'react'
 import '../interpreter-card/interpreterCard.style.css'
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { setTheInterpreterToStore_Action } from '../../redux/redux.actions';
 
 
 class InterpreterCard extends React.Component {
@@ -14,7 +15,9 @@ class InterpreterCard extends React.Component {
         const {interpreter,theUser} = this.props;        //interpreter is from the card and theUser is from Store
         this.props.setTheInterpreterToStore(interpreter);  
         console.log('from handlclick')
-        if (interpreter.email===theUser.email) {
+        if (!(interpreter&&theUser)) {
+            this.props.history.push('/interpreter/signin')
+        } else if (interpreter.email===theUser.email) {
             this.props.history.push(`/interpreter/submitleave`)
         } else {            
             this.props.history.push('/interpreter/signin')
@@ -40,7 +43,7 @@ const mapStateToProps=(state)=>({
 
 function mapDispatchToProps(dispatch){
     return{
-        setTheInterpreterToStore: interpreter=>{dispatch({type:"SET_THE_INTERPRETER",payload:interpreter})}
+        setTheInterpreterToStore: interpreter=>{dispatch(setTheInterpreterToStore_Action(interpreter))}
     }
 }
 

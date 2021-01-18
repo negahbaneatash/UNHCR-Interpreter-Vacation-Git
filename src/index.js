@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+
 import './index.css';
 import UNLeave from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from './redux/store';
+import { store, myPersistor } from './redux/store';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -17,7 +19,9 @@ ReactDOM.render(
   {console.log('from index.js ReactDom.render')}  
   <Provider store={store}>
     <BrowserRouter>
-      <UNLeave/>
+      <PersistGate persistor={myPersistor}>
+        <UNLeave/>
+      </PersistGate>    
     </BrowserRouter>        
   </Provider>
   </React.StrictMode>,

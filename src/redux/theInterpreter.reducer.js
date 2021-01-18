@@ -1,4 +1,4 @@
-
+import { actions } from "./action.names";
 
 const INITIAL_STATE={
     theInterpreter:null
@@ -6,7 +6,7 @@ const INITIAL_STATE={
 
 const theInterpreterReducer=(state=INITIAL_STATE,action)=>{
     switch (action.type) {
-        case "SET_THE_INTERPRETER":
+        case actions.setTheInterpreterToStore:
             return {
                 ...state,
                 theInterpreter:action.payload

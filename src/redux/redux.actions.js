@@ -10,3 +10,9 @@ export const setTheUserToStore_Action =(theUser)=>{
     }
 }
 
+export const setTheInterpreterToStore_Action = (theInterpreter)=>{
+    return{
+        type: actions.setTheInterpreterToStore,
+        payload: theInterpreter
+    }
+}

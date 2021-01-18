@@ -1,14 +1,18 @@
+import { persistReducer } from "redux-persist";
+import  locStorage  from "redux-persist/lib/storage";
+
 import  allInterpretersReducer  from "./allInterpreters.reducer";
 import theInterpreterReducer from "./theInterpreter.reducer";
 import  theUserReducer  from "./theUser.reducer";
 
 
-const INITIAL_STATE ={
-    allInterpreters:null,
-    theUser:null
+const myPersistConfig = {
+    key:"root",
+    storage:locStorage,
+    whiteList:['Interpreters','Interpreter']
 }
 
-const rootReducer =(state=INITIAL_STATE,action)=>{
+const rootReducer =(state={},action)=>{
     return{
         Interpreters:allInterpretersReducer(state.Interpreters,action),
         Interpreter:theInterpreterReducer(state.Interpreter,action),
@@ -16,5 +20,6 @@ const rootReducer =(state=INITIAL_STATE,action)=>{
     }
 }
 
+const persistedRootReducer = persistReducer(myPersistConfig,rootReducer)
 
-export default rootReducer;
+export default persistedRootReducer;
