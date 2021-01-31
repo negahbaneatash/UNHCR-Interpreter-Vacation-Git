@@ -4,10 +4,11 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
+import App from './App';
 import './index.css';
-import UNLeave from './App';
 import reportWebVitals from './reportWebVitals';
 import { store, myPersistor } from './redux/store';
+
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -20,7 +21,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <PersistGate persistor={myPersistor}>
-        <UNLeave/>
+        <App/>
       </PersistGate>    
     </BrowserRouter>        
   </Provider>

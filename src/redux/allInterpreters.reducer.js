@@ -1,7 +1,7 @@
 
 
 const INITIAL_STATE={
-    allInterpreters:[{interpreter1:'abouzar'}]
+    allInterpreters:[]
 };
 
 const allInterpretersReducer = (state=INITIAL_STATE,action)=>{
@@ -10,8 +10,7 @@ const allInterpretersReducer = (state=INITIAL_STATE,action)=>{
             return{
                 ...state,                
                 allInterpreters:[...action.payload]
-            }       
-    
+            }           
         default:
             return state;
     }

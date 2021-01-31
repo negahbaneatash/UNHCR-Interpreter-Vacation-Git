@@ -65,7 +65,7 @@ class LoginTools extends React.Component{
                         </div>                     
                         {this.showToast()}               
                     </Jumbotron>                    
-                    {this.state.isSupervisor ? null : <InterpreterCardContainer searchField={this.state.searchField} theState={this.props.theState} setTheInterpreter={this.props.setTheInterpreter} />}                    
+                    {this.state.isSupervisor ? null : <InterpreterCardContainer searchField={this.state.searchField}/>}                    
                 </Container>                
             </div>
         )

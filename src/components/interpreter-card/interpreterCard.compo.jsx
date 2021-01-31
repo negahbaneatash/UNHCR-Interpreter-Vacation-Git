@@ -25,7 +25,7 @@ class InterpreterCard extends React.Component {
     }
 
     render(){                  
-        console.log('*******from InterpreterCard render this.props',this.props) 
+        console.log('from InterpreterCard render this.props',this.props) 
         return(   
             <div className='interpreter-card' onClick={this.handleClick} >
                 <h4>{this.props.interpreter.name}</h4>

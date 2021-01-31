@@ -16,7 +16,7 @@ class CustomCalendar extends React.Component{
         console.log('from customCalendar render')
         return (
             <div>
-                <Calendar  onClickDay={this.props.clickDay}/>
+                <Calendar  onClickDay={this.props.clickDay} onActiveStartDateChange={this.props.itChanged}  minDetail="year" showNeighboringMonth={false}/>
                 
             </div>
         )

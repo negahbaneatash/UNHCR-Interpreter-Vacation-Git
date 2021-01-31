@@ -10,7 +10,7 @@ import  AddInterpreterPage  from './pages/add-interpreter-page/addInterpreterPag
 import InterpreterSigninPage from './pages/interpreter-signin-page/interpreterSigninPage.compo';
 
 import { myFireauth } from './firebase/firebaseConfig';
-import { getAllInterpreters } from "./firebase/dataBaseFunctions";
+import { getAllInterpretersFromDB } from "./firebase/dataBaseFunctions";
 
 import { setTheUserToStore_Action } from "./redux/redux.actions";
 
@@ -18,15 +18,10 @@ import { setTheUserToStore_Action } from "./redux/redux.actions";
 
 
 
-class UNLeave extends React.Component {  
+class App extends React.Component {  
   
   
-  state={
-    interpreters:[],         
-  }
-
-  // onAuthStateChanged returns a function that will unsubscribe from the user when is called
-  unsubscribeTheUser=null;
+  unsubscribeTheUser=null;// onAuthStateChanged returns a function that will unsubscribe from the user when is called
 
   async componentDidMount(){
     console.log('from App.js componentDidMount state:',this.state)
@@ -34,17 +29,8 @@ class UNLeave extends React.Component {
       this.props.setTheUserToStore(user)
     })
 
-
-    const dbInterpreters =await getAllInterpreters()        
-    this.setState({...this.state,interpreters:[...this.state.interpreters,...dbInterpreters]})
-
-    // setTheLocalInterpreter({you:'its you'})
-  }
-
-  setTheInterpreter=(theInterpreter)=>{
-    const jsonTheInterpreter =JSON.stringify(theInterpreter)
-    localStorage.setItem('THE_INTERPRETER',jsonTheInterpreter)
-    this.setState({...this.state,theInterpreter})
+    const dbInterpreters =await getAllInterpretersFromDB()        
+    this.props.setAllInterpretersToStore(dbInterpreters)
   }
 
   componentWillUnmount(){
@@ -52,8 +38,7 @@ class UNLeave extends React.Component {
   }
   
   render(){
-    console.log('from App.js render thestate:', this.state)
-    
+    console.log('from App.js render thestate:', this.state)    
     return (
       <div >
         <Switch>
@@ -61,7 +46,7 @@ class UNLeave extends React.Component {
           <Route path='/interpreter/submitleave' component={LeaveSubmissionPage}/>   
           <Route path='/supervisor/addinterpreter' component={AddInterpreterPage}/>
           <Route path='/supervisor' />
-          <Route path='/' render={(props)=>{return <HomePage {...props} theState={this.state} setTheInterpreter={this.setTheInterpreter}/>}} />
+          <Route path='/' component={HomePage} />
         </Switch>
       </div>
     );
@@ -71,9 +56,10 @@ class UNLeave extends React.Component {
 
 const myMapDispatchToProps=(dispatch)=>{
   return {
-    setTheUserToStore: (theUser)=>{dispatch(setTheUserToStore_Action(theUser))}
+    setTheUserToStore: (theUser)=>{dispatch(setTheUserToStore_Action(theUser))},
+    setAllInterpretersToStore: (interpreters)=>{dispatch({type:'SET_ALL_INTERPRETERS',payload:interpreters})}
   }
 }
 
 
-export default connect(null,myMapDispatchToProps)(UNLeave);
+export default connect(null,myMapDispatchToProps)(App);
