@@ -1,14 +1,14 @@
 
 
-
-.interpreter-leave-card {
+.add-leave-card {
     width: 50%;
     display: flex;
     flex-direction: column;
-    background-color: #deaaf3;
+    background-color: #756b79;
     border: 1px solid rgb(192, 229, 243);
     border-radius: 5px;
     padding: 25px;
+    padding-bottom: 50px;
     cursor: pointer;
     -moz-osx-font-smoothing: grayscale;
     backface-visibility: hidden;
@@ -16,3 +16,9 @@
     transition: transform 0.25s ease-out;
     align-items: flex-start;
   }
+
+
+
+/* .leave-type-dropdown {
+    width: 75%;
+} */

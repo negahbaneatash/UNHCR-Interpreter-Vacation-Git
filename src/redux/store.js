@@ -6,11 +6,9 @@ import myLogger from "./myLogger";
 import persistedRootReducer from "./root.reducer";
 
 
-
-
-
 const store = createStore(persistedRootReducer, applyMiddleware(myLogger));
 const myPersistor = persistStore(store)
+
 
 export {store,myPersistor};
 

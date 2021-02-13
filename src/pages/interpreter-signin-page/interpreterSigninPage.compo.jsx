@@ -2,7 +2,6 @@ import { React } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-
 import InterpreterSignin from "../../components/interpreter-signin/interpreterSignin.compo";
 
 
@@ -20,5 +19,6 @@ const mapStateToProps =(state)=>({
         theUser:state.User.theUser,
         theInterpreter1:state.Interpreter.theInterpreter
 })
+
 
 export default connect(mapStateToProps)(InterpreterSigninPage);

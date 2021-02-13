@@ -1,8 +1,6 @@
 import { actions } from "./action.names"
 
 
-
-
 export const setTheUserToStore_Action =(theUser)=>{
     return{
         type: actions.setTheUserToStore,
@@ -17,3 +15,11 @@ export const setTheInterpreterToStore_Action = (theInterpreter)=>{
     }
 }
 
+export const setLeavesFromDBToStore_Action=(leavesOfTheMonth)=>{
+    return{
+        type: actions.setLeavesFromDBToStore,
+        payload: leavesOfTheMonth
+    }
+}
+
+// the other actions to be written and centralized here

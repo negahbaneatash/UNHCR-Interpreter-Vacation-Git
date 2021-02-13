@@ -13,14 +13,10 @@ import { myFireauth } from './firebase/firebaseConfig';
 import { getAllInterpretersFromDB } from "./firebase/dataBaseFunctions";
 
 import { setTheUserToStore_Action } from "./redux/redux.actions";
-
-
-
+import SupervisorSigninPage from './pages/supervisor-signin-page/SupervisorSigninPage.compo';
 
 
 class App extends React.Component {  
-  
-  
   unsubscribeTheUser=null;// onAuthStateChanged returns a function that will unsubscribe from the user when is called
 
   async componentDidMount(){
@@ -28,7 +24,6 @@ class App extends React.Component {
     this.unsubscribeTheUser=myFireauth.onAuthStateChanged((user)=>{    
       this.props.setTheUserToStore(user)
     })
-
     const dbInterpreters =await getAllInterpretersFromDB()        
     this.props.setAllInterpretersToStore(dbInterpreters)
   }
@@ -40,19 +35,18 @@ class App extends React.Component {
   render(){
     console.log('from App.js render thestate:', this.state)    
     return (
-      <div >
+      <React.Fragment>
         <Switch>
           <Route path='/interpreter/signin' component={InterpreterSigninPage}/> 
           <Route path='/interpreter/submitleave' component={LeaveSubmissionPage}/>   
           <Route path='/supervisor/addinterpreter' component={AddInterpreterPage}/>
-          <Route path='/supervisor' />
+          <Route path='/supervisor' component={SupervisorSigninPage}/>
           <Route path='/' component={HomePage} />
         </Switch>
-      </div>
+      </React.Fragment>
     );
   }
 }
-
 
 const myMapDispatchToProps=(dispatch)=>{
   return {

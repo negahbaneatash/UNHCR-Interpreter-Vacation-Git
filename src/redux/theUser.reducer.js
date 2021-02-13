@@ -1,5 +1,6 @@
 import { actions } from "./action.names";
 
+
 const INITIAL_STATE={
     theUser:null
 };
@@ -15,5 +16,6 @@ const theUserReducer = (state=INITIAL_STATE, action)=>{
             return state;
     }
 }
+
 
 export default theUserReducer;

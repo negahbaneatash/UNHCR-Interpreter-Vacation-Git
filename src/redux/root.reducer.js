@@ -4,7 +4,7 @@ import  locStorage  from "redux-persist/lib/storage";
 import  allInterpretersReducer  from "./allInterpreters.reducer";
 import theInterpreterReducer from "./theInterpreter.reducer";
 import  theUserReducer  from "./theUser.reducer";
-import { leavesReducer } from "./leaves.reducer";
+import { leaveReducer } from "./leave.reducer";
 
 
 const myPersistConfig = {
@@ -18,10 +18,11 @@ const rootReducer =(state={},action)=>{
         Interpreters:allInterpretersReducer(state.Interpreters,action),
         Interpreter:theInterpreterReducer(state.Interpreter,action),
         User:theUserReducer(state.User,action),
-        Leaves: leavesReducer(state.Leaves,action)
+        Leaves: leaveReducer(state.Leaves,action)
     }
 }
 
 const persistedRootReducer = persistReducer(myPersistConfig,rootReducer)
+
 
 export default persistedRootReducer;

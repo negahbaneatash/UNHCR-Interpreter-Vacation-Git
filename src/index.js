@@ -9,10 +9,6 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { store, myPersistor } from './redux/store';
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-
 
 ReactDOM.render(
   
@@ -27,7 +23,7 @@ ReactDOM.render(
   </Provider>
   </React.StrictMode>,
   document.getElementById('root')
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
