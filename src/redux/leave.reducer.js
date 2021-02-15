@@ -18,8 +18,15 @@ export const leaveReducer =(state=INITIAL_STATE,action)=>{
                     leaves: [...action.payload.leaves]
                 })    
             }else{
-                return {...state}
-            }            
+                return {leaves:[]}
+            }   
+        case actions.deleteTheLeaveFromStore:
+            let tempArray = []
+            tempArray = state.leaves.filter((leave)=>{return (leave.id !== action.payload)})
+            return ({
+                ...state,
+                leaves:[...tempArray]
+            })
         default:
             return state;
     }

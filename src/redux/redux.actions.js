@@ -22,4 +22,18 @@ export const setLeavesFromDBToStore_Action=(leavesOfTheMonth)=>{
     }
 }
 
+export const addTheLeaveToStore_Action=(newLeave)=>{
+    return {
+        type: actions.addTheLeaveToStore,
+        payload: newLeave
+    }
+}
+
+export const deleteTheLeaveFromStore_Action=(leaveId)=>{
+    return{
+        type:actions.deleteTheLeaveFromStore,
+        payload: leaveId
+    }
+}
+
 // the other actions to be written and centralized here

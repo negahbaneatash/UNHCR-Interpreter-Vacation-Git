@@ -9,7 +9,8 @@ import AddLeaveCard from "../add-leave-card/addLeaveCard.compo";
 class InterpreterLeaveSubmission extends React.Component {    
     
     state={
-        clickedDayOnCalendar:null,              
+        clickedDayOnCalendar:null,     
+        viewingDateOnCalendar:new Date()         
     }
 
     componentDidMount(){               
@@ -20,9 +21,9 @@ class InterpreterLeaveSubmission extends React.Component {
             this.setState({...this.state, clickedDayOnCalendar:clickedDay})        
     }
     
-    handleCalendarChange=(obj)=>{
-        console.log('from cal handlechange:',obj)
-        this.setState({...this.state, clickedDayOnCalendar:'',tempLeave2:'',alert:''})
+    handleCalendarChange=(changedMonth)=>{
+        console.log('from cal handlechange:',changedMonth)
+        this.setState({...this.state,viewingDateOnCalendar:changedMonth.activeStartDate})
     }
     
     render(){
@@ -31,8 +32,8 @@ class InterpreterLeaveSubmission extends React.Component {
             <div>
                 <h1>{`Hellooo  ${this.props.theInterpreter.name}`}</h1>
                 <CustomCalendar clickDay={this.handleClickDay} itChanged={this.handleCalendarChange}></CustomCalendar>
-                <AddLeaveCard leaveDay={this.state.clickedDayOnCalendar} />
-                <AnnualLeaveContainer/>                
+                <AddLeaveCard theInterpreter={this.props.theInterpreter} leaveDay={this.state.clickedDayOnCalendar}  />
+                <AnnualLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                
             </div>
         )
     }    

@@ -3,32 +3,36 @@ import { connect } from "react-redux";
 
 import InterpreterLeaveCard from "../interpreter-leave-card/interpreterLeaveCard.compo";
 import { loadLeavesOfTheInterpreterFromDBToStore } from "../../firebase/dataBaseFunctions";
+import { leaveType } from "../../objects/leaveObj";
+
 
 
 class AnnualLeaveContainer extends React.Component{
-    constructor(){
-        super()        
+        
+    async componentDidMount(){        
+        await loadLeavesOfTheInterpreterFromDBToStore(this.props.theInterpreter,this.props.viewingDate)        
     }
-    
-    async componentDidMount(){
-        const todayDate = new Date();
-        await loadLeavesOfTheInterpreterFromDBToStore(this.props.theInterpreter,todayDate)        
+
+    async componentDidUpdate(prevProps){
+        if (prevProps.viewingDate!==this.props.viewingDate) {
+            await loadLeavesOfTheInterpreterFromDBToStore(this.props.theInterpreter,this.props.viewingDate)        
+        }
     }
 
     focusOnItem =(textInputOfChildRef)=>{
-        if(textInputOfChildRef){            
-            textInputOfChildRef.current.focus()            
-        };                
+        if(textInputOfChildRef){
+            textInputOfChildRef.current.value.bold()
+        }
     }
     
-          
+              
     render(){    
         if (this.props.leavesArrayFromStore) {
             return (
-                this.props.leavesArrayFromStore.map(leaveEntity => {
+                this.props.leavesArrayFromStore.filter((leave)=>(leave.type===leaveType.Annual_leave)).map(leaveEntity => {
                     return (        
                         <div>
-                            <InterpreterLeaveCard leave={leaveEntity} compoWasClicked={this.focusOnItem}></InterpreterLeaveCard>                    
+                            <InterpreterLeaveCard leave={leaveEntity} compoWasClicked={this.focusOnItem} ></InterpreterLeaveCard>                    
                         </div>
                     )    
                 })
@@ -47,5 +51,7 @@ const mapStateToProps=(state)=>{
         theInterpreter:state.Interpreter.theInterpreter,
     }
 }
+
+
 
 export default connect(mapStateToProps)(AnnualLeaveContainer);

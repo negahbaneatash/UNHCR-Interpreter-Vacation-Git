@@ -7,5 +7,6 @@ export const actions={
     setTheUserToStore: "SET_THE_USER",
     setTheSupervisorToStore: "SET_THE_SUPERVISOR",
     addTheLeaveToStore: "ADD_THE_LEAVE",
-    setLeavesFromDBToStore: "SET_LEAVES_OF_THE_MONTH_FROM_DB" 
+    setLeavesFromDBToStore: "SET_LEAVES_OF_THE_MONTH_FROM_DB", 
+    deleteTheLeaveFromStore: "DELETE_THE_LEAVE_FROM_STORE"
 }
