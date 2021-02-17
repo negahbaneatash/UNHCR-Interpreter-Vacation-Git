@@ -1,7 +1,7 @@
 import { actions } from "./action.names";
 
 const INITIAL_STATE={
-    leaves:[null]
+    leaves:[]
 }
 
 export const leaveReducer =(state=INITIAL_STATE,action)=>{

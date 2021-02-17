@@ -21,12 +21,12 @@ class AnnualLeaveContainer extends React.Component{
     focusOnItem =(textInputOfChildRef)=>{
         if(textInputOfChildRef){
             textInputOfChildRef.current.value.bold()
-        }
+        }     
     }
     
               
     render(){    
-        if (this.props.leavesArrayFromStore) {
+        if (this.props.leavesArrayFromStore.length) {
             return (
                 this.props.leavesArrayFromStore.filter((leave)=>(leave.type===leaveType.Annual_leave)).map(leaveEntity => {
                     return (        
