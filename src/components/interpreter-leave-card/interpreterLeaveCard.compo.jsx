@@ -17,7 +17,7 @@ constructor(props){
 handleClick = ()=>{  
     this.props.compoWasClicked(this.textInputRef)    
     this.setState({...this.state,focus:!this.state.focus})    
-    const obj1={leave1:[]}
+    const obj1={leave1:[null]}
     if (obj1.leave1.length){
         let obj2=null;
         obj2={leave2:[...obj1.leave1]}

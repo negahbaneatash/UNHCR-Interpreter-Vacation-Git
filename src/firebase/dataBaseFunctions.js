@@ -5,13 +5,16 @@ import { myFirestore } from "./firebaseConfig"
 
 export const  getAllInterpretersFromDB = async ()=>{
     const myQuryReftoInterpretersCollection = myFirestore.collection('Interpreters')
+    console.log("from getAllInterpretersFromDB",myQuryReftoInterpretersCollection)
     let mySnapshFromInterpretersCollection = null
-    const interpreters=[];    
+    
     try {
         mySnapshFromInterpretersCollection = await myQuryReftoInterpretersCollection.get();    
     } catch (error) {
-        console.log(error)   
-    }    
+        console.log('error from getAllInterpretersFromDB',error)   
+    }
+    console.log("from getAllInterpretersFromDB snapshot",mySnapshFromInterpretersCollection)
+    const interpreters=[];        
     mySnapshFromInterpretersCollection.docs.map((doc,index)=>{
       interpreters[index] = doc.data()
     })
@@ -40,6 +43,7 @@ export const loadLeavesOfTheInterpreterFromDBToStore = async (theInterpreter,inT
     const myQueryRefToleavesOfTheMonth = myFirestore.collection('Interpreters').doc(theInterpreter.email.toString().toLowerCase()).collection('Vacations').doc(leaveRef)
     const mySnapshotFromLeavesOfTheMonth = await myQueryRefToleavesOfTheMonth.get()
     const leavesOfThisMonth = mySnapshotFromLeavesOfTheMonth.data();    
+    console.log('from loadLeavesOfTheInterpreterFromDBToStore', leavesOfThisMonth)
     store.dispatch(setLeavesFromDBToStore_Action(leavesOfThisMonth))
     return mySnapshotFromLeavesOfTheMonth.data()
 }
