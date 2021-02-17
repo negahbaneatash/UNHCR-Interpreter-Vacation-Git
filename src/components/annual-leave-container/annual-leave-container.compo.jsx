@@ -27,7 +27,7 @@ class AnnualLeaveContainer extends React.Component{
               
     render(){
         const {leavesArrayFromStore}=this.props;    
-        if (Array.isArray(leavesArrayFromStore) && leavesArrayFromStore.length) {
+        if (Array.isArray(leavesArrayFromStore) && (leavesArrayFromStore!==[null]) && leavesArrayFromStore.length) {
             return (
                 this.props.leavesArrayFromStore.filter((leave)=>(leave.type===leaveType.Annual_leave)).map(leaveEntity => {
                     return (        
