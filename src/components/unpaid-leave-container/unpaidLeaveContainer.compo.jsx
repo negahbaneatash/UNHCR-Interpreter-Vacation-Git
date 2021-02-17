@@ -6,7 +6,7 @@ import { loadLeavesOfTheInterpreterFromDBToStore } from "../../firebase/dataBase
 import { leaveType } from "../../objects/leaveObj";
 
 
-class AnnualLeaveContainer extends React.Component{
+class UnpaidLeaveContainer extends React.Component{
         
     async componentDidMount(){        
         await loadLeavesOfTheInterpreterFromDBToStore(this.props.theInterpreter,this.props.viewingDate)        
@@ -28,10 +28,10 @@ class AnnualLeaveContainer extends React.Component{
     render(){    
         if (this.props.leavesArrayFromStore) {
             return (
-                this.props.leavesArrayFromStore.filter((leave)=>(leave.type===leaveType.Annual_leave)).map(leaveEntity => {
+                this.props.leavesArrayFromStore.filter((leave)=>(leave.type!==leaveType.Annual_leave)).map(leaveEntity => {
                     return (        
                         <div>
-                            <InterpreterLeaveCard leave={leaveEntity} compoWasClicked={this.focusOnItem} ></InterpreterLeaveCard>                    
+                            <InterpreterLeaveCard leave={leaveEntity} compoWasClicked={this.focusOnItem} backgroundColor={'red'}></InterpreterLeaveCard>                    
                         </div>
                     )    
                 })
@@ -53,4 +53,4 @@ const mapStateToProps=(state)=>{
 
 
 
-export default connect(mapStateToProps)(AnnualLeaveContainer);
+export default connect(mapStateToProps)(UnpaidLeaveContainer);

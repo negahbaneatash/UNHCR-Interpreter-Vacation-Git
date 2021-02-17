@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import CustomCalendar from "../custom-calendar/customCalendar.compo";
 import AnnualLeaveContainer from "../annual-leave-container/annual-leave-container.compo";
+import UnpaidLeaveContainer from "../unpaid-leave-container/unpaidLeaveContainer.compo";
 import AddLeaveCard from "../add-leave-card/addLeaveCard.compo";
 
 
@@ -34,6 +35,7 @@ class InterpreterLeaveSubmission extends React.Component {
                 <CustomCalendar clickDay={this.handleClickDay} itChanged={this.handleCalendarChange}></CustomCalendar>
                 <AddLeaveCard theInterpreter={this.props.theInterpreter} leaveDay={this.state.clickedDayOnCalendar}  />
                 <AnnualLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                
+                <UnpaidLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                
             </div>
         )
     }    

@@ -28,7 +28,7 @@ render(){
     const {leaveDate,leaveStatus}=this.props.leave
     
     return(
-        <div className='interpreter-leave-card' onClick={this.handleClick}>
+        <div className='interpreter-leave-card' onClick={this.handleClick} style={{backgroundColor:this.props.backgroundColor}}>
             <input ref={this.textInputRef} type="text" value={leaveDate?leaveDate:''} style={this.state.focus?{fontWeight:'normal'}:{fontWeight:'bold'}}/>            
             <button name='delete-leave' onClick={this.handleClickDelete}>Delete</button>
             <br/>
