@@ -60,7 +60,7 @@ class LoginTools extends React.Component{
                 <Container>
                     <Jumbotron className='jumbotron'>
                         <div className= 'button-container'>               
-                            {(!isShowing) && <Button className='btn-intp-lgn' onClick={()=>{this.setState({...this.state, isSupervisor:false}, ()=>{this.toggleShow()});  }}>I am an Interpreter</Button>}
+                            {(!isShowing) && <Button className='btn-intp-lgn' onClick={()=>{this.setState({...this.state, isSupervisor:false}, ()=>{this.toggleShow()});  }}>I am an Interpreter test</Button>}
                             {(!isShowing) && <Button className='btn-spvsr-lgn' onClick={()=>{this.setState({...this.state, isSupervisor:true}, ()=>{this.toggleShow()});  }}>I am the Supervisor</Button>}
                         </div>                     
                         {this.showToast()}               
