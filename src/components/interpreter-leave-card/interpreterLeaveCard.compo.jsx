@@ -12,7 +12,9 @@ constructor(props){
     this.state={focus:true}
 }
 
-
+componentDidMount(){
+    console.log('from LeaveCard compoDidMount &&&&&&&&&&&&&')
+}
 
 handleClick = ()=>{  
     this.props.compoWasClicked(this.textInputRef)    

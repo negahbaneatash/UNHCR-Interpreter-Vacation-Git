@@ -8,7 +8,8 @@ import { leaveType } from "../../objects/leaveObj";
 
 class AnnualLeaveContainer extends React.Component{
         
-    async componentDidMount(){        
+    async componentDidMount(){   
+        {console.log('from annualLeave DidMount *********')}     
         await loadLeavesOfTheInterpreterFromDBToStore(this.props.theInterpreter,this.props.viewingDate)        
     }
 
@@ -27,8 +28,9 @@ class AnnualLeaveContainer extends React.Component{
               
     render(){
         const {leavesArrayFromStore}=this.props;    
-        if (Array.isArray(leavesArrayFromStore) && (leavesArrayFromStore!==[null]) && leavesArrayFromStore.length) {
-            return (
+        if ((leavesArrayFromStore!==null) && leavesArrayFromStore.length) {
+            {console.log('from annualLeave render if true',leavesArrayFromStore)}
+            return (                
                 this.props.leavesArrayFromStore.filter((leave)=>(leave.type===leaveType.Annual_leave)).map(leaveEntity => {
                     return (        
                         <div>
@@ -38,6 +40,7 @@ class AnnualLeaveContainer extends React.Component{
                 })
             )
         }else{
+            {console.log('from annualLeave render if false')}
             return <h1>NO SUBMITTED ANNUAL LEAVE TO SHOW</h1>
         }
     }
