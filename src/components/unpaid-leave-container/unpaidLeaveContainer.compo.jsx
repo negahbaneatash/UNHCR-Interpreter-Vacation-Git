@@ -28,7 +28,7 @@ class UnpaidLeaveContainer extends React.Component{
               
     render(){    
         const {leavesArrayFromStore}=this.props;    
-        if ((leavesArrayFromStore!==null) && leavesArrayFromStore.length) {
+        if (leavesArrayFromStore.length) {
             {console.log('from unpaidLeave render if true',leavesArrayFromStore)}
             return (
                 this.props.leavesArrayFromStore.filter((leave)=>(leave.type!==leaveType.Annual_leave)).map(leaveEntity => {
