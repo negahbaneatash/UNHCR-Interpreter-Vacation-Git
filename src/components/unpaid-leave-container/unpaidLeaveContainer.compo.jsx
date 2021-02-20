@@ -9,7 +9,7 @@ import { leaveType } from "../../objects/leaveObj";
 class UnpaidLeaveContainer extends React.Component{
         
     async componentDidMount(){        
-        {console.log('from unpaidLeave DidMount *********')}     
+        console.log('from unpaidLeave DidMount *********')
         await loadLeavesOfTheInterpreterFromDBToStore(this.props.theInterpreter,this.props.viewingDate)        
     }
 
@@ -29,7 +29,7 @@ class UnpaidLeaveContainer extends React.Component{
     render(){    
         const {leavesArrayFromStore}=this.props;    
         if (leavesArrayFromStore.length) {
-            {console.log('from unpaidLeave render if true',leavesArrayFromStore)}
+            console.log('from unpaidLeave render if true',leavesArrayFromStore)
             return (
                 this.props.leavesArrayFromStore.filter((leave)=>(leave.type!==leaveType.Annual_leave)).map(leaveEntity => {
                     return (        
@@ -40,7 +40,7 @@ class UnpaidLeaveContainer extends React.Component{
                 })
             )
         }else{
-            {console.log('from unpaidLeave render if false')}
+            console.log('from unpaidLeave render if false')
             return <h1>NO SUBMITTED UNPAID LEAVE TO SHOW</h1>
         }
     }

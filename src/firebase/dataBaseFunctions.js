@@ -1,4 +1,4 @@
-import { setLeavesFromDBToStore_Action } from "../redux/redux.actions";
+import { setAllInterpretersFromDBToStore_Action, setAllSupervisorsFromDBToStore_Action, setLeavesFromDBToStore_Action } from "../redux/redux.actions";
 import { store } from "../redux/store";
 import { myFirestore } from "./firebaseConfig"
 
@@ -18,7 +18,27 @@ export const  getAllInterpretersFromDB = async ()=>{
     mySnapshFromInterpretersCollection.docs.map((doc,index)=>{
       interpreters[index] = doc.data()
     })
+    store.dispatch(setAllInterpretersFromDBToStore_Action(interpreters))
     return interpreters;
+}
+
+export const  getAllSupervisorsFromDB = async ()=>{
+    const myQuryReftoSupervisorsCollection = myFirestore.collection('Supervisors')
+    console.log("from getAllSupervisorsFromDB",myQuryReftoSupervisorsCollection)
+    let mySnapshFromSupervisorsCollection = null
+    
+    try {
+        mySnapshFromSupervisorsCollection = await myQuryReftoSupervisorsCollection.get();    
+    } catch (error) {
+        console.log('error from getAllSupervisorsFromDB',error)   
+    }
+    console.log("from getAllSupervisorsFromDB snapshot",mySnapshFromSupervisorsCollection)
+    const supervisors=[];        
+    mySnapshFromSupervisorsCollection.docs.map((doc,index)=>{
+      supervisors[index] = doc.data()
+    })
+    store.dispatch(setAllSupervisorsFromDBToStore_Action(supervisors))    
+    return supervisors;
 }
 
 export const addLeaveForTheInterpreterToDB = async (theInterpreter,leaveDate)=>{
@@ -60,7 +80,7 @@ export const addAnInterpreterToDB =async (name,nickname,group,email,phone,uid=nu
         al1:false,
         al2:false,
     }
-    const myQueryRefToAnInterpreterDoc= myFirestore.collection("Interpreters").doc(`${interpreterObj.email.toLowerCase()}`)
+    const myQueryRefToAnInterpreterDoc= myFirestore.collection("Supervisors").doc(`${interpreterObj.email.toLowerCase()}`)
     const mySnapshotFromAnInterpreterDoc= await myQueryRefToAnInterpreterDoc.get();
     if (mySnapshotFromAnInterpreterDoc.exist) {
         console.log('this Interpreter with this email address already exist in the database')        

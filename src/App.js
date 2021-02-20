@@ -4,16 +4,14 @@ import { connect } from "react-redux";
 
 import './App.css';
 
+import { myFireauth } from './firebase/firebaseConfig';
+import { setTheUserToStore_Action } from "./redux/redux.actions";
+
 import HomePage from './pages/home-page/homePage.compo';
 import LeaveSubmissionPage from './pages/leave-submission-page/leaveSubmissionPage.compo';
 import  AddInterpreterPage  from './pages/add-interpreter-page/addInterpreterPage.compo'
-import InterpreterSigninPage from './pages/interpreter-signin-page/interpreterSigninPage.compo';
-
-import { myFireauth } from './firebase/firebaseConfig';
-import { getAllInterpretersFromDB } from "./firebase/dataBaseFunctions";
-
-import { setTheUserToStore_Action } from "./redux/redux.actions";
 import SupervisorSigninPage from './pages/supervisor-signin-page/SupervisorSigninPage.compo';
+import UserSigninPage from './pages/user-signin-page/userSigninPage.compo';
 
 
 class App extends React.Component {  
@@ -24,8 +22,8 @@ class App extends React.Component {
     this.unsubscribeTheUser=myFireauth.onAuthStateChanged((user)=>{    
       this.props.setTheUserToStore(user)
     })
-    const dbInterpreters =await getAllInterpretersFromDB()        
-    this.props.setAllInterpretersToStore(dbInterpreters)
+    // const dbInterpreters =await getAllInterpretersFromDB()        
+    // this.props.setAllInterpretersToStore(dbInterpreters)
   }
 
   componentWillUnmount(){
@@ -37,8 +35,9 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Switch>
-          <Route path='/interpreter/signin' component={InterpreterSigninPage}/> 
+          <Route path='/user/signin' component={UserSigninPage}/> 
           <Route path='/interpreter/submitleave' component={LeaveSubmissionPage}/>   
+          <Route path='/supervisor/main-stage' component={AddInterpreterPage}/>
           <Route path='/supervisor/addinterpreter' component={AddInterpreterPage}/>
           <Route path='/supervisor' component={SupervisorSigninPage}/>
           <Route path='/' component={HomePage} />
@@ -51,7 +50,7 @@ class App extends React.Component {
 const myMapDispatchToProps=(dispatch)=>{
   return {
     setTheUserToStore: (theUser)=>{dispatch(setTheUserToStore_Action(theUser))},
-    setAllInterpretersToStore: (interpreters)=>{dispatch({type:'SET_ALL_INTERPRETERS',payload:interpreters})}
+    // setAllInterpretersToStore: (interpreters)=>{dispatch(setAllInterpretersFromDBToStore_Action(interpreters))}
   }
 }
 

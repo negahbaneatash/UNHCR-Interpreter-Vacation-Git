@@ -7,6 +7,7 @@ import '../login-tools/loginTools.style.css'
 import InterpreterToast from '../interpreter-toast/interpreterToast.compo'
 import SupervisorToast from '../supervisor-toast/supervisorToast.compo'
 import InterpreterCardContainer from '../interpreter-card-container/interpreterCardContainer.compo'
+import { getAllInterpretersFromDB, getAllSupervisorsFromDB } from '../../firebase/dataBaseFunctions'
 
 
 
@@ -15,15 +16,17 @@ class LoginTools extends React.Component{
         super(props)
         this.state = {            
             isShowing: false,
-            searchField:'',
-            isSupervisor: true,            
+            searchField:'',            
+            userType: ''
         }    
     }
-    componentDidMount(){
-        console.log('from loginTool componentDidMount')
+    async componentDidMount(){
+        console.log('from loginTool componentDidMount')        
+        await getAllInterpretersFromDB()        
+        await getAllSupervisorsFromDB()                
     }
     toggleShow=()=>{
-        this.setState({...this.state, isShowing:!this.state.isShowing})        
+        this.setState({...this.state, isShowing:!this.state.isShowing})                   
     }
 
     handleChange=(event)=>{
@@ -31,25 +34,46 @@ class LoginTools extends React.Component{
         this.setState({...this.state, searchField:textInput})    
     }
 
-    whoIsThis(IntpOrSpvsr){
+    whichUser(IntpOrSpvsr){
         switch (IntpOrSpvsr) {
             case 'supervisor':
-                this.setState({...this.state, isSupervisor:true})
-                
+                this.setState({...this.state, userType:'supervisor'})                
+                break;        
+            case 'interpreter':
+                this.setState({...this.state, userType:'interpreter'})
                 break;
-        
             default:
-                this.setState({...this.state, isSupervisor:false})
-                break;
+                this.setState({...this.state, userType:''})
         }        
     }
 
     showToast(){
-        if (this.state.isSupervisor)
-        return (
-            <SupervisorToast showIt={this.state.isShowing} onExit={this.toggleShow}/>
-        )
-        else return <InterpreterToast showIt={this.state.isShowing} onVorod={this.handleChange} onExit={this.toggleShow  }/>      
+        if (this.state.userType==='supervisor')     
+            return (
+                <SupervisorToast showIt={this.state.isShowing} onExit={()=>{this.setState({...this.state,isShowing:!this.state.isShowing},()=>{this.setState({...this.state,userType:''})})}}/>
+            )
+        else if (this.state.userType==='interpreter') 
+            return( 
+                <InterpreterToast showIt={this.state.isShowing} onWriteInput={this.handleChange} onExit={()=>{this.setState({...this.state,isShowing:!this.state.isShowing},()=>{this.setState({...this.state,userType:''})})}}/>      
+            )
+        else return null            
+    }
+
+    showContent(){
+        switch (this.state.userType) {
+            case 'supervisor':
+                return(
+                    <InterpreterCardContainer searchField={this.state.searchField} userType={this.state.userType}/>
+                )                
+            case 'interpreter':
+                return(
+                    <InterpreterCardContainer searchField={this.state.searchField} userType={this.state.userType}/>
+                )
+            default:
+                return(
+                    null
+                )
+        }
     }
 
     render(){        
@@ -60,12 +84,12 @@ class LoginTools extends React.Component{
                 <Container>
                     <Jumbotron className='jumbotron'>
                         <div className= 'button-container'>               
-                            {(!isShowing) && <Button className='btn-intp-lgn' onClick={()=>{this.setState({...this.state, isSupervisor:false}, ()=>{this.toggleShow()});  }}>I am an Interpreter test2</Button>}
-                            {(!isShowing) && <Button className='btn-spvsr-lgn' onClick={()=>{this.setState({...this.state, isSupervisor:true}, ()=>{this.toggleShow()});  }}>I am the Supervisor</Button>}
+                            {(!isShowing) && <Button className='btn-intp-lgn' onClick={()=>{this.setState({...this.state, userType:'interpreter'}, ()=>{this.toggleShow()});  }}>I am an Interpreter test2</Button>}
+                            {(!isShowing) && <Button className='btn-spvsr-lgn' onClick={()=>{this.setState({...this.state, userType:'supervisor'}, ()=>{this.toggleShow()});  }}>I am the Supervisor</Button>}
                         </div>                     
                         {this.showToast()}               
                     </Jumbotron>                    
-                    {this.state.isSupervisor ? null : <InterpreterCardContainer searchField={this.state.searchField}/>}                    
+                    {this.showContent()}                    
                 </Container>                
             </div>
         )

@@ -13,7 +13,7 @@ const InterpreterToast = function(props){
             </Toast.Header>
             <Toast.Body>
                 this is body
-                <input type='text' onChange={props.onVorod}/>
+                <input type='text' onChange={props.onWriteInput}/>
             </Toast.Body>
         </Toast>                        
 

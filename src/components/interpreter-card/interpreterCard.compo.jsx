@@ -2,13 +2,15 @@ import React from 'react'
 import '../interpreter-card/interpreterCard.style.css'
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { setTheInterpreterToStore_Action } from '../../redux/redux.actions';
+import { setTheInterpreterToStore_Action, setTheSupervisorToStore_Action } from '../../redux/redux.actions';
 
 
 class InterpreterCard extends React.Component {
 
     componentDidMount(){
+        this.props.setTheSupervisorToStore(null)
         console.log('0000000from InterpreterCard componentDidMount this.props',this.props)
+
     }
 
     handleClick=()=>{        
@@ -16,11 +18,11 @@ class InterpreterCard extends React.Component {
         this.props.setTheInterpreterToStore(interpreter);  
         console.log('from handlclick')
         if (!(interpreter&&theUser)) {
-            this.props.history.push('/interpreter/signin')
+            this.props.history.push('/user/signin')
         } else if (interpreter.email===theUser.email) {
             this.props.history.push(`/interpreter/submitleave`)
         } else {            
-            this.props.history.push('/interpreter/signin')
+            this.props.history.push('/user/signin')
         }
     }
 
@@ -43,7 +45,8 @@ const mapStateToProps=(state)=>({
 
 function mapDispatchToProps(dispatch){
     return{
-        setTheInterpreterToStore: interpreter=>{dispatch(setTheInterpreterToStore_Action(interpreter))}
+        setTheInterpreterToStore: interpreter=>{dispatch(setTheInterpreterToStore_Action(interpreter))},
+        setTheSupervisorToStore: supervisor=>{dispatch(setTheSupervisorToStore_Action(supervisor))}
     }
 }
 

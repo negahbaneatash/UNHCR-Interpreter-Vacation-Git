@@ -1,6 +1,20 @@
 import { actions } from "./action.names"
 
 
+export const setAllInterpretersFromDBToStore_Action = (allInterpreters)=>{
+    return{
+        type: actions.setAllInterpretersFromDBToStore,
+        payload: allInterpreters
+    }
+}
+
+export const setAllSupervisorsFromDBToStore_Action = (allSupervisors)=>{
+    return{
+        type: actions.setAllSupervisorsFromDBToStore,
+        payload: allSupervisors
+    }
+}
+
 export const setTheUserToStore_Action =(theUser)=>{
     return{
         type: actions.setTheUserToStore,
@@ -12,6 +26,13 @@ export const setTheInterpreterToStore_Action = (theInterpreter)=>{
     return{
         type: actions.setTheInterpreterToStore,
         payload: theInterpreter
+    }
+}
+
+export const setTheSupervisorToStore_Action = (theSupervisor)=>{
+    return{
+        type: actions.setTheSupervisorToStore,
+        payload: theSupervisor
     }
 }
 

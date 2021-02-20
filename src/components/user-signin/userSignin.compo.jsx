@@ -1,17 +1,14 @@
+import { React, Component } from "react";
 import firebase from "firebase/app";
 
-import { React, Component } from "react";
 
 
 
-class InterpreterSignin extends Component {
-    constructor(props){
-        super(props)
-        // this.state={interpreterEmail:this.props.history.location.interpreter.email}
-    }
-    
+
+class UserSignin extends Component {
+   
     componentDidMount(){
-        console.log('from interpreterSignin componentDidMount')
+        console.log('from UserSignin componentDidMount')
     }
     
     handleClick=()=>{
@@ -26,7 +23,7 @@ class InterpreterSignin extends Component {
    
 
     render(){
-        console.log('from interpreterSignin render')
+        console.log('from UserSignin render')
         return(
             <div>
                 <button onClick={this.handleClick}>Sign In With Google</button>
@@ -36,4 +33,4 @@ class InterpreterSignin extends Component {
 
 
 
-export default InterpreterSignin;
+export default UserSignin;

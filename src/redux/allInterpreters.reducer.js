@@ -1,3 +1,4 @@
+import { actions } from "./action.names";
 
 
 const INITIAL_STATE={
@@ -6,14 +7,17 @@ const INITIAL_STATE={
 
 const allInterpretersReducer = (state=INITIAL_STATE,action)=>{
     switch (action.type) {
-        case "SET_ALL_INTERPRETERS":
-            return{
-                ...state,                
-                allInterpreters:[...action.payload]
-            }           
+        case actions.setAllInterpretersFromDBToStore:
+            return(
+                {
+                    ...state,                
+                    allInterpreters:[...action.payload]
+                }
+            )           
         default:
             return state;
     }
 }
+
 
 export default allInterpretersReducer;
