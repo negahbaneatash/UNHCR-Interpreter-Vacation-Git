@@ -50,7 +50,7 @@ class LoginTools extends React.Component{
     showToast(){
         if (this.state.userType==='supervisor')     
             return (
-                <SupervisorToast showIt={this.state.isShowing} onExit={()=>{this.setState({...this.state,isShowing:!this.state.isShowing},()=>{this.setState({...this.state,userType:''})})}}/>
+                <SupervisorToast showIt={this.state.isShowing} onWriteInput={this.handleChange} onExit={()=>{this.setState({...this.state,isShowing:!this.state.isShowing},()=>{this.setState({...this.state,userType:''})})}}/>
             )
         else if (this.state.userType==='interpreter') 
             return( 

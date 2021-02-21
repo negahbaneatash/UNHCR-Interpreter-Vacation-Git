@@ -13,7 +13,7 @@ const InterpreterToast = function(props){
             </Toast.Header>
             <Toast.Body>
                 this is body
-                <input type='text' onChange={props.onWriteInput}/>
+                <input type='text' ref={(item)=>{if (item) {item.focus()}}} onChange={props.onWriteInput}/>
             </Toast.Body>
         </Toast>                        
 

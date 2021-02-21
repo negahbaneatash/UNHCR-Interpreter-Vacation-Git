@@ -41,9 +41,10 @@ export const  getAllSupervisorsFromDB = async ()=>{
     return supervisors;
 }
 
-export const addLeaveForTheInterpreterToDB = async (theInterpreter,leaveDate)=>{
-    const leaveRef = leaveDate.getFullYear().toString()+'-'+(leaveDate.getMonth()+1).toString();
-    const myQueryRefToTheInterpreterLeave = myFirestore.collection('Interpreters').doc(theInterpreter.email.toString().toLowerCase()).collection('Vacations').doc(leaveRef)
+export const addLeaveForTheInterpreterToDB = async (theLeave)=>{
+
+    // const leaveRef = leaveDate.getFullYear().toString()+'-'+(leaveDate.getMonth()+1).toString();
+    const myQueryRefToTheInterpreterLeave = myFirestore.collection('Interpreters').doc(theLeave.leaveOwnerEmail.toString().toLowerCase()).collection('Vacations').doc(theLeave.leavesArrayRef)
     const mySnapshotFromTheInterpreterLeave = await myQueryRefToTheInterpreterLeave.get()    
     if (mySnapshotFromTheInterpreterLeave.exists) {
         console.log("There is a leave here")
