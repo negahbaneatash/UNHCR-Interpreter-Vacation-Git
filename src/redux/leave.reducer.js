@@ -28,6 +28,15 @@ export const leaveReducer =(state=INITIAL_STATE,action)=>{
                 ...state,
                 leaves:[...tempArray2]
             })
+        case actions.addToAllLeavesToStore:            
+            if (action.payload) {
+                return ({
+                    ...state,
+                    leaves:[...state.leaves,...action.payload.leaves]
+                })    
+            }else{                
+                return {leaves:[...state.leaves]}
+            }               
         default:
             return state;
     }

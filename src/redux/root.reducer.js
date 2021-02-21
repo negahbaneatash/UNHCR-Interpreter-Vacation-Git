@@ -22,7 +22,7 @@ const rootReducer =(state={},action)=>{
         Interpreter:theInterpreterReducer(state.Interpreter,action),
         Supervisor:theSupervisorReducer(state.Supervisor,action),        
         User:theUserReducer(state.User,action),
-        Leaves: leaveReducer(state.Leaves,action)
+        Leaves: leaveReducer(state.Leaves,action),        
     }
 }
 

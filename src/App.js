@@ -12,6 +12,7 @@ import LeaveSubmissionPage from './pages/leave-submission-page/leaveSubmissionPa
 import  AddInterpreterPage  from './pages/add-interpreter-page/addInterpreterPage.compo'
 import SupervisorSigninPage from './pages/supervisor-signin-page/SupervisorSigninPage.compo';
 import UserSigninPage from './pages/user-signin-page/userSigninPage.compo';
+import LeaveManagementPage from './components/leave-management-page/leaveManagementPage.compo';
 
 
 class App extends React.Component {  
@@ -37,7 +38,7 @@ class App extends React.Component {
         <Switch>
           <Route path='/user/signin' component={UserSigninPage}/> 
           <Route path='/interpreter/submitleave' component={LeaveSubmissionPage}/>   
-          <Route path='/supervisor/main-stage' component={AddInterpreterPage}/>
+          <Route path='/supervisor/main-stage' component={LeaveManagementPage}/>
           <Route path='/supervisor/addinterpreter' component={AddInterpreterPage}/>
           <Route path='/supervisor' component={SupervisorSigninPage}/>
           <Route path='/' component={HomePage} />

@@ -50,6 +50,13 @@ export const addTheLeaveToStore_Action=(newLeave)=>{
     }
 }
 
+export const addToAllLeavesToStore_Action=(leavesOfTheMonth)=>{
+    return {
+        type: actions.addToAllLeavesToStore,
+        payload: leavesOfTheMonth
+    }
+}
+
 export const deleteTheLeaveFromStore_Action=(leaveId)=>{
     return{
         type:actions.deleteTheLeaveFromStore,

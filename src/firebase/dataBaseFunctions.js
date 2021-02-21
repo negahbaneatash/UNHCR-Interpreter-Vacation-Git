@@ -1,4 +1,4 @@
-import { setAllInterpretersFromDBToStore_Action, setAllSupervisorsFromDBToStore_Action, setLeavesFromDBToStore_Action } from "../redux/redux.actions";
+import { addToAllLeavesToStore_Action, setAllInterpretersFromDBToStore_Action, setAllSupervisorsFromDBToStore_Action, setLeavesFromDBToStore_Action } from "../redux/redux.actions";
 import { store } from "../redux/store";
 import { myFirestore } from "./firebaseConfig"
 
@@ -42,8 +42,7 @@ export const  getAllSupervisorsFromDB = async ()=>{
 }
 
 export const addLeaveForTheInterpreterToDB = async (theLeave)=>{
-
-    // const leaveRef = leaveDate.getFullYear().toString()+'-'+(leaveDate.getMonth()+1).toString();
+    
     const myQueryRefToTheInterpreterLeave = myFirestore.collection('Interpreters').doc(theLeave.leaveOwnerEmail.toString().toLowerCase()).collection('Vacations').doc(theLeave.leavesArrayRef)
     const mySnapshotFromTheInterpreterLeave = await myQueryRefToTheInterpreterLeave.get()    
     if (mySnapshotFromTheInterpreterLeave.exists) {
@@ -67,6 +66,20 @@ export const loadLeavesOfTheInterpreterFromDBToStore = async (theInterpreter,inT
     console.log('from loadLeavesOfTheInterpreterFromDBToStore', leavesOfThisMonth)
     store.dispatch(setLeavesFromDBToStore_Action(leavesOfThisMonth))
     return mySnapshotFromLeavesOfTheMonth.data()
+}
+
+export const loadAllLeavesOfTheMonthFromDBToStore = (inTime)=>{
+    const leaveRef= inTime.getFullYear().toString()+'-'+(inTime.getMonth()+1).toString();
+    const All_Interpreters = store.getState().Interpreters.allInterpreters
+    All_Interpreters.map(
+        async (theInterpreter)=>{
+            const myQueryRefToleavesOfTheMonth = myFirestore.collection('Interpreters').doc(theInterpreter.email.toString().toLowerCase()).collection('Vacations').doc(leaveRef)
+            const mySnapshotFromLeavesOfTheMonth = await myQueryRefToleavesOfTheMonth.get()        
+            const leavesOfThisMonth = mySnapshotFromLeavesOfTheMonth.data();   
+            store.dispatch(addToAllLeavesToStore_Action(leavesOfThisMonth))
+        }    
+    )
+    return true
 }
 
 export const addAnInterpreterToDB =async (name,nickname,group,email,phone,uid=null)=>{
