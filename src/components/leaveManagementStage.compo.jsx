@@ -1,3 +1,4 @@
+import  Dropdown  from "react-dropdown";
 import React from "react";
 import { connect } from "react-redux";
 import { loadAllLeavesOfTheMonthFromDBToStore } from "../firebase/dataBaseFunctions";
@@ -10,24 +11,58 @@ import InterpreterLeaveCard from "./interpreter-leave-card/interpreterLeaveCard.
 
 class LeaveManangementStage extends React.Component {
     constructor(){
-        super()
-        this.submittedLeavesArray=[];
+        super()        
         this.check=false;
+        this.state={Leave_Status_Group:'ALL'}
     }
     componentDidMount(){        
         const tempDate = new Date()
         this.check=loadAllLeavesOfTheMonthFromDBToStore(tempDate)                      
-    console.log('CCCCCCCCCCC from LeaveManagementStage componentDidMount this.check:',this.check)
+        console.log('CCCCCCCCCCC from LeaveManagementStage componentDidMount this.check:',this.check)
     }
 
+    dropDownOptions = [{value:'ALL',label:'All Leaves'},{value:leaveStatus.submitted, label:'Submitted Leaves'},{value:leaveStatus.approved, label:'Approved Leaves'},{value:leaveStatus.rejected, label:'Rejected Leaves'}]
+    
+    dropDownSelect = (selectedItem)=>{
+        this.setState({...this.state,Leave_Status_Group:selectedItem.value})
+    }
+
+    showRelatedLeaveCards = ()=>{
+        switch (this.state.Leave_Status_Group) {
+
+            case leaveStatus.submitted:
+                return(
+                    this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.submitted}).map((leave)=>{return(
+                        <InterpreterLeaveCard leave={leave}/>
+                    )})
+                )
+            case leaveStatus.approved:
+                return(
+                    this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.approved}).map((leave)=>{return(
+                        <InterpreterLeaveCard leave={leave}/>
+                    )})
+                )
+            case leaveStatus.rejected:
+                return(
+                    this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.rejected}).map((leave)=>{return(
+                        <InterpreterLeaveCard leave={leave}/>
+                    )})
+                )        
+            default:
+                return(
+                    this.props.leavesOfTheMonth.map((leave)=>{return(                    
+                        <InterpreterLeaveCard leave={leave}/>                    
+                    )})
+                )
+        }
+    }
 
     render(){
         console.log('RRRRRRRRRR from LeaveManagementStage render() this.check',this.check)
         return(
             <div>
-                {this.props.leavesOfTheMonth.map((leave)=>{return(
-                    <InterpreterLeaveCard leave={leave}/>
-                )})}
+                <Dropdown className='leave-status-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[0]} onChange={this.dropDownSelect} placeholder='Show:'/>                
+                {this.showRelatedLeaveCards()}
             </div>
     )}
 }
