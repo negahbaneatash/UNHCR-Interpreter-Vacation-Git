@@ -17,7 +17,22 @@ const LeaveManagementPage =()=>{
                 <LeaveManangementStage/>
             </TabPanel>
             <TabPanel>
-                <AddInterpreterToDB/>
+                <Tabs>
+                    <TabList>
+                        <Tab>Add Interpreter</Tab>
+                        <Tab disabled>Edit Interpreter</Tab>
+                        <Tab>Remove Interpreter</Tab>
+                    </TabList>
+                    <TabPanel>
+                        <AddInterpreterToDB/>
+                    </TabPanel>
+                    <TabPanel>
+                        <h1>Here we Edit an Existing Interpreter</h1>
+                    </TabPanel>
+                    <TabPanel>
+                        <h2>Here we remove an Interpreter</h2>
+                    </TabPanel>
+                </Tabs>
             </TabPanel>
         </Tabs>
         

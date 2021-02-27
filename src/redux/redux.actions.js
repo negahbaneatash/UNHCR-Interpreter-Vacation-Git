@@ -64,4 +64,11 @@ export const deleteTheLeaveFromStore_Action=(leaveId)=>{
     }
 }
 
+export const removeAllLeavesFromStore_Action =()=>{
+    return{
+        type: actions.removeAllLeavesFromStore,
+        payload:null
+    }
+}
+
 // the other actions to be written and centralized here

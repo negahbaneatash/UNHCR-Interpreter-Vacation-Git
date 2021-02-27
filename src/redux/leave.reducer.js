@@ -37,6 +37,8 @@ export const leaveReducer =(state=INITIAL_STATE,action)=>{
             }else{                
                 return {leaves:[...state.leaves]}
             }               
+        case actions.removeAllLeavesFromStore:
+            return INITIAL_STATE
         default:
             return state;
     }

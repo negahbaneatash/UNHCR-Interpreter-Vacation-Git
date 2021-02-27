@@ -1,4 +1,4 @@
-import { addToAllLeavesToStore_Action, setAllInterpretersFromDBToStore_Action, setAllSupervisorsFromDBToStore_Action, setLeavesFromDBToStore_Action } from "../redux/redux.actions";
+import { addToAllLeavesToStore_Action, removeAllLeavesFromStore_Action, setAllInterpretersFromDBToStore_Action, setAllSupervisorsFromDBToStore_Action, setLeavesFromDBToStore_Action } from "../redux/redux.actions";
 import { store } from "../redux/store";
 import { myFirestore } from "./firebaseConfig"
 
@@ -69,6 +69,7 @@ export const loadLeavesOfTheInterpreterFromDBToStore = async (theInterpreter,inT
 }
 
 export const loadAllLeavesOfTheMonthFromDBToStore = (inTime)=>{
+    store.dispatch(removeAllLeavesFromStore_Action())
     const leaveRef= inTime.getFullYear().toString()+'-'+(inTime.getMonth()+1).toString();
     const All_Interpreters = store.getState().Interpreters.allInterpreters
     All_Interpreters.map(
