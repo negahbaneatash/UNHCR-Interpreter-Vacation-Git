@@ -34,7 +34,7 @@ class UnpaidLeaveContainer extends React.Component{
                 this.props.leavesArrayFromStore.filter((leave)=>(leave.leaveType!==leaveType.Annual_leave)).map(leaveEntity => {
                     return (        
                         <div>
-                            <InterpreterLeaveCard leave={leaveEntity} compoWasClicked={this.focusOnItem} backgroundColor={'red'}></InterpreterLeaveCard>                    
+                            <InterpreterLeaveCard isInterpreter leave={leaveEntity} compoWasClicked={this.focusOnItem} backgroundColor={'red'}></InterpreterLeaveCard>                    
                         </div>
                     )    
                 })

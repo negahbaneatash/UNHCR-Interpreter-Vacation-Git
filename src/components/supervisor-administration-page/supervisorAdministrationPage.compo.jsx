@@ -6,7 +6,7 @@ import LeaveManangementStage from "../leaveManagementStage.compo";
 
 
 
-const LeaveManagementPage =()=>{
+const SupervisorAdministrationPage =()=>{
     return (
         <Tabs>
             <TabList>
@@ -40,4 +40,4 @@ const LeaveManagementPage =()=>{
 }
 
 
-export default LeaveManagementPage;
+export default SupervisorAdministrationPage;

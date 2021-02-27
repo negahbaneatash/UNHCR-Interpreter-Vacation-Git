@@ -33,25 +33,25 @@ class LeaveManangementStage extends React.Component {
             case leaveStatus.submitted:
                 return(
                     this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.submitted}).map((leave)=>{return(
-                        <InterpreterLeaveCard leave={leave}/>
+                        <InterpreterLeaveCard isSupervisor leave={leave}/>
                     )})
                 )
             case leaveStatus.approved:
                 return(
                     this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.approved}).map((leave)=>{return(
-                        <InterpreterLeaveCard leave={leave}/>
+                        <InterpreterLeaveCard isSupervisor leave={leave}/>
                     )})
                 )
             case leaveStatus.rejected:
                 return(
                     this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.rejected}).map((leave)=>{return(
-                        <InterpreterLeaveCard leave={leave}/>
+                        <InterpreterLeaveCard isSupervisor leave={leave}/>
                     )})
                 )        
             default:
                 return(
                     this.props.leavesOfTheMonth.map((leave)=>{return(                    
-                        <InterpreterLeaveCard leave={leave}/>                    
+                        <InterpreterLeaveCard isSupervisor leave={leave}/>                    
                     )})
                 )
         }

@@ -9,7 +9,9 @@ class InterpreterLeaveCard extends React.Component {
 constructor(props){
     super(props)        
     this.textInputRef = React.createRef()
-    this.state={focus:true}
+    this.state={
+        focus:true,        
+    }
 }
 
 componentDidMount(){
@@ -32,7 +34,9 @@ render(){
     return(
         <div className='interpreter-leave-card' onClick={this.handleClick} style={{backgroundColor:this.props.backgroundColor}}>
             <input ref={this.textInputRef} type="text" value={leaveDate?leaveDate:''} style={this.state.focus?{fontWeight:'normal'}:{fontWeight:'bold'}}/>            
-            <button name='delete-leave' onClick={this.handleClickDelete}>Delete</button>
+            {this.props.isInterpreter?<button name='delete-leave' onClick={this.handleClickDelete}>Delete</button>:null} 
+            {this.props.isSupervisor?<button name='approve-leave' onClick={this.handleClickApprove}>Approve</button>:null} 
+            {this.props.isSupervisor?<button name='reject-leave' onClick={this.handleClickReject}>Reject</button>:null} 
             <br/>
                 <lable>{leaveStatus}</lable>            
         </div>
