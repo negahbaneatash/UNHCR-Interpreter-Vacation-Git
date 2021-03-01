@@ -10,12 +10,14 @@ class UnpaidLeaveContainer extends React.Component{
         
     async componentDidMount(){        
         console.log('from unpaidLeave DidMount *********')
-        await loadLeavesOfTheInterpreterFromDBToStore(this.props.theInterpreter,this.props.viewingDate)        
+        const leaveRef= this.props.viewingDate.getFullYear().toString()+'-'+(this.props.viewingDate.getMonth()+1).toString();
+        await loadLeavesOfTheInterpreterFromDBToStore(this.props.theInterpreter.email,leaveRef)        
     }
 
     async componentDidUpdate(prevProps){
         if (prevProps.viewingDate!==this.props.viewingDate) {
-            await loadLeavesOfTheInterpreterFromDBToStore(this.props.theInterpreter,this.props.viewingDate)        
+            const leaveRef= this.props.viewingDate.getFullYear().toString()+'-'+(this.props.viewingDate.getMonth()+1).toString();
+            await loadLeavesOfTheInterpreterFromDBToStore(this.props.theInterpreter.email,leaveRef)        
         }
     }
 

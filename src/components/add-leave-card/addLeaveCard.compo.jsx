@@ -2,7 +2,7 @@ import React from "react";
 import  Dropdown  from "react-dropdown";
 import 'react-dropdown/style.css';
 import { connect } from "react-redux";
-import { addLeaveForTheInterpreterToDB } from "../../firebase/dataBaseFunctions";
+import { updateLeavesArrayOfTheMonthFromStoreToDB } from "../../firebase/dataBaseFunctions";
 
 import Leave, { leaveType } from "../../objects/leaveObj";
 import { addTheLeaveToStore_Action } from "../../redux/redux.actions";
@@ -46,7 +46,7 @@ submitLeave = async()=>{
     if (!this.checkValidity()) {
         const newLeave = new Leave(this.props.leaveDay,this.state.Leave_Type,this.props.theInterpreter);
         this.props.addNewLeave(addTheLeaveToStore_Action(newLeave))
-        await addLeaveForTheInterpreterToDB(newLeave)
+        await updateLeavesArrayOfTheMonthFromStoreToDB(newLeave.leaveOwnerEmail,newLeave.leavesArrayRef)
     }else{
         this.setState({...this.state,alarm:this.checkValidity()})
         console.log('we do nothing')

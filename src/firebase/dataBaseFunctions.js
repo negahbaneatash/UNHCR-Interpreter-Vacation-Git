@@ -41,9 +41,9 @@ export const  getAllSupervisorsFromDB = async ()=>{
     return supervisors;
 }
 
-export const addLeaveForTheInterpreterToDB = async (theLeave)=>{
+export const updateLeavesArrayOfTheMonthFromStoreToDB = async (theInterpreterEmail,leaveRef)=>{
     
-    const myQueryRefToTheInterpreterLeave = myFirestore.collection('Interpreters').doc(theLeave.leaveOwnerEmail.toString().toLowerCase()).collection('Vacations').doc(theLeave.leavesArrayRef)
+    const myQueryRefToTheInterpreterLeave = myFirestore.collection('Interpreters').doc(theInterpreterEmail.toString().toLowerCase()).collection('Vacations').doc(leaveRef)
     const mySnapshotFromTheInterpreterLeave = await myQueryRefToTheInterpreterLeave.get()    
     if (mySnapshotFromTheInterpreterLeave.exists) {
         console.log("There is a leave here")
@@ -58,14 +58,15 @@ export const addLeaveForTheInterpreterToDB = async (theLeave)=>{
     })
 }
 
-export const loadLeavesOfTheInterpreterFromDBToStore = async (theInterpreter,inTime)=>{
-    const leaveRef= inTime.getFullYear().toString()+'-'+(inTime.getMonth()+1).toString();
-    const myQueryRefToleavesOfTheMonth = myFirestore.collection('Interpreters').doc(theInterpreter.email.toString().toLowerCase()).collection('Vacations').doc(leaveRef)
+export const loadLeavesOfTheInterpreterFromDBToStore = async (theInterpreterEmail,leaveRef)=>{
+    store.dispatch(removeAllLeavesFromStore_Action())
+    // const leaveRef= inTime.getFullYear().toString()+'-'+(inTime.getMonth()+1).toString();
+    const myQueryRefToleavesOfTheMonth = myFirestore.collection('Interpreters').doc(theInterpreterEmail.toString().toLowerCase()).collection('Vacations').doc(leaveRef)
     const mySnapshotFromLeavesOfTheMonth = await myQueryRefToleavesOfTheMonth.get()
     const leavesOfThisMonth = mySnapshotFromLeavesOfTheMonth.data();    
     console.log('from loadLeavesOfTheInterpreterFromDBToStore', leavesOfThisMonth)
     store.dispatch(setLeavesFromDBToStore_Action(leavesOfThisMonth))
-    return mySnapshotFromLeavesOfTheMonth.data()
+    return leavesOfThisMonth
 }
 
 export const loadAllLeavesOfTheMonthFromDBToStore = (inTime)=>{
@@ -82,6 +83,15 @@ export const loadAllLeavesOfTheMonthFromDBToStore = (inTime)=>{
     )
     return true
 }
+
+
+
+
+
+
+
+
+
 
 export const addAnInterpreterToDB =async (name,nickname,group,email,phone,uid=null)=>{
 

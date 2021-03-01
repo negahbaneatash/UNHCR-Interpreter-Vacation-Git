@@ -12,13 +12,13 @@ import InterpreterLeaveCard from "./interpreter-leave-card/interpreterLeaveCard.
 class LeaveManangementStage extends React.Component {
     constructor(){
         super()        
-        this.check=false;
+        
         this.state={Leave_Status_Group:'ALL'}
     }
     componentDidMount(){        
         const tempDate = new Date()
         this.check=loadAllLeavesOfTheMonthFromDBToStore(tempDate)                      
-        console.log('CCCCCCCCCCC from LeaveManagementStage componentDidMount this.check:',this.check)
+        console.log('from LeaveManagementStage componentDidMount ')
     }
 
     dropDownOptions = [{value:'ALL',label:'All Leaves'},{value:leaveStatus.submitted, label:'Submitted Leaves'},{value:leaveStatus.approved, label:'Approved Leaves'},{value:leaveStatus.rejected, label:'Rejected Leaves'}]
@@ -31,34 +31,46 @@ class LeaveManangementStage extends React.Component {
         switch (this.state.Leave_Status_Group) {
 
             case leaveStatus.submitted:
-                return(
-                    this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.submitted}).map((leave)=>{return(
-                        <InterpreterLeaveCard isSupervisor leave={leave}/>
+                
+                const tempArr= this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.submitted})
+                console.log('this.showRelatedLeaveCards case submitted tempArr',tempArr)
+                return(                    
+                    tempArr.map((lves)=>{
+                        console.log('tempArr.map leave:',lves)
+                        return(                        
+                        <InterpreterLeaveCard isSupervisor leave={lves}/>
                     )})
                 )
+                
             case leaveStatus.approved:
+                console.log('this.showRelatedLeaveCards case approved')
                 return(
                     this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.approved}).map((leave)=>{return(
                         <InterpreterLeaveCard isSupervisor leave={leave}/>
                     )})
                 )
+                
             case leaveStatus.rejected:
+                const tempArrRej= this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.rejected})
+                console.log('this.showRelatedLeaveCards case rejected tempArrRej:',tempArrRej)
                 return(
-                    this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.rejected}).map((leave)=>{return(
-                        <InterpreterLeaveCard isSupervisor leave={leave}/>
+                    tempArrRej.map((lve)=>{return(
+                        <InterpreterLeaveCard isSupervisor leave={lve}/>
                     )})
-                )        
+                )      
+                
             default:
+                console.log('this.showRelatedLeaveCards case map all')
                 return(
-                    this.props.leavesOfTheMonth.map((leave)=>{return(                    
-                        <InterpreterLeaveCard isSupervisor leave={leave}/>                    
+                    this.props.leavesOfTheMonth.map((lve)=>{return(                    
+                        <InterpreterLeaveCard isSupervisor leave={lve}/>                    
                     )})
                 )
         }
     }
 
     render(){
-        console.log('RRRRRRRRRR from LeaveManagementStage render() this.check',this.check)
+        console.log('RRRRRRRRRR from LeaveManagementStage render() ')
         return(
             <div>
                 <Dropdown className='leave-status-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[0]} onChange={this.dropDownSelect} placeholder='Show:'/>                
@@ -70,7 +82,7 @@ class LeaveManangementStage extends React.Component {
 const mapStateToProps =(state)=>{
     return{
         allInterpreters:state.Interpreters.allInterpreters,
-        leavesOfTheMonth:state.Leaves.leaves
+        leavesOfTheMonth:state.Mleaves.mLeaves
     }
 }
 

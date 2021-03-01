@@ -71,4 +71,17 @@ export const removeAllLeavesFromStore_Action =()=>{
     }
 }
 
+export const approveTheLeaveToStore_Action =(leaveId)=>{
+    return{
+        type: actions.approveTheLeaveToStore,
+        payload: leaveId
+    }
+}
+
+export const rejectTheLeaveToStore_Action =(leaveId)=>{
+    return{
+        type: actions.rejectTheLeaveToStore,
+        payload: leaveId
+    }
+}
 // the other actions to be written and centralized here
