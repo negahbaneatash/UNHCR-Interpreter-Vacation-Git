@@ -13,7 +13,7 @@ class LeaveManangementStage extends React.Component {
     constructor(){
         super()        
         
-        this.state={Leave_Status_Group:'ALL'}
+        this.state={Leave_Status_Group:leaveStatus.submitted}
     }
     componentDidMount(){        
         const tempDate = new Date()
@@ -73,7 +73,7 @@ class LeaveManangementStage extends React.Component {
         console.log('RRRRRRRRRR from LeaveManagementStage render() ')
         return(
             <div>
-                <Dropdown className='leave-status-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[0]} onChange={this.dropDownSelect} placeholder='Show:'/>                
+                <Dropdown className='leave-status-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[1]} onChange={this.dropDownSelect} placeholder='Show:'/>                
                 {this.showRelatedLeaveCards()}
             </div>
     )}

@@ -36,20 +36,21 @@ componentDidUpdate(prevProps){
 // }
 
 handleClickDelete=()=>{    
-    this.props.deleteTheLeave(deleteTheLeaveFromStore_Action(this.state.leave.id))
-    updateLeavesArrayOfTheMonthFromStoreToDB(this.state.leave.leaveOwnerEmail,this.state.leave.leavesArrayRef)
+    this.props.deleteTheLeave(deleteTheLeaveFromStore_Action(this.state.leave.leaveId))
+    updateLeavesArrayOfTheMonthFromStoreToDB(this.state.leave.leaveOwnerEmail,this.state.leave.leaveYearMonth)
 }
 
-handleClickApprove=()=>{
+handleClickApprove=async ()=>{
+    const {leaveOwnerEmail,leaveYearMonth,leaveId}=this.state.leave
     this.setState({...this.state,leave:{...this.state.leave,leaveStatus:leaveStatus.approved}})
-    this.props.approveTheLeave(approveTheLeaveToStore_Action(this.state.leave.id))
-    // loadLeavesOfTheInterpreterFromDBToStore(this.state.leave.leaveOwnerEmail,this.state.leave.leaveRef)
-    /////////HERE I AM
+    await loadLeavesOfTheInterpreterFromDBToStore(leaveOwnerEmail,leaveYearMonth)
+    this.props.approveTheLeave(approveTheLeaveToStore_Action(leaveId))
+    updateLeavesArrayOfTheMonthFromStoreToDB(leaveOwnerEmail,leaveYearMonth)    
 }
 
 handleClickReject=()=>{
     this.setState({...this.state,leave:{...this.state.leave,leaveStatus:leaveStatus.rejected}})
-    this.props.rejectTheLeave(rejectTheLeaveToStore_Action(this.state.leave.id))
+    this.props.rejectTheLeave(rejectTheLeaveToStore_Action(this.state.leave.leaveId))
 }
 
 render(){  

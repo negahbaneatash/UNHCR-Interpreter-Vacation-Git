@@ -46,7 +46,7 @@ submitLeave = async()=>{
     if (!this.checkValidity()) {
         const newLeave = new Leave(this.props.leaveDay,this.state.Leave_Type,this.props.theInterpreter);
         this.props.addNewLeave(addTheLeaveToStore_Action(newLeave))
-        await updateLeavesArrayOfTheMonthFromStoreToDB(newLeave.leaveOwnerEmail,newLeave.leavesArrayRef)
+        await updateLeavesArrayOfTheMonthFromStoreToDB(newLeave.leaveOwnerEmail,newLeave.leaveYearMonth)
     }else{
         this.setState({...this.state,alarm:this.checkValidity()})
         console.log('we do nothing')

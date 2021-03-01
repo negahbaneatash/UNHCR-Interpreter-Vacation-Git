@@ -1,3 +1,4 @@
+import { leaveStatus } from "../objects/leaveObj";
 import { actions } from "./action.names";
 
 const INITIAL_STATE={
@@ -18,16 +19,40 @@ export const leaveReducer =(state=INITIAL_STATE,action)=>{
                     leaves: [...action.payload.leaves]
                 })    
             }else{
-                let tempArray1=[]
-                return {leaves:[...tempArray1]}
+                let helpArrEmpty=[]
+                return {leaves:[...helpArrEmpty]}
             }   
         case actions.deleteTheLeaveFromStore:
-            let tempArray2 = []
-            tempArray2 = state.leaves.filter((leave)=>{return (leave.id !== action.payload)})
+            let helpArrDelete = []
+            helpArrDelete = state.leaves.filter((leave)=>{return (leave.leaveId !== action.payload)})
             return ({
                 ...state,
-                leaves:[...tempArray2]
-            })        
+                leaves:[...helpArrDelete]
+            })
+        case actions.approveTheLeaveToStore:
+            const helpArrApprove = state.leaves.map((leave)=>{
+                if (action.payload===leave.leaveId) {
+                    return {...leave,leaveStatus:leaveStatus.approved}
+                } else {
+                    return leave
+                }
+            })
+            return {
+                ...state,
+                leaves:[...helpArrApprove]
+            }
+        case actions.rejectTheLeaveToStore:
+            const helpArrReject = state.leaves.map((leave)=>{
+                if (action.payload===leave.leaveId) {
+                    return {...leave,leaveStatus:leaveStatus.rejected}
+                } else {
+                    return leave
+                }
+            })
+            return {
+                ...state,
+                leaves:[...helpArrReject]
+            }
         case actions.removeAllLeavesFromStore:
             return INITIAL_STATE
         default:

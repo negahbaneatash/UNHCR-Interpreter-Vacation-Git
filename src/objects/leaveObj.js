@@ -1,6 +1,6 @@
 class Leave {
     constructor(date,type=leaveType.Annual_leave,theInterpreter){
-        this.id=Math.floor((Math.random()*100000)).toString();
+        this.leaveId=Math.floor((Math.random()*100000)).toString();
         this.leaveDate=date;
         this.leaveType=type;        
         this.submittedOn=new Date();
@@ -8,7 +8,7 @@ class Leave {
         this.supervisorNote='';        
         this.leaveOwner=theInterpreter.name;
         this.leaveOwnerEmail=theInterpreter.email;
-        this.leavesArrayRef = date.getFullYear().toString()+'-'+(date.getMonth()+1).toString();
+        this.leaveYearMonth = date.getFullYear().toString()+'-'+(date.getMonth()+1).toString();
     }    
 }
 

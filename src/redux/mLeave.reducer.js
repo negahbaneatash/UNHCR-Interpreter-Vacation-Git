@@ -1,6 +1,5 @@
-import { act } from "react-dom/test-utils";
-import { leaveStatus } from "../objects/leaveObj";
 import { actions } from "./action.names";
+import { leaveStatus } from "../objects/leaveObj";
 
 
 const INITIAL_STATE = {
@@ -19,8 +18,8 @@ export const mLeaveReducer = (state=INITIAL_STATE,action)=>{
                 return {mLeaves:[...state.mLeaves]}
             }               
         case actions.approveTheLeaveToStore:
-            const tempArray1 = state.mLeaves.map((leave)=>{
-                if (action.payload===leave.id) {
+            const helpArrApprove = state.mLeaves.map((leave)=>{
+                if (action.payload===leave.leaveId) {
                     return {...leave,leaveStatus:leaveStatus.approved}
                 } else {
                     return leave
@@ -28,11 +27,11 @@ export const mLeaveReducer = (state=INITIAL_STATE,action)=>{
             })
             return {
                 ...state,
-                mLeaves:[...tempArray1]
+                mLeaves:[...helpArrApprove]
             }
         case actions.rejectTheLeaveToStore:
-            const tempArray2 = state.mLeaves.map((leave)=>{
-                if (action.payload===leave.id) {
+            const helpArrReject = state.mLeaves.map((leave)=>{
+                if (action.payload===leave.leaveId) {
                     return {...leave,leaveStatus:leaveStatus.rejected}
                 } else {
                     return leave
@@ -40,7 +39,7 @@ export const mLeaveReducer = (state=INITIAL_STATE,action)=>{
             })
             return {
                 ...state,
-                mLeaves:[...tempArray2]
+                mLeaves:[...helpArrReject]
             }
         case actions.removeAllLeavesFromStore:
             return INITIAL_STATE

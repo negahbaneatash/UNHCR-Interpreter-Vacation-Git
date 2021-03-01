@@ -59,8 +59,7 @@ export const updateLeavesArrayOfTheMonthFromStoreToDB = async (theInterpreterEma
 }
 
 export const loadLeavesOfTheInterpreterFromDBToStore = async (theInterpreterEmail,leaveRef)=>{
-    store.dispatch(removeAllLeavesFromStore_Action())
-    // const leaveRef= inTime.getFullYear().toString()+'-'+(inTime.getMonth()+1).toString();
+    console.log('from loadLeavesOfTheInterpreterFromDBToStore intpEmail, leaveRef:',theInterpreterEmail,leaveRef)
     const myQueryRefToleavesOfTheMonth = myFirestore.collection('Interpreters').doc(theInterpreterEmail.toString().toLowerCase()).collection('Vacations').doc(leaveRef)
     const mySnapshotFromLeavesOfTheMonth = await myQueryRefToleavesOfTheMonth.get()
     const leavesOfThisMonth = mySnapshotFromLeavesOfTheMonth.data();    
