@@ -48,9 +48,12 @@ handleClickApprove=async ()=>{
     updateLeavesArrayOfTheMonthFromStoreToDB(leaveOwnerEmail,leaveYearMonth)    
 }
 
-handleClickReject=()=>{
+handleClickReject=async()=>{
+    const {leaveOwnerEmail,leaveYearMonth,leaveId}=this.state.leave
     this.setState({...this.state,leave:{...this.state.leave,leaveStatus:leaveStatus.rejected}})
-    this.props.rejectTheLeave(rejectTheLeaveToStore_Action(this.state.leave.leaveId))
+    await loadLeavesOfTheInterpreterFromDBToStore(leaveOwnerEmail,leaveYearMonth)
+    this.props.rejectTheLeave(rejectTheLeaveToStore_Action(leaveId))
+    updateLeavesArrayOfTheMonthFromStoreToDB(leaveOwnerEmail,leaveYearMonth)    
 }
 
 render(){  
@@ -59,12 +62,13 @@ render(){
     
     return(
         <div className='interpreter-leave-card' onClick={this.handleClick} style={{backgroundColor:this.props.backgroundColor}}>
+            {this.props.isSupervisor?<lable>{this.state.leave.leaveOwner}</lable>:null}             
             <input ref={this.textInputRef} type="text" value={this.state.leave.leaveDate?this.state.leave.leaveDate:''} style={this.state.focus?{fontWeight:'normal'}:{fontWeight:'bold'}}/>            
             {this.props.isInterpreter?<button name='delete-leave' onClick={this.handleClickDelete}>Delete</button>:null} 
             {this.props.isSupervisor?<button name='approve-leave' onClick={this.handleClickApprove}>Approve</button>:null} 
             {this.props.isSupervisor?<button name='reject-leave' onClick={this.handleClickReject}>Reject</button>:null} 
             <br/>
-                <lable>{this.state.leave.leaveStatus}</lable>            
+            <lable>{this.state.leave.leaveStatus}</lable>            
         </div>
     )
 }

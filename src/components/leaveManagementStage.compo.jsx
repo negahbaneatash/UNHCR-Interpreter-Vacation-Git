@@ -28,44 +28,16 @@ class LeaveManangementStage extends React.Component {
     }
 
     showRelatedLeaveCards = ()=>{
+        const {leavesOfTheMonth}=this.props
         switch (this.state.Leave_Status_Group) {
-
             case leaveStatus.submitted:
-                
-                const tempArr= this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.submitted})
-                console.log('this.showRelatedLeaveCards case submitted tempArr',tempArr)
-                return(                    
-                    tempArr.map((lves)=>{
-                        console.log('tempArr.map leave:',lves)
-                        return(                        
-                        <InterpreterLeaveCard isSupervisor leave={lves}/>
-                    )})
-                )
-                
+                return leavesOfTheMonth.filter( leave => leave.leaveStatus===leaveStatus.submitted ).map(leave=> <InterpreterLeaveCard isSupervisor leave={leave}/> )                
             case leaveStatus.approved:
-                console.log('this.showRelatedLeaveCards case approved')
-                return(
-                    this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.approved}).map((leave)=>{return(
-                        <InterpreterLeaveCard isSupervisor leave={leave}/>
-                    )})
-                )
-                
+                return leavesOfTheMonth.filter( leave => leave.leaveStatus===leaveStatus.approved ).map(leave=> <InterpreterLeaveCard isSupervisor leave={leave}/> )
             case leaveStatus.rejected:
-                const tempArrRej= this.props.leavesOfTheMonth.filter((leave)=>{return leave.leaveStatus===leaveStatus.rejected})
-                console.log('this.showRelatedLeaveCards case rejected tempArrRej:',tempArrRej)
-                return(
-                    tempArrRej.map((lve)=>{return(
-                        <InterpreterLeaveCard isSupervisor leave={lve}/>
-                    )})
-                )      
-                
+                return leavesOfTheMonth.filter( leave => leave.leaveStatus===leaveStatus.rejected).map(leave=> <InterpreterLeaveCard isSupervisor leave={leave}/>)                
             default:
-                console.log('this.showRelatedLeaveCards case map all')
-                return(
-                    this.props.leavesOfTheMonth.map((lve)=>{return(                    
-                        <InterpreterLeaveCard isSupervisor leave={lve}/>                    
-                    )})
-                )
+                return leavesOfTheMonth.map( leave => <InterpreterLeaveCard isSupervisor leave={leave}/> )
         }
     }
 
