@@ -6,7 +6,7 @@ import '../login-tools/loginTools.style.css'
 
 import InterpreterToast from '../interpreter-toast/interpreterToast.compo'
 import SupervisorToast from '../supervisor-toast/supervisorToast.compo'
-import InterpreterCardContainer from '../interpreter-card-container/interpreterCardContainer.compo'
+import IndividualCardContainer from '../interpreter-card-container/individualCardContainer.compo'
 import { getAllInterpretersFromDB, getAllSupervisorsFromDB } from '../../firebase/dataBaseFunctions'
 
 
@@ -63,11 +63,11 @@ class LoginTools extends React.Component{
         switch (this.state.userType) {
             case 'supervisor':
                 return(
-                    <InterpreterCardContainer searchField={this.state.searchField} userType={this.state.userType}/>
+                    <IndividualCardContainer searchField={this.state.searchField} userType={this.state.userType}/>
                 )                
             case 'interpreter':
                 return(
-                    <InterpreterCardContainer searchField={this.state.searchField} userType={this.state.userType}/>
+                    <IndividualCardContainer searchField={this.state.searchField} userType={this.state.userType}/>
                 )
             default:
                 return(

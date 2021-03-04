@@ -8,7 +8,7 @@ import { setTheInterpreterToStore_Action, setTheSupervisorToStore_Action } from 
 class InterpreterCard extends React.Component {
 
     componentDidMount(){
-        this.props.setTheSupervisorToStore(null)
+        
         console.log('0000000from InterpreterCard componentDidMount this.props',this.props)
 
     }

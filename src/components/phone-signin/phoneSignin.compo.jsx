@@ -1,12 +1,20 @@
 
 import React from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import firebase, { myFireauth }  from "../../firebase/firebaseConfig";
 
 
 
 
 class PhoneSignin extends React.Component {
-
+    constructor(){
+        super()
+        this.state={
+            userConfirmed:false
+        }
+    }
+    
 
     
     handleClick = ()=>{
@@ -19,6 +27,9 @@ class PhoneSignin extends React.Component {
             if (otpCode === null) return
             confirmRes.confirm(otpCode).then((finalResult)=>{
                 console.log('user', finalResult.user)
+                if (this.props.theInterpreter.phone === finalResult.user.phoneNumber) {
+                    this.setState({...this.state,userConfirmed:true})
+                }
                 
             })
        }).catch((error)=>{
@@ -32,6 +43,7 @@ class PhoneSignin extends React.Component {
     render(){
         return(
             <div >
+                { this.state.userConfirmed ? <Redirect to='/interpreter/submitleave'/> : null }
                 <div id='recapcha-container'></div>
                 <button onClick={this.handleClick}>Click on me</button>
             </div>
@@ -41,7 +53,13 @@ class PhoneSignin extends React.Component {
     }
 }
 
-export default PhoneSignin;
+const mapStateToProps =(state)=>{
+    return{
+    theInterpreter:state.Interpreter.theInterpreter
+    }
+}
+
+export default connect(mapStateToProps)(PhoneSignin);
 
 
 
