@@ -10,7 +10,7 @@ import { setTheUserToStore_Action } from "./redux/redux.actions";
 import HomePage from './pages/home-page/homePage.compo';
 import LeaveSubmissionPage from './pages/leave-submission-page/leaveSubmissionPage.compo';
 import  AddInterpreterPage  from './pages/add-interpreter-page/addInterpreterPage.compo'
-import SupervisorSigninPage from './pages/supervisor-signin-page/SupervisorSigninPage.compo';
+import SupervisorSigninPage from './pages/supervisor-signin-page/supervisorSigninPage.compo';
 import UserSigninPage from './pages/user-signin-page/userSigninPage.compo';
 import SupervisorAdministrationPage from './components/supervisor-administration-page/supervisorAdministrationPage.compo';
 

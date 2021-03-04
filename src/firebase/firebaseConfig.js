@@ -18,4 +18,4 @@ const myFirebaseConfig = {
 export const myFirebaseProject= firebase.initializeApp(myFirebaseConfig);
 export const myFireauth = firebase.auth();
 export const myFirestore = firebase.firestore();
-
+export default firebase;

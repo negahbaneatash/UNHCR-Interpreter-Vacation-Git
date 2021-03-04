@@ -1,5 +1,6 @@
 import { React, Component } from "react";
 import firebase from "firebase/app";
+import PhoneSignin from "../phone-signin/phoneSignin.compo";
 
 
 
@@ -27,6 +28,7 @@ class UserSignin extends Component {
         return(
             <div>
                 <button onClick={this.handleClick}>Sign In With Google</button>
+                <PhoneSignin/>
             </div>        
     )}
 }
