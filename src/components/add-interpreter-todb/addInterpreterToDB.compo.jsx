@@ -13,7 +13,7 @@ export default class AddInterpreterToDB extends React.Component{
             nickname:'',
             group:'',
             email:'',
-            phone:'',
+            phoneNumber:'',
         }
     }
 

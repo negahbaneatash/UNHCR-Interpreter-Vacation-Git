@@ -9,9 +9,9 @@ const UserSigninPage = (props)=>{
         console.log('from UserSigninPage func props:',props)               
         const {theInterpreter,theSupervisor,theUser}=props;
         if (theUser && theInterpreter) {
-                return theInterpreter.email===theUser.email ? <Redirect to='/interpreter/submitleave'/> : <UserSignin/>            
+                return (theInterpreter.email===theUser.email || theInterpreter.phoneNumber === theUser.phoneNumber) ? <Redirect to='/interpreter/submitleave'/> : <UserSignin/>            
         }else if (theUser && theSupervisor) {
-                return theSupervisor.email===theUser.email ? <Redirect to='/supervisor/main-stage'/> : <UserSignin/>            
+                return (theSupervisor.email===theUser.email || theSupervisor.phoneNumber === theUser.phoneNumber) ? <Redirect to='/supervisor/main-stage'/> : <UserSignin/>            
         }else{
                 return <UserSignin/>
         }        

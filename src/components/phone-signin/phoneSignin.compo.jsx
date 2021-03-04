@@ -27,9 +27,9 @@ class PhoneSignin extends React.Component {
             if (otpCode === null) return
             confirmRes.confirm(otpCode).then((finalResult)=>{
                 console.log('user', finalResult.user)
-                if (this.props.theInterpreter.phone === finalResult.user.phoneNumber) {
-                    this.setState({...this.state,userConfirmed:true})
-                }
+                // if (this.props.theInterpreter.phone === finalResult.user.phoneNumber) {
+                //     this.setState({...this.state,userConfirmed:true})
+                // }
                 
             })
        }).catch((error)=>{
