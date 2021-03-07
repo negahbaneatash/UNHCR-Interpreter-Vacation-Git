@@ -13,6 +13,7 @@ import  AddInterpreterPage  from './pages/add-interpreter-page/addInterpreterPag
 import SupervisorSigninPage from './pages/supervisor-signin-page/supervisorSigninPage.compo';
 import UserSigninPage from './pages/user-signin-page/userSigninPage.compo';
 import SupervisorAdministrationPage from './components/supervisor-administration-page/supervisorAdministrationPage.compo';
+import Header from './components/header/header.compo';
 
 
 class App extends React.Component {  
@@ -35,6 +36,7 @@ class App extends React.Component {
     console.log('from App.js render thestate:', this.state)    
     return (
       <React.Fragment>
+        <Header/>  
         <Switch>
           <Route path='/user/signin' component={UserSigninPage}/> 
           <Route path='/interpreter/submitleave' component={LeaveSubmissionPage}/>   
