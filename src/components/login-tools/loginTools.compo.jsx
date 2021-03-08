@@ -2,13 +2,14 @@ import React from 'react'
 import {Container,Jumbotron} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 
+
 import '../login-tools/loginTools.style.css'
 
 import InterpreterToast from '../interpreter-toast/interpreterToast.compo'
 import SupervisorToast from '../supervisor-toast/supervisorToast.compo'
 import IndividualCardContainer from '../interpreter-card-container/individualCardContainer.compo'
 import { getAllInterpretersFromDB, getAllSupervisorsFromDB } from '../../firebase/dataBaseFunctions'
-
+import TestCard from "../test-component/testCard.compo";
 
 
 class LoginTools extends React.Component{
@@ -63,7 +64,11 @@ class LoginTools extends React.Component{
         switch (this.state.userType) {
             case 'supervisor':
                 return(
-                    <IndividualCardContainer searchField={this.state.searchField} userType={this.state.userType}/>
+                    <div>
+                        <IndividualCardContainer searchField={this.state.searchField} userType={this.state.userType}/>
+                        <TestCard/>
+                    </div>
+                    
                 )                
             case 'interpreter':
                 return(
@@ -83,11 +88,14 @@ class LoginTools extends React.Component{
             <div className="interpreter-login">       
                 <Container>
                     <Jumbotron className='jumbotron'>
+                        <h6 className='welcome-text'>Welcome to the UNHCR Interpreters Vacation System</h6>
                         <div className= 'button-container'>               
-                            {(!isShowing) && <Button className='btn-intp-lgn' onClick={()=>{this.setState({...this.state, userType:'interpreter'}, ()=>{this.toggleShow()});  }}>I am an Interpreter test2</Button>}
-                            {(!isShowing) && <Button className='btn-spvsr-lgn' onClick={()=>{this.setState({...this.state, userType:'supervisor'}, ()=>{this.toggleShow()});  }}>I am the Supervisor</Button>}
+                            {(!isShowing) && <Button className='btn-intp-lgn' onClick={()=>{this.setState({...this.state, userType:'interpreter'}, ()=>{this.toggleShow()});  }}>I am an Interpreter</Button>}                            
+                            {(!isShowing) && <Button className='btn-spvsr-lgn' onClick={()=>{this.setState({...this.state, userType:'supervisor'}, ()=>{this.toggleShow()});  }}>I am the Supervisor</Button>}                            
                         </div>                     
-                        {this.showToast()}               
+                        
+                        {this.showToast()} 
+
                     </Jumbotron>                    
                     {this.showContent()}                    
                 </Container>                

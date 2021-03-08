@@ -17,7 +17,7 @@
     background: linear-gradient(
     to left,
     rgb(131, 161, 235) 0%,
-    rgb(201, 212, 223) 100%
+    rgb(107, 64, 107) 100%
   )
     
     
@@ -31,23 +31,30 @@
   line-height: 50px;
   padding: 0 35px 0 35px;
   font-size: 15px;
-  background-color: rgb(214, 80, 80);
-  color: white;
+  background-color: rgb(9, 9, 104);
+  color: rgb(161, 187, 241);
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
   font-weight: bolder;
   border: none;
   cursor: pointer;
+ 
 }
 
 .btn-spvsr-lgn:hover{
 
-        background-color: white;
+        background-color: rgb(89, 153, 236);
         color: black;
         
         /* opacity: 1; */
         /* border: 1px solid black; */
     
+}
+.btn-spvsr-lgn:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: rgb(89, 153, 236) !important; 
+        color: black !important;
 }
 
 .btn-intp-lgn{
@@ -58,8 +65,8 @@
   line-height: 50px;
   padding: 0 35px 0 35px;
   font-size: 15px;
-  background-color: #4c8bf5;
-    color: white;
+  background-color: rgb(88, 28, 88);
+    color: rgb(235, 192, 235);
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
   font-weight: bolder;
@@ -68,8 +75,20 @@
 }
 .btn-intp-lgn:hover{
     
-    background-color: white;
-    color: blue;
+    background-color: rgb(190, 100, 190);
+    color:black;
     /* border: 1px solid black; */
     
+}
+.btn-intp-lgn:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: rgb(190, 100, 190) !important;
+    color:black !important;
+}
+
+.welcome-text{
+  color: purple;
+  text-align: center;
+  font-size: 100%;
 }
