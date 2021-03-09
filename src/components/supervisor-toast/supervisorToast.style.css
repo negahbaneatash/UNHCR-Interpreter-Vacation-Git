@@ -1,0 +1,29 @@
+
+
+
+.supervisor-toast-container{
+    display:flex;
+    flex-direction: row-reverse;
+    
+}
+
+.supervisor-toast{
+    
+    background-color: rgb(190, 100, 190);    
+    flex: 1;
+}
+
+.supervisor-toast-header{
+    /* background-color: rgb(9, 9, 104); */
+    
+    background-color: rgb(88, 28, 88);
+    color: white;
+}
+
+.supervisor-toast-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    
+}

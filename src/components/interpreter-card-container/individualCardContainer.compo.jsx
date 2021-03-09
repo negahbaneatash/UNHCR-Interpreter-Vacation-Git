@@ -18,7 +18,7 @@ function IndividualCardContainer(props) {
         props.setTheInterpreterToStore(null)
     }
     return(
-    <div className='interpreter-card-container'>
+    <div className={props.userType==='interpreter'?'individual-card-container interpreter':'individual-card-container supervisor' }  >
         {
         props.userType==='interpreter'
         ? props.allInterpreters.filter((intp)=>{return(intp.name.toLowerCase().includes(props.searchField.toLowerCase()))}).map((intp)=><InterpreterCard key={intp.email} interpreter={intp}/>)

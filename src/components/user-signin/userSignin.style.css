@@ -1,0 +1,81 @@
+
+
+
+.jumbotron{
+    height: 300px;    
+}
+
+.button-container{
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(
+    to left,
+    rgb(107, 64, 107) 0%,    
+    rgb(131, 161, 235) 100%
+  )   
+}
+
+.btn-google-login{
+    min-width: 165px;
+  width: auto;
+  height: auto;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 15px;
+  background-color: rgb(88, 28, 88);
+    color: rgb(235, 192, 235);
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed';
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+ 
+}
+
+.btn-google-login:hover{
+
+  background-color: rgb(190, 100, 190);
+  color:black;
+        
+}
+.btn-google-login:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: rgb(190, 100, 190) !important;
+    color:black !important;
+  
+}
+
+.btn-phone-login{
+    min-width: 165px;
+  width: auto;
+  height: auto;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 15px;
+  background-color: rgb(9, 9, 104);
+  color: rgb(161, 187, 241);
+  
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed';
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+}
+.btn-phone-login:hover{
+    
+  background-color: rgb(89, 153, 236);
+        color: black;  
+  
+    /* border: 1px solid black; */
+    
+}
+.btn-phone-login:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: rgb(89, 153, 236) !important; 
+        color: black !important;
+}

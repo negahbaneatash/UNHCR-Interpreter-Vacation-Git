@@ -45,7 +45,7 @@ class PhoneSignin extends React.Component {
             <div >
                 { this.state.userConfirmed ? <Redirect to='/interpreter/submitleave'/> : null }
                 <div id='recapcha-container'></div>
-                <button onClick={this.handleClick}>Click on me</button>
+                <button onClick={this.handleClick}>phone login</button>
             </div>
 
         )

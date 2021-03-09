@@ -2,21 +2,34 @@
 
 
 
-.interpreter-card-container{
+.individual-card-container{
     
         width: auto;
         height: auto;
-        margin: 0 auto;
+        margin: 10px auto;
+        padding: 10px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: 20px;
     
-    background: linear-gradient(
+  
+  
+}
+
+.interpreter{
+  background: linear-gradient(
     to left,
-    rgb(131, 161, 235) 0%,
+    rgb(30, 93, 177) 0%,
     rgb(201, 212, 223) 100%
   )
-  
+}
+
+.supervisor{
+  background: linear-gradient(
+    to left,
+    purple 0%,
+    rgb(231, 115, 231) 100%    
+  )
 }

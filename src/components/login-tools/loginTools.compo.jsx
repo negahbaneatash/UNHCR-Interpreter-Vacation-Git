@@ -85,7 +85,7 @@ class LoginTools extends React.Component{
         console.log('from loginTool render')
         const {isShowing}=this.state;        
         return (
-            <div className="interpreter-login">       
+            <div>       
                 <Container>
                     <Jumbotron className='jumbotron'>
                         <h6 className='welcome-text'>Welcome to the UNHCR Interpreters Vacation System</h6>
