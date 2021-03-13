@@ -1,13 +1,13 @@
 import React from "react";
-import './userTypeButton.style.scss'
+import './userTypeButton.style.css'
 
 
 
 
-const UserTypeButton = ()=>{
+const UserTypeButton = (props)=>{
     return (
-        <div id="btn">
-            <span class="noselect">Hello</span>
+        <div id="btn" onClick={props.onButtonClick}>
+            <span class="noselect">{props.children}</span>
             <div id="circle"></div>
         </div>
     )

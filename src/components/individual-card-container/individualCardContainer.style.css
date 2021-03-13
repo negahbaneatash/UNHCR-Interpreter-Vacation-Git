@@ -21,15 +21,15 @@
 .interpreter{
   background: linear-gradient(
     to left,
-    rgb(30, 93, 177) 0%,
-    rgb(201, 212, 223) 100%
+    rgba(107, 64, 107,.2) 0%,    
+    rgba(131, 161, 235,.2) 100%
   )
 }
 
 .supervisor{
   background: linear-gradient(
     to left,
-    purple 0%,
-    rgb(231, 115, 231) 100%    
+    rgba(107, 64, 107,.2) 0%,    
+    rgba(131, 161, 235,.2) 100%
   )
 }

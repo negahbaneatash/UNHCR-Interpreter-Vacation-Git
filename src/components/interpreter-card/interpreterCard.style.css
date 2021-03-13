@@ -1,11 +1,14 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Open+Sans+Condensed:wght@300&display=swap');
+
 .interpreter-card {
     width: 25%;
     display: flex;
     flex-direction: column;
-    background-color: #9ec7e9;
-    border: 1px solid rgb(192, 229, 243);
-    border-radius: 5px;
+    
+    background-color: #9da7af7e;
+    border: 1px solid rgb(182, 197, 202);
+    border-radius: 8px;
     padding: 25px;
     cursor: pointer;
     -moz-osx-font-smoothing: grayscale;
@@ -19,3 +22,12 @@
     transform: scale(1.05);
   }
   
+  .interpreter-name{
+    font-family: 'Open Sans Condensed', sans-serif;
+    align-self: center;
+  }
+
+  .interpreter-group{
+    color: #55140c;
+    align-self: center;
+  }

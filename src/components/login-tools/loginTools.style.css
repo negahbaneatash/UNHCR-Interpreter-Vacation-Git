@@ -1,6 +1,4 @@
 
-
-
 .toast{
     height: 150px;
     width: auto;
@@ -10,18 +8,24 @@
     height: 300px;    
 }
 
+.welcome-text{
+  color: purple;
+  text-align: center;
+  font-size: 100%;
+}
+
 .buttons-container{
     width: auto;
     display: flex;
     justify-content: space-between;
     background: linear-gradient(
     to left,
-    rgb(107, 64, 107) 0%,    
-    rgb(131, 161, 235) 100%
+    rgba(107, 64, 107,.2) 0%,    
+    rgba(131, 161, 235,.2) 100%
   )   
 }
 
-.btn-spvsr-lgn{
+/* .btn-spvsr-lgn{
     min-width: 165px;
   width: auto;
   height: auto;
@@ -35,25 +39,23 @@
   font-family: 'Open Sans Condensed';
   font-weight: bolder;
   border: none;
-  cursor: pointer;
- 
-}
+  cursor: pointer; 
+} */
 
-.btn-spvsr-lgn:hover{
+/* .btn-spvsr-lgn:hover{
 
   background-color: rgb(190, 100, 190);
   color:black;
         
-}
-.btn-spvsr-lgn:active {
+} */
+/* .btn-spvsr-lgn:active {
   outline: none !important;
   box-shadow: none !important;
   background-color: rgb(190, 100, 190) !important;
-    color:black !important;
-  
-}
+    color:black !important;  
+} */
 
-.btn-intp-lgn{
+/* .btn-intp-lgn{
     min-width: 165px;
   width: auto;
   height: auto;
@@ -69,24 +71,18 @@
   font-weight: bolder;
   border: none;
   cursor: pointer;
-}
-.btn-intp-lgn:hover{
-    
+} */
+
+/* .btn-intp-lgn:hover{    
   background-color: rgb(89, 153, 236);
-        color: black;  
-  
-    /* border: 1px solid black; */
-    
-}
-.btn-intp-lgn:active {
+        color: black;    
+    border: 1px solid black;   
+} */
+
+/* .btn-intp-lgn:active {
   outline: none !important;
   box-shadow: none !important;
   background-color: rgb(89, 153, 236) !important; 
         color: black !important;
-}
+} */
 
-.welcome-text{
-  color: purple;
-  text-align: center;
-  font-size: 100%;
-}

@@ -30,8 +30,8 @@ class InterpreterCard extends React.Component {
         console.log('from InterpreterCard render this.props',this.props) 
         return(   
             <div className='interpreter-card' onClick={this.handleClick} >
-                <h4>{this.props.interpreter.name}</h4>
-                <span>{this.props.interpreter.email}</span>
+                <h4 className='interpreter-name'>{this.props.interpreter.name}</h4>
+                <span className='interpreter-group'>{this.props.interpreter.group}</span>
             </div>
         )
     }

@@ -7,10 +7,11 @@ import '../login-tools/loginTools.style.css'
 
 import InterpreterToast from '../interpreter-toast/interpreterToast.compo'
 import SupervisorToast from '../supervisor-toast/supervisorToast.compo'
-import IndividualCardContainer from '../interpreter-card-container/individualCardContainer.compo'
+import IndividualCardContainer from '../individual-card-container/individualCardContainer.compo'
 import { getAllInterpretersFromDB, getAllSupervisorsFromDB } from '../../firebase/dataBaseFunctions'
 import TestCard from "../test-component/testCard.compo";
 import UserTypeButton from '../user-type-button/userTypeButton.compo'
+import { SearchCard } from '../search-card/searchCard.compo'
 
 
 class LoginTools extends React.Component{
@@ -52,11 +53,12 @@ class LoginTools extends React.Component{
     showToast(){
         if (this.state.userType==='supervisor')     
             return (
-                <SupervisorToast showIt={this.state.isShowing} onWriteInput={this.handleChange} onExit={()=>{this.setState({...this.state,isShowing:!this.state.isShowing},()=>{this.setState({...this.state,userType:''})})}}/>
+                // <SupervisorToast showIt={this.state.isShowing} onWriteInput={this.handleChange} onExit={()=>{this.setState({...this.state,isShowing:!this.state.isShowing},()=>{this.setState({...this.state,userType:''})})}}/>
+                <SearchCard onWriteInput={this.handleChange} onExit={this.handleSearchExit}>Supervisor</SearchCard>
             )
         else if (this.state.userType==='interpreter') 
-            return( 
-                <InterpreterToast showIt={this.state.isShowing} onWriteInput={this.handleChange} onExit={()=>{this.setState({...this.state,isShowing:!this.state.isShowing},()=>{this.setState({...this.state,userType:''})})}}/>      
+            return(                 
+                <SearchCard onWriteInput={this.handleChange} onExit={this.handleSearchExit}>Interpreter</SearchCard>
             )
         else return null            
     }
@@ -82,6 +84,18 @@ class LoginTools extends React.Component{
         }
     }
 
+    handleOnInterpreterClick=()=>{
+        this.setState({...this.state, userType:'interpreter'}, ()=>{this.toggleShow()})
+    }
+
+    handleOnSupervisorClick=()=>{
+        this.setState({...this.state, userType:'supervisor'}, ()=>{this.toggleShow()})
+    }
+
+    handleSearchExit=()=>{
+        this.setState({...this.state,isShowing:!this.state.isShowing},()=>{this.setState({...this.state,userType:'',searchField:''})})
+    }
+
     render(){        
         console.log('from loginTool render')
         const {isShowing}=this.state;        
@@ -92,8 +106,9 @@ class LoginTools extends React.Component{
                         <h6 className='welcome-text'>Welcome to the UNHCR Interpreters Vacation System</h6>
                         <div className= 'buttons-container'>               
                             {/* {(!isShowing) && <Button className='btn-intp-lgn' onClick={()=>{this.setState({...this.state, userType:'interpreter'}, ()=>{this.toggleShow()});  }}>I am an Interpreter</Button>}                             */}
-                            {(!isShowing) && <UserTypeButton/> }                            
-                            {(!isShowing) && <Button className='btn-spvsr-lgn' onClick={()=>{this.setState({...this.state, userType:'supervisor'}, ()=>{this.toggleShow()});  }}>I am the Supervisor</Button>}                            
+                            {(!isShowing) && <UserTypeButton onButtonClick={this.handleOnInterpreterClick} userType={this.state.userType}>Interpreter</UserTypeButton> }                            
+                            {(!isShowing) && <UserTypeButton onButtonClick={this.handleOnSupervisorClick} userType={this.state.userType}>Supervisor</UserTypeButton> }
+                            {/* {(!isShowing) && <Button className='btn-spvsr-lgn' onClick={()=>{this.setState({...this.state, userType:'supervisor'}, ()=>{this.toggleShow()});  }}>I am the Supervisor</Button>}                             */}
                         </div>                     
                         
                         {this.showToast()} 
