@@ -2,7 +2,7 @@ import React from "react";
 import { Tab,TabList, TabPanel, Tabs } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import AddInterpreterToDB from "../add-interpreter-todb/addInterpreterToDB.compo";
-import LeaveManangementStage from "../leaveManagementStage.compo";
+import LeaveManangementStage from "../leave-management-stage/leaveManagementStage.compo";
 
 
 

@@ -1,11 +1,11 @@
 import  Dropdown  from "react-dropdown";
 import React from "react";
 import { connect } from "react-redux";
-import { loadAllLeavesOfTheMonthFromDBToStore } from "../firebase/dataBaseFunctions";
+import { loadAllLeavesOfTheMonthFromDBToStore } from "../../firebase/dataBaseFunctions";
 
-import { leaveStatus } from "../objects/leaveObj";
+import { leaveStatus } from "../../objects/leaveObj";
 
-import InterpreterLeaveCard from "./interpreter-leave-card/interpreterLeaveCard.compo";
+import InterpreterLeaveCard from "../interpreter-leave-card/interpreterLeaveCard.compo";
 
 
 

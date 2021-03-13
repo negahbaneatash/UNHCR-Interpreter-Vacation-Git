@@ -5,14 +5,15 @@
     height: 300px;    
 }
 
-.button-container{
+.signin-buttons-container{
     width: auto;
     display: flex;
+    /* flex-direction: column; */
     justify-content: space-between;
     background: linear-gradient(
     to left,
-    rgb(107, 64, 107) 0%,    
-    rgb(131, 161, 235) 100%
+    #0F9D58 0%,    
+    #F4B400 100%
   )   
 }
 
@@ -24,8 +25,8 @@
   line-height: 50px;
   padding: 0 35px 0 35px;
   font-size: 15px;
-  background-color: rgb(88, 28, 88);
-    color: rgb(235, 192, 235);
+  background-color: #4285F4;
+    color: white;
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
   font-weight: bolder;
@@ -36,15 +37,18 @@
 
 .btn-google-login:hover{
 
-  background-color: rgb(190, 100, 190);
-  color:black;
+  background-color: #F4B400;
+  color:white;
+  /* color:#4285F4; */
+  
+  
         
 }
 .btn-google-login:active {
   outline: none !important;
   box-shadow: none !important;
-  background-color: rgb(190, 100, 190) !important;
-    color:black !important;
+  background-color: #F4B400 !important;
+  color:white !important;
   
 }
 
@@ -56,8 +60,8 @@
   line-height: 50px;
   padding: 0 35px 0 35px;
   font-size: 15px;
-  background-color: rgb(9, 9, 104);
-  color: rgb(161, 187, 241);
+  background-color: #DB4437;
+  color: white;
   
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
@@ -67,8 +71,9 @@
 }
 .btn-phone-login:hover{
     
-  background-color: rgb(89, 153, 236);
-        color: black;  
+  background-color: #0F9D58;
+  color:white;
+  /* color: #0F9D58;  */
   
     /* border: 1px solid black; */
     
@@ -76,6 +81,26 @@
 .btn-phone-login:active {
   outline: none !important;
   box-shadow: none !important;
-  background-color: rgb(89, 153, 236) !important; 
-        color: black !important;
+  background-color: #0F9D58 !important;
+  color:white !important;
+}
+
+
+.btn-login-cancel{
+  min-width: 165px;
+  width: auto;
+  height: auto;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 20px;
+  background-color: #F4B400;
+  color: #4285F4;
+  
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed';
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+ 
 }

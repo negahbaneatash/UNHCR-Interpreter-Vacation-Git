@@ -10,6 +10,7 @@ import SupervisorToast from '../supervisor-toast/supervisorToast.compo'
 import IndividualCardContainer from '../interpreter-card-container/individualCardContainer.compo'
 import { getAllInterpretersFromDB, getAllSupervisorsFromDB } from '../../firebase/dataBaseFunctions'
 import TestCard from "../test-component/testCard.compo";
+import UserTypeButton from '../user-type-button/userTypeButton.compo'
 
 
 class LoginTools extends React.Component{
@@ -89,8 +90,9 @@ class LoginTools extends React.Component{
                 <Container>
                     <Jumbotron className='jumbotron'>
                         <h6 className='welcome-text'>Welcome to the UNHCR Interpreters Vacation System</h6>
-                        <div className= 'button-container'>               
-                            {(!isShowing) && <Button className='btn-intp-lgn' onClick={()=>{this.setState({...this.state, userType:'interpreter'}, ()=>{this.toggleShow()});  }}>I am an Interpreter</Button>}                            
+                        <div className= 'buttons-container'>               
+                            {/* {(!isShowing) && <Button className='btn-intp-lgn' onClick={()=>{this.setState({...this.state, userType:'interpreter'}, ()=>{this.toggleShow()});  }}>I am an Interpreter</Button>}                             */}
+                            {(!isShowing) && <UserTypeButton/> }                            
                             {(!isShowing) && <Button className='btn-spvsr-lgn' onClick={()=>{this.setState({...this.state, userType:'supervisor'}, ()=>{this.toggleShow()});  }}>I am the Supervisor</Button>}                            
                         </div>                     
                         

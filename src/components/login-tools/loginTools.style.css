@@ -10,7 +10,7 @@
     height: 300px;    
 }
 
-.button-container{
+.buttons-container{
     width: auto;
     display: flex;
     justify-content: space-between;
