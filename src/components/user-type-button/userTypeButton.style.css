@@ -1,5 +1,5 @@
   
-  #btn {
+  .btn-userType {
     background-color: rgba(29, 6, 6, 0.8) ;    
     height: 50px;
     min-width: 150px;
@@ -23,7 +23,7 @@
     margin-right: 2px; 
   }
   
-  #btn #circle {
+  .btn-userType #circle {
     width: 5px;
     height: 5px;
     background: transparent;
@@ -44,16 +44,16 @@
               user-select: none;
   }
   
-  #btn:hover {
+  .btn-userType:hover{
     /* background: transparent; */
     background: linear-gradient(
     to left,
-    rgb(107, 64, 107) 0%,    
-    rgb(131, 161, 235) 100%
+    rgba(107, 64, 107,0.9) 0%,    
+    rgba(131, 161, 235,0.9) 100%
   )   
   }
   
-  #btn:hover #circle {
+  .btn-userType:hover #circle {
     height: 50px;
     width: 150px;
     left: 0;

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../interpreter-card/interpreterCard.style.css'
+import '../interpreter-card/interpreterCard.style.scss'
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { setTheInterpreterToStore_Action, setTheSupervisorToStore_Action } from '../../redux/redux.actions';
@@ -33,6 +33,9 @@ class InterpreterCard extends React.Component {
                 <h4 className='interpreter-name'>{this.props.interpreter.name}</h4>
                 <span className='interpreter-group'>{this.props.interpreter.group}</span>
             </div>
+
+            //new design
+           
         )
     }
     

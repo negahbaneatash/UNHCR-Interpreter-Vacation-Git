@@ -18,6 +18,11 @@
   
   .supervisor-card:hover {
     transform: scale(1.05);
+    background: linear-gradient(
+    to left,
+    rgba(167, 43, 39,0.8) 0%,    
+    rgba(235, 96, 15, 0.8) 100%
+  )   
   }
   
   .supervisor-name{

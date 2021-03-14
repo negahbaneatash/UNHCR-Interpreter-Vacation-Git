@@ -4,14 +4,15 @@ import {Container,Jumbotron} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import './userSignin.style.css'
 import GoogleSignin from "../google-signin/googleSignin.compo";
-
+import { ReactComponent as GoogleLogo } from "../../assets/google.svg";
+import { ReactComponent as PhoneLogo } from "../../assets/phoneotp.svg";
 
 
 class UserSignin extends Component {
     constructor(){
         super()
         this.state={
-            message:'please login via your Gmail or your Phone',
+            message:'Please choose to login via your Gmail or your Phone Number',
             msgColor:'red',
             isShowing:false,
             loginType:'',
@@ -63,12 +64,15 @@ class UserSignin extends Component {
             
             <div>
                 <Container>
-                <h3 style={{color:this.state.msgColor}}>{this.state.message}</h3>
+                
                     <Jumbotron>
+                        <h6 className='signin-message' style={{color:this.state.msgColor}}>{this.state.message}</h6>
                         <div className= 'signin-buttons-container'>               
-                            {(!isShowing) && <Button className='btn-google-login'  onClick={()=>{this.setState({...this.state, loginType:'googleLogin'}, ()=>{this.toggleShow()});  }}>google login</Button>}                            
+                            {(!isShowing) && <GoogleLogo className='google-logo'  onClick={()=>{this.setState({...this.state, loginType:'googleLogin'}, ()=>{this.toggleShow()});  }}/>}                            
+                            
+                            
                             {(isShowing) && <Button className='btn-login-cancel' onClick={()=>{this.setState({...this.state, loginType:''}, ()=>{this.toggleShow()});  }}>Cancel</Button>}
-                            {(!isShowing) && <Button className='btn-phone-login' onClick={()=>{this.setState({...this.state, loginType:'phoneLogin'}, ()=>{this.toggleShow()});  }}>phone login</Button>}                            
+                            {(!isShowing) && <PhoneLogo className='phone-logo' onClick={()=>{this.setState({...this.state, loginType:'phoneLogin'}, ()=>{this.toggleShow()});  }}/>}                            
                             
                         </div>
                         
@@ -81,7 +85,7 @@ class UserSignin extends Component {
                     {loginType==='phoneLogin'?<PhoneSignin/>:null}                  
                 </Container>
                 
-                
+                <div className='attribute-the-author'>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
             </div>        
     )}
 }

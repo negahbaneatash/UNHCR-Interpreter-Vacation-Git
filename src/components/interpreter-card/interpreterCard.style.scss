@@ -7,7 +7,7 @@
     flex-direction: column;
     
     background-color: #9da7af7e;
-    border: 1px solid rgb(182, 197, 202);
+    border: 1px solid rgb(155, 189, 201);
     border-radius: 8px;
     padding: 25px;
     cursor: pointer;
@@ -20,6 +20,11 @@
   
   .interpreter-card:hover {
     transform: scale(1.05);
+    background: linear-gradient(
+    to left,
+    rgb(107, 64, 107) 0%,    
+    rgb(131, 161, 235) 100%
+  )   
   }
   
   .interpreter-name{
@@ -31,3 +36,6 @@
     color: #55140c;
     align-self: center;
   }
+
+
+  

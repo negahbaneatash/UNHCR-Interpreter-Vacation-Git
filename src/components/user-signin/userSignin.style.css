@@ -5,6 +5,11 @@
     height: 300px;    
 }
 
+.signin-message{
+  text-align: center;
+  font-size: 100%;
+}
+
 .signin-buttons-container{
     width: auto;
     display: flex;
@@ -12,78 +17,18 @@
     justify-content: space-between;
     background: linear-gradient(
     to left,
-    #0F9D58 0%,    
-    #F4B400 100%
+    rgba(15,157,88,.2) 0%,    
+    rgba(66,133,244,.2) 100%
   )   
 }
 
-.btn-google-login{
-    min-width: 165px;
-  width: auto;
-  height: auto;
-  letter-spacing: 0.5px;
-  line-height: 50px;
-  padding: 0 35px 0 35px;
-  font-size: 15px;
-  background-color: #4285F4;
-    color: white;
-  text-transform: uppercase;
-  font-family: 'Open Sans Condensed';
-  font-weight: bolder;
-  border: none;
-  cursor: pointer;
- 
-}
-
-.btn-google-login:hover{
-
-  background-color: #F4B400;
-  color:white;
-  /* color:#4285F4; */
-  
-  
-        
-}
-.btn-google-login:active {
-  outline: none !important;
-  box-shadow: none !important;
-  background-color: #F4B400 !important;
-  color:white !important;
-  
-}
-
-.btn-phone-login{
-    min-width: 165px;
-  width: auto;
-  height: auto;
-  letter-spacing: 0.5px;
-  line-height: 50px;
-  padding: 0 35px 0 35px;
-  font-size: 15px;
-  background-color: #DB4437;
-  color: white;
-  
-  text-transform: uppercase;
-  font-family: 'Open Sans Condensed';
-  font-weight: bolder;
-  border: none;
+.google-logo:hover{
   cursor: pointer;
 }
-.btn-phone-login:hover{
-    
-  background-color: #0F9D58;
-  color:white;
-  /* color: #0F9D58;  */
-  
-    /* border: 1px solid black; */
-    
+.phone-logo:hover{
+  cursor: pointer;
 }
-.btn-phone-login:active {
-  outline: none !important;
-  box-shadow: none !important;
-  background-color: #0F9D58 !important;
-  color:white !important;
-}
+
 
 
 .btn-login-cancel{
