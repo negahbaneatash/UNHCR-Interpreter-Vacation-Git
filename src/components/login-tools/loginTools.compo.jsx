@@ -1,12 +1,11 @@
 import React from 'react'
 import {Container,Jumbotron} from 'react-bootstrap'
-import Button from 'react-bootstrap/Button'
+
 
 
 import '../login-tools/loginTools.style.css'
 
-import InterpreterToast from '../interpreter-toast/interpreterToast.compo'
-import SupervisorToast from '../supervisor-toast/supervisorToast.compo'
+
 import IndividualCardContainer from '../individual-card-container/individualCardContainer.compo'
 import { getAllInterpretersFromDB, getAllSupervisorsFromDB } from '../../firebase/dataBaseFunctions'
 import TestCard from "../test-component/testCard.compo";

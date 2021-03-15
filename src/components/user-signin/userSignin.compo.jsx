@@ -12,8 +12,8 @@ class UserSignin extends Component {
     constructor(){
         super()
         this.state={
-            message:'Please choose to login via your Gmail or your Phone Number',
-            msgColor:'red',
+            message:'Please choose to login via your Gmail Account or your Phone Number',
+            msgClass:'choose-login',
             isShowing:false,
             loginType:'',
             censoredEmail:'',
@@ -44,7 +44,7 @@ class UserSignin extends Component {
         return (gmail_name+'@gmail.com')
     }
     censorPhoneNumber=(phoneNumber)=>{
-        let censoredNumber = phoneNumber[0]+phoneNumber[1]+phoneNumber[2]+phoneNumber[3]+' *** '+phoneNumber[phoneNumber.length-2]+phoneNumber[phoneNumber.length-1]
+        let censoredNumber = phoneNumber[0]+phoneNumber[1]+phoneNumber[2]+phoneNumber[3]+phoneNumber[4]+' ****** '+phoneNumber[phoneNumber.length-2]+phoneNumber[phoneNumber.length-1]
         return censoredNumber
     }
 
@@ -53,8 +53,17 @@ class UserSignin extends Component {
         
     }
     
-   
+    handleClickGoogleLogo=()=>{
+        this.setState({...this.state, loginType:'googleLogin',message:'You will be redirected to login via your following Gmail Account',msgClass:'google-login'}, ()=>{this.toggleShow()})
+    }
+
+    handleClickPhoneLogo=()=>{        
+        this.setState({...this.state, loginType:'phoneLogin',message:'An OTP will be sent to your following Phone Number',msgClass:'phone-login'}, ()=>{this.toggleShow()})
+    }
     
+    handleClickBack=()=>{
+        this.setState({...this.state, loginType:'',message:'Please choose to login via your Gmail Account or your Phone Number',msgClass:'choose-login'}, ()=>{this.toggleShow()})
+    }
    
 
     render(){
@@ -66,26 +75,29 @@ class UserSignin extends Component {
                 <Container>
                 
                     <Jumbotron>
-                        <h6 className='signin-message' style={{color:this.state.msgColor}}>{this.state.message}</h6>
+                        <h6 className={`login-message ${this.state.msgClass}`}  >{this.state.message}</h6>
                         <div className= 'signin-buttons-container'>               
-                            {(!isShowing) && <GoogleLogo className='google-logo'  onClick={()=>{this.setState({...this.state, loginType:'googleLogin'}, ()=>{this.toggleShow()});  }}/>}                            
-                            
-                            
-                            {(isShowing) && <Button className='btn-login-cancel' onClick={()=>{this.setState({...this.state, loginType:''}, ()=>{this.toggleShow()});  }}>Cancel</Button>}
-                            {(!isShowing) && <PhoneLogo className='phone-logo' onClick={()=>{this.setState({...this.state, loginType:'phoneLogin'}, ()=>{this.toggleShow()});  }}/>}                            
-                            
+                            {(!isShowing) && <GoogleLogo className='google-logo'  onClick={this.handleClickGoogleLogo}/>}                            
+                            {(!isShowing) && <PhoneLogo className='phone-logo' onClick={this.handleClickPhoneLogo}/>}                                                        
                         </div>
                         
-                        {(isShowing) && <h3>{loginType==='googleLogin'?`You will be redirected to login via your gmail: ${this.state.censoredEmail}`:`An OTP will be sent to your Phone Number: ${this.state.censoredPhoneNumber}`}</h3>}
-                        {(isShowing) && <button onClick={()=>{this.setState({...this.state, loginType:''}, ()=>{this.toggleShow()});  }}>Back</button>}
+                        {/* {(isShowing) && <h3 className='loginType-message'>{loginType==='googleLogin'?`${this.state.censoredEmail}`:`${this.state.censoredPhoneNumber}`}</h3>}                                   */}
+                        {loginType==='googleLogin'?<GoogleSignin googleAccount={this.state.censoredEmail}/>:null}                  
+                        {loginType==='phoneLogin'?<PhoneSignin phoneNumber={this.state.censoredPhoneNumber}/>:null}                  
+                        {(isShowing) && <button className='btn-back' onClick={this.handleClickBack}>Back</button>}
                         
 
                     </Jumbotron>
-                    {loginType==='googleLogin'?<GoogleSignin/>:null}                  
-                    {loginType==='phoneLogin'?<PhoneSignin/>:null}                  
+                    {/* {loginType==='googleLogin'?<GoogleSignin googleAccount={this.state.censoredEmail}/>:null}                   */}
+                    {/* {loginType==='phoneLogin'?<PhoneSignin/>:null}                   */}
+                    <div className='recapcha-container'>
+                        <div id='recapcha-container'></div>
+                    </div>
                 </Container>
+                <div className='attribute-the-author'>
+                    <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                </div>
                 
-                <div className='attribute-the-author'>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
             </div>        
     )}
 }

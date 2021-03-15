@@ -1,9 +1,14 @@
 
 
+.google-button-container{
+  display: flex;
+  justify-content: center;
+}
 .google-button {
-  height: 40px;
+  height: 70px;
+  width: auto;
   border-width: 0;
-  background: white;
+  
   color: #737373;
   border-radius: 5px;
   white-space: nowrap;
@@ -23,30 +28,43 @@
     box-shadow: none;
     transition-duration: 10ms;
   }
+  background: linear-gradient(
+    to left,
+    rgba(66, 133, 244,.99) 0%,    
+    rgba(131, 161, 235,.6) 100%
+  )   
+   
 }
     
-.google-button__icon {
+.google-button-icon {
   display: inline-block;
   vertical-align: middle;
-  margin: 8px 0 8px 8px;
+  margin: 8px 30px 8px 8px;
   width: 18px;
   height: 18px;
   box-sizing: border-box;
+  
 }
 
-.google-button__icon--plus {
+.google-button-icon--plus {
   width: 27px;
 }
 
-.google-button__text {
+.google-button-text {
+  color:whitesmoke;
   display: inline-block;
   vertical-align: middle;
   padding: 0 24px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   font-family: 'Roboto',arial,sans-serif;
 }
 
+.attribute-the-author{
+  display: flex;
+  justify-content: center;
+  margin-top: 20em;
+}
 /* // Boilerplate stuff */
 
 // html, body {

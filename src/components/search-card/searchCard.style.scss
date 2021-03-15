@@ -79,7 +79,7 @@ body{
 
 
 // back button 
-.btn{
+.btn-back{
 	color:#fff;
 	background-color:#e74c3c;
 	outline: none;
@@ -92,7 +92,7 @@ body{
 	cursor:pointer;
 	position:relative;
 }
-.btn:after{
+.btn-back:after{
 	content:"";
 	position:absolute;
 	background:rgba(0,0,0,0.50);

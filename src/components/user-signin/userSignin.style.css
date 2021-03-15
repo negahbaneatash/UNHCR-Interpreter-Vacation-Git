@@ -5,9 +5,25 @@
     height: 300px;    
 }
 
-.signin-message{
+.login-message{
   text-align: center;
   font-size: 100%;
+}
+.choose-login{
+  color: purple
+}
+.phone-login{
+  color: #4285F4;
+}
+.google-login{
+  color: #0F9D58;
+}
+
+.loginType-message{
+  padding-top: 40px;
+  text-align: center;
+  font-size: 150%;
+  
 }
 
 .signin-buttons-container{
@@ -48,4 +64,38 @@
   border: none;
   cursor: pointer;
  
+}
+
+.btn-back{
+	color:#fff;
+	background-color:#e74c3c;
+	outline: none;
+    border: 0;
+    color: #fff;
+	padding:10px 20px;
+	text-transform:uppercase;
+	margin-top:50px;
+	border-radius:2px;
+	cursor:pointer;
+	position:relative;
+}
+.btn-back:after{
+	content:"";
+	position:absolute;
+	background:rgba(0,0,0,0.50);
+	top:0;
+	right:0;
+	width:100%;
+	height:100%;
+}
+
+.recapcha-container{
+  display: flex;
+  justify-content: center;
+}
+
+.attribute-the-author{
+  display: flex;
+  justify-content: center;
+  margin-top: 40em;
 }

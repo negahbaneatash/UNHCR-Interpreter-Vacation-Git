@@ -1,6 +1,6 @@
 import  React  from "react";
 import { connect } from "react-redux";
-
+import {Container,Jumbotron} from 'react-bootstrap'
 import CustomCalendar from "../custom-calendar/customCalendar.compo";
 import AnnualLeaveContainer from "../annual-leave-container/annual-leave-container.compo";
 import UnpaidLeaveContainer from "../unpaid-leave-container/unpaidLeaveContainer.compo";
@@ -32,10 +32,17 @@ class InterpreterLeaveSubmission extends React.Component {
         return(
             <div>
                 <h1>{`Hellooo  ${this.props.theInterpreter.name}`}</h1>
-                <CustomCalendar clickDay={this.handleClickDay} itChanged={this.handleCalendarChange}></CustomCalendar>
-                <AddLeaveCard theInterpreter={this.props.theInterpreter} leaveDay={this.state.clickedDayOnCalendar}  />
-                <AnnualLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                
-                <UnpaidLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                
+                <Container>
+                    <CustomCalendar clickDay={this.handleClickDay} itChanged={this.handleCalendarChange}></CustomCalendar>
+                    <Jumbotron>                        
+                        <AddLeaveCard theInterpreter={this.props.theInterpreter} leaveDay={this.state.clickedDayOnCalendar}  /> 
+                    </Jumbotron>
+                    <AnnualLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                
+                    <UnpaidLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                
+                </Container>
+                
+                
+                
             </div>
         )
     }    

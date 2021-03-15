@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import firebase, { myFireauth }  from "../../firebase/firebaseConfig";
+import PhoneSigninButton from "../phone-signin-button/phoneSigninButton.compo";
 
 
 
@@ -18,6 +19,7 @@ class PhoneSignin extends React.Component {
 
     
     handleClick = ()=>{
+        console.log('from PhoneSignin handle click')
         let myRecapcha =  new firebase.auth.RecaptchaVerifier('recapcha-container');
     
         const phoneNumber = '+601123109592'
@@ -44,8 +46,8 @@ class PhoneSignin extends React.Component {
         return(
             <div >
                 { this.state.userConfirmed ? <Redirect to='/interpreter/submitleave'/> : null }
-                <div id='recapcha-container'></div>
-                <button onClick={this.handleClick}>phone login</button>
+                {/* <div id='recapcha-container'></div> */}
+                <PhoneSigninButton phoneButtonClicked={this.handleClick}>{`Send OTP to:   ${this.props.phoneNumber}`}</PhoneSigninButton>
             </div>
 
         )

@@ -1,7 +1,7 @@
 
 import { React, Component } from "react";
 import firebase from '../../firebase/firebaseConfig'
-import GoogleButton from "../google-signin-button/googleSigninButton.compo"
+import GoogleSigninButton from "../google-signin-button/googleSigninButton.compo"
 
 
 class GoogleSignin extends Component {
@@ -21,7 +21,7 @@ class GoogleSignin extends Component {
     render (){
         return(
             <div>
-                <GoogleButton buttonClicked={this.handleClick}></GoogleButton>
+                <GoogleSigninButton googleButtonClicked={this.handleClick} >{`Sign in with:   ${this.props.googleAccount}`}</GoogleSigninButton>
             </div>
         )
     }
