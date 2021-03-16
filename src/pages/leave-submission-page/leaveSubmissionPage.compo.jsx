@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import InterpreterLeaveSubmission from '../../components/interpreter-leave-submission/interpreterLeaveSubmission.compo';
-
+import { Tab,TabList, TabPanel, Tabs } from "react-tabs";
 
 
 
@@ -19,7 +19,19 @@ class LeaveSubmissionPage extends Component{
         return(
             
             <React.Fragment>
-                <InterpreterLeaveSubmission interpreterId={this.props.match.params.interpreterId}/>                
+                <Tabs>
+                    <TabList>
+                        <Tab>Leave Submission</Tab>
+                        <Tab>My Profile</Tab>
+                    </TabList>
+                    <TabPanel>
+                        <InterpreterLeaveSubmission interpreterId={this.props.match.params.interpreterId}/>                
+                    </TabPanel>
+                    <TabPanel>
+                        <h3 style={{color:'red'}}>Section to be added</h3>
+                    </TabPanel>
+                </Tabs>
+                
             </React.Fragment>
         )
     }

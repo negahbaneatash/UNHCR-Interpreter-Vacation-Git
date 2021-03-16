@@ -5,7 +5,7 @@ import CustomCalendar from "../custom-calendar/customCalendar.compo";
 import AnnualLeaveContainer from "../annual-leave-container/annual-leave-container.compo";
 import UnpaidLeaveContainer from "../unpaid-leave-container/unpaidLeaveContainer.compo";
 import AddLeaveCard from "../add-leave-card/addLeaveCard.compo";
-
+import './interpreterLeaveSubmission.style.css'
 
 class InterpreterLeaveSubmission extends React.Component {    
     
@@ -31,10 +31,10 @@ class InterpreterLeaveSubmission extends React.Component {
         console.log('from InterpreterLeaveSubmission render')
         return(
             <div>
-                <h1>{`Hellooo  ${this.props.theInterpreter.name}`}</h1>
+                {/* <h1>{`Hellooo  ${this.props.theInterpreter.name}`}</h1> */}
                 <Container>
                     <CustomCalendar clickDay={this.handleClickDay} itChanged={this.handleCalendarChange}></CustomCalendar>
-                    <Jumbotron>                        
+                    <Jumbotron className='jumbo-add-leave'>                        
                         <AddLeaveCard theInterpreter={this.props.theInterpreter} leaveDay={this.state.clickedDayOnCalendar}  /> 
                     </Jumbotron>
                     <AnnualLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                

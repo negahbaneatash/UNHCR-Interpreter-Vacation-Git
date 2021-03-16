@@ -7,6 +7,7 @@ import { updateLeavesArrayOfTheMonthFromStoreToDB } from "../../firebase/dataBas
 import Leave, { leaveType } from "../../objects/leaveObj";
 import { addTheLeaveToStore_Action } from "../../redux/redux.actions";
 import '../add-leave-card/addLeaveCard.style.css'
+import SubmitLeaveButton from "../submit-leave-button/submitLeaveButton.compo";
 
 
 
@@ -63,9 +64,13 @@ componentDidUpdate(prevProps){
         console.log('from AddLeaveCard render, this.props',this.props)
         return (
             <div className='add-leave-card'>
-                <input type="text" value={this.props.leaveDay?this.props.leaveDay.toDateString():''}/>
-                <Dropdown className='leave-type-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[0]} onChange={this.dropDownSelect} placeholder='Select your leave type'/>
-                <button onClick={this.submitLeave}>Submit</button>
+                <div className='text-date-container'>
+                    <input type="text" value={this.props.leaveDay?this.props.leaveDay.toDateString():''}/>
+                </div>
+                <div className='dropdown-container'>
+                    <Dropdown className='leave-type-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[0]} onChange={this.dropDownSelect} placeholder='Select your leave type'/>
+                </div>
+                <SubmitLeaveButton leaveButtonClicked={this.submitLeave}>Submit Leave</SubmitLeaveButton>
                 <h6 style={{color:'red'}}>{this.state.alarm}</h6>
             </div>
         )
