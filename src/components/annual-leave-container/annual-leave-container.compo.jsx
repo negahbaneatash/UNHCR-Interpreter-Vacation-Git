@@ -43,7 +43,7 @@ class AnnualLeaveContainer extends React.Component{
             )
         }else{
             {console.log('from annualLeave render if false',leavesArrayFromStore)}
-            return <h1>NO SUBMITTED ANNUAL LEAVE TO SHOW</h1>
+            return <h3 style={{color:'purple'}}>NO SUBMITTED ANNUAL LEAVE TO SHOW</h3>
         }
     }
 }

@@ -61,7 +61,7 @@ render(){
     console.log('from intpreterLeaveCard render leaveDate this.state:', this.state)  
     
     return(
-        <div className='interpreter-leave-card' onClick={this.handleClick} style={{backgroundColor:this.props.backgroundColor}}>
+        <div className={`interpreter-leave-card ${this.state.leave.leaveType}`} onClick={this.handleClick} style={{backgroundColor:this.props.backgroundColor}}>
             {this.props.isSupervisor?<lable>{this.state.leave.leaveOwner}</lable>:null}             
             <input ref={this.textInputRef} type="text" value={this.state.leave.leaveDate?this.state.leave.leaveDate:''} style={this.state.focus?{fontWeight:'normal'}:{fontWeight:'bold'}}/>            
             {this.props.isInterpreter?<button name='delete-leave' onClick={this.handleClickDelete}>Delete</button>:null} 

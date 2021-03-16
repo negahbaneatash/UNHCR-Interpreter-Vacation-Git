@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+
+
+
+
+.welcome-interpreter-container{
+    display: flex;
+    justify-content: center;
+}
+.welcome-interpreter{
+    align-content: center;
+    font-family: 'Redressed', cursive;
+}
+

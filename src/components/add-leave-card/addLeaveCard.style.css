@@ -1,27 +1,31 @@
 
 
 .add-leave-card {
-    width: 80%;
-    
-    display: flex;
-    
-    flex-direction: column;
-
-    
+    width: 80%;    
+    display: flex;    
+    flex-direction: column;    
     border: 1px solid rgb(192, 229, 243);
-    /* border-radius: 5px; */
     padding: 25px;
-    padding-bottom: 50px;
-    
+    padding-bottom: 50px;    
     -moz-osx-font-smoothing: grayscale;
     backface-visibility: hidden;
     transform: translateZ(0);
-    transition: transform 0.25s ease-out;
-    /* align-items: flex-start; */
+    transition: transform 0.25s ease-out;       
+  }
+
+  .ANNUAL_LEAVE{
     background: linear-gradient(
     to left,
-    rgba(126, 86, 126, 0.7) 0%,    
+    rgba(126, 86, 126, 0.6) 0%,    
     rgba(131, 161, 235,.7) 100%
+  )   
+  }
+
+  .UNPAID_LEAVE{
+    background: linear-gradient(
+    to left,
+    rgba(126, 86, 126, 0.6) 0%,    
+    rgba(219, 68, 55,.4) 100%
   )   
   }
 
@@ -30,6 +34,14 @@
   justify-content: center;
   margin: 5px;
 }
+
+.input-text-date{
+  border-radius: 2px;  
+  text-align: center;
+  font-weight: bold;
+  pointer-events: none;
+}
+
 
 .dropdown-container{
   display: flex;

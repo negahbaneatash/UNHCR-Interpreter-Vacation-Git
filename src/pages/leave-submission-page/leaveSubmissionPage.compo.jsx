@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import InterpreterLeaveSubmission from '../../components/interpreter-leave-submission/interpreterLeaveSubmission.compo';
 import { Tab,TabList, TabPanel, Tabs } from "react-tabs";
+import { connect } from 'react-redux';
+import './leaveSubmissionPage.style.css'
 
 
 
@@ -10,7 +12,7 @@ import { Tab,TabList, TabPanel, Tabs } from "react-tabs";
 class LeaveSubmissionPage extends Component{
 
     componentDidMount(){
-        console.log('from LeaveSubmissionPage componentDidMount')
+        console.log('from LeaveSubmissionPage componentDidMount', this.props.TheInterpreter)
     }
 
 
@@ -19,16 +21,24 @@ class LeaveSubmissionPage extends Component{
         return(
             
             <React.Fragment>
+                <div className='welcome-interpreter-container'>
+                <h3 className='welcome-interpreter'>{`Welcome, ${this.props.theInterpreter.name}`}</h3>
+                </div>
+                
                 <Tabs>
                     <TabList>
                         <Tab>Leave Submission</Tab>
-                        <Tab>My Profile</Tab>
+                        <Tab disabled>My Profile</Tab>
+                        <Tab disabled>Data Allowance Submission</Tab>
                     </TabList>
                     <TabPanel>
                         <InterpreterLeaveSubmission interpreterId={this.props.match.params.interpreterId}/>                
                     </TabPanel>
                     <TabPanel>
-                        <h3 style={{color:'red'}}>Section to be added</h3>
+                        <h3 style={{color:'red'}}>My Profile Section to be added</h3>
+                    </TabPanel>
+                    <TabPanel>
+                        <h3 style={{color:'red'}}>Data Allowance Submission Section to be added</h3>
                     </TabPanel>
                 </Tabs>
                 
@@ -37,4 +47,7 @@ class LeaveSubmissionPage extends Component{
     }
 }
 
-export default LeaveSubmissionPage;
+const mapStateToProps=(state)=>({
+    theInterpreter:state.Interpreter.theInterpreter
+})
+export default connect(mapStateToProps)(LeaveSubmissionPage);

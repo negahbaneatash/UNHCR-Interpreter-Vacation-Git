@@ -19,7 +19,7 @@ class AddLeaveCard extends React.Component {
         this.state={
             Leave_Date:this.props.leaveDay,
             Leave_Type:leaveType.Annual_leave,
-            alarm:''
+            leaveMessage:''
         }
     }
     
@@ -63,9 +63,9 @@ componentDidUpdate(prevProps){
     render(){        
         console.log('from AddLeaveCard render, this.props',this.props)
         return (
-            <div className='add-leave-card'>
+            <div className={`add-leave-card ${this.state.Leave_Type===leaveType.Annual_leave?leaveType.Annual_leave:leaveType.Unpaid_Leave}`}>
                 <div className='text-date-container'>
-                    <input type="text" value={this.props.leaveDay?this.props.leaveDay.toDateString():''}/>
+                    <input className='input-text-date' type="text" value={this.props.leaveDay?this.props.leaveDay.toDateString():''}/>
                 </div>
                 <div className='dropdown-container'>
                     <Dropdown className='leave-type-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[0]} onChange={this.dropDownSelect} placeholder='Select your leave type'/>
