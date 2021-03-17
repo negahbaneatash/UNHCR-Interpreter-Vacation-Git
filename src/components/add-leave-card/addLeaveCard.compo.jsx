@@ -4,7 +4,7 @@ import 'react-dropdown/style.css';
 import { connect } from "react-redux";
 import { updateLeavesArrayOfTheMonthFromStoreToDB } from "../../firebase/dataBaseFunctions";
 
-import Leave, { leaveType } from "../../objects/leaveObj";
+import Leave from "../../objects/leaveObj";
 import { addTheLeaveToStore_Action } from "../../redux/redux.actions";
 import '../add-leave-card/addLeaveCard.style.css'
 import SubmitLeaveButton from "../submit-leave-button/submitLeaveButton.compo";
@@ -18,13 +18,13 @@ class AddLeaveCard extends React.Component {
         super(props)
         this.state={
             Leave_Date:this.props.leaveDay,
-            Leave_Type:leaveType.Annual_leave,
+            Leave_Type:Leave.leaveType.Annual_leave,
             leaveMessage:''
         }
     }
     
     
-dropDownOptions = [{value: leaveType.Annual_leave, label: 'Annual Leave'}, {value:leaveType.Unpaid_Leave, label:'Unpaid Leave'}]
+dropDownOptions = [{value: Leave.leaveType.Annual_leave, label: 'Annual Leave'}, {value:Leave.leaveType.Unpaid_Leave, label:'Unpaid Leave'}]
 
 dropDownSelect=(selectedItem)=>{
     console.log('selected item:',selectedItem)
@@ -63,7 +63,7 @@ componentDidUpdate(prevProps){
     render(){        
         console.log('from AddLeaveCard render, this.props',this.props)
         return (
-            <div className={`add-leave-card ${this.state.Leave_Type===leaveType.Annual_leave?leaveType.Annual_leave:leaveType.Unpaid_Leave}`}>
+            <div className={`add-leave-card ${this.state.Leave_Type===Leave.leaveType.Annual_leave?Leave.leaveType.Annual_leave:Leave.leaveType.Unpaid_Leave}`}>
                 <div className='text-date-container'>
                     <input className='input-text-date' type="text" value={this.props.leaveDay?this.props.leaveDay.toDateString():''}/>
                 </div>

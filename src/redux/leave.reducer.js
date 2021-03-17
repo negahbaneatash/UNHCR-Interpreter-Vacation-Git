@@ -1,4 +1,5 @@
-import { leaveStatus } from "../objects/leaveObj";
+// import { leaveStatus } from "../objects/leaveObj";
+import Leave from "../objects/leaveObj";
 import { actions } from "./action.names";
 
 const INITIAL_STATE={
@@ -32,7 +33,7 @@ export const leaveReducer =(state=INITIAL_STATE,action)=>{
         case actions.approveTheLeaveToStore:
             const helpArrApprove = state.leaves.map((leave)=>{
                 if (action.payload===leave.leaveId) {
-                    return {...leave,leaveStatus:leaveStatus.approved}
+                    return {...leave,leaveStatus:Leave.leaveStatus.approved}
                 } else {
                     return leave
                 }
@@ -44,7 +45,7 @@ export const leaveReducer =(state=INITIAL_STATE,action)=>{
         case actions.rejectTheLeaveToStore:
             const helpArrReject = state.leaves.map((leave)=>{
                 if (action.payload===leave.leaveId) {
-                    return {...leave,leaveStatus:leaveStatus.rejected}
+                    return {...leave,leaveStatus:Leave.leaveStatus.rejected}
                 } else {
                     return leave
                 }

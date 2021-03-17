@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import InterpreterLeaveCard from "../interpreter-leave-card/interpreterLeaveCard.compo";
 import { loadLeavesOfTheInterpreterFromDBToStore } from "../../firebase/dataBaseFunctions";
-import { leaveType } from "../../objects/leaveObj";
+import Leave, { leaveType } from "../../objects/leaveObj";
 
 
 class AnnualLeaveContainer extends React.Component{
@@ -33,7 +33,7 @@ class AnnualLeaveContainer extends React.Component{
         if (leavesArrayFromStore.length) {
             {console.log('from annualLeave render if true',leavesArrayFromStore)}
             return (                
-                this.props.leavesArrayFromStore.filter((leave)=>(leave.leaveType===leaveType.Annual_leave)).map(leaveEntity => {
+                this.props.leavesArrayFromStore.filter((leave)=>(leave.leaveType===Leave.leaveType.Annual_leave)).map(leaveEntity => {
                     return (        
                         <div>
                             <InterpreterLeaveCard isInterpreter leave={leaveEntity} compoWasClicked={this.focusOnItem} ></InterpreterLeaveCard>                    

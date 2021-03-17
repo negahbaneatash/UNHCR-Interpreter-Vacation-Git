@@ -27,9 +27,9 @@ class LeaveSubmissionPage extends Component{
                 
                 <Tabs>
                     <TabList>
-                        <Tab>Leave Submission</Tab>
-                        <Tab disabled>My Profile</Tab>
+                        <Tab>Leave Submission</Tab>                        
                         <Tab disabled>Data Allowance Submission</Tab>
+                        <Tab disabled >My Profile</Tab>
                     </TabList>
                     <TabPanel>
                         <InterpreterLeaveSubmission interpreterId={this.props.match.params.interpreterId}/>                

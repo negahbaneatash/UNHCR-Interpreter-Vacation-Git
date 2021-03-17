@@ -1,18 +1,32 @@
+
 class Leave {
-    constructor(date,type=leaveType.Annual_leave,theInterpreter){
+    constructor(date,type=Leave.leaveType.Annual_leave,theInterpreter){
         this.leaveId=Math.floor((Math.random()*100000)).toString();
         this.leaveDate=date;
+        this.leaveDateString=date.toDateString();
+        this.leaveDateOfMonthString=date.getDate().toString();
+        this.leaveDayOfWeekString=Leave.getDayOfWeekName(date);
+        this.leaveMonthString=this.constructor.getMonthOfLeave(date);
         this.leaveType=type;        
         this.submittedOn=new Date();
-        this.leaveStatus=leaveStatus.submitted;
+        this.leaveStatus=Leave.leaveStatus.submitted;
         this.supervisorNote='';        
         this.leaveOwner=theInterpreter.name;
         this.leaveOwnerEmail=theInterpreter.email;
         this.leaveYearMonth = date.getFullYear().toString()+'-'+(date.getMonth()+1).toString();
+        
     }    
+    static getMonthOfLeave = (date)=>{
+        const monthsOfYear=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        return monthsOfYear[date.getMonth()]
+    }
+    static getDayOfWeekName =(date)=>{
+        const daysOfWeek=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        return daysOfWeek[date.getDay()]
+    }
+    static leaveType = {Annual_leave:'ANNUAL_LEAVE',Unpaid_Leave:'UNPAID_LEAVE'}
+    static leaveStatus = {submitted:'SUBMITTED', approved: 'APPROVED', rejected: 'REJECTED'}
 }
 
-export const leaveType = {Annual_leave:'ANNUAL_LEAVE',Unpaid_Leave:'UNPAID_LEAVE'}
-export const leaveStatus = {submitted:'SUBMITTED', approved: 'APPROVED', rejected: 'REJECTED'}
 
 export default Leave;

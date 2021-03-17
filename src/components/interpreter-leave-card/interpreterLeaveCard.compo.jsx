@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import '../interpreter-leave-card/interpreterLeaveCard.style.css'
 import { approveTheLeaveToStore_Action, deleteTheLeaveFromStore_Action, rejectTheLeaveToStore_Action } from "../../redux/redux.actions"
 import { loadLeavesOfTheInterpreterFromDBToStore, updateLeavesArrayOfTheMonthFromStoreToDB } from "../../firebase/dataBaseFunctions";
-import { leaveStatus } from "../../objects/leaveObj";
+import Leave from "../../objects/leaveObj";
+// import { leaveStatus } from "../../objects/leaveObj";
 
 
 
@@ -42,7 +43,7 @@ handleClickDelete=()=>{
 
 handleClickApprove=async ()=>{
     const {leaveOwnerEmail,leaveYearMonth,leaveId}=this.state.leave
-    this.setState({...this.state,leave:{...this.state.leave,leaveStatus:leaveStatus.approved}})
+    this.setState({...this.state,leave:{...this.state.leave,leaveStatus:Leave.leaveStatus.approved}})
     await loadLeavesOfTheInterpreterFromDBToStore(leaveOwnerEmail,leaveYearMonth)
     this.props.approveTheLeave(approveTheLeaveToStore_Action(leaveId))
     updateLeavesArrayOfTheMonthFromStoreToDB(leaveOwnerEmail,leaveYearMonth)    
@@ -50,7 +51,7 @@ handleClickApprove=async ()=>{
 
 handleClickReject=async()=>{
     const {leaveOwnerEmail,leaveYearMonth,leaveId}=this.state.leave
-    this.setState({...this.state,leave:{...this.state.leave,leaveStatus:leaveStatus.rejected}})
+    this.setState({...this.state,leave:{...this.state.leave,leaveStatus:Leave.leaveStatus.rejected}})
     await loadLeavesOfTheInterpreterFromDBToStore(leaveOwnerEmail,leaveYearMonth)
     this.props.rejectTheLeave(rejectTheLeaveToStore_Action(leaveId))
     updateLeavesArrayOfTheMonthFromStoreToDB(leaveOwnerEmail,leaveYearMonth)    
