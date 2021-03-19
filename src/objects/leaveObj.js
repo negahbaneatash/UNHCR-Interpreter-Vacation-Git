@@ -4,9 +4,10 @@ class Leave {
         this.leaveId=Math.floor((Math.random()*100000)).toString();
         this.leaveDate=date;
         this.leaveDateString=date.toDateString();
-        this.leaveDateOfMonthString=date.getDate().toString();
+        this.leaveYearString=date.getFullYear().toString();
+        this.leaveDayOfMonthString=date.getDate().toString();
         this.leaveDayOfWeekString=Leave.getDayOfWeekName(date);
-        this.leaveMonthString=this.constructor.getMonthOfLeave(date);
+        this.leaveMonthString=this.constructor.getMonthOfYearName(date);
         this.leaveType=type;        
         this.submittedOn=new Date();
         this.leaveStatus=Leave.leaveStatus.submitted;
@@ -16,7 +17,7 @@ class Leave {
         this.leaveYearMonth = date.getFullYear().toString()+'-'+(date.getMonth()+1).toString();
         
     }    
-    static getMonthOfLeave = (date)=>{
+    static getMonthOfYearName = (date)=>{
         const monthsOfYear=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         return monthsOfYear[date.getMonth()]
     }

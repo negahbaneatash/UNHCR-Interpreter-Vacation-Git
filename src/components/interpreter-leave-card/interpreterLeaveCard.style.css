@@ -1,4 +1,5 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
 
 
 .interpreter-leave-card {
@@ -17,4 +18,21 @@
     align-items: flex-start;
   }
 
-  
+.show-date{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  font-family: 'Syne Mono', monospace;
+}
+.show-year{
+  font-size: 32px;
+  color: purple;
+  padding: 5px;
+}
+.wmd-container{
+  color: chocolate;
+  display: flex;
+  flex-direction: column;
+  font-size: 22px;
+}

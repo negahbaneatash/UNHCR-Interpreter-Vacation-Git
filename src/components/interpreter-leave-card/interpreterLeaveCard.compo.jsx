@@ -60,11 +60,20 @@ handleClickReject=async()=>{
 render(){  
     console.log('from intpreterLeaveCard render leaveDate this.props:', this.props)  
     console.log('from intpreterLeaveCard render leaveDate this.state:', this.state)  
-    
+    const {leave}=this.state
     return(
-        <div className={`interpreter-leave-card ${this.state.leave.leaveType}`} onClick={this.handleClick} style={{backgroundColor:this.props.backgroundColor}}>
+        <div className={`interpreter-leave-card ${this.state.leave.leaveType}`} onClick={this.handleClick}>
             {this.props.isSupervisor?<lable>{this.state.leave.leaveOwner}</lable>:null}             
-            <input ref={this.textInputRef} type="text" value={this.state.leave.leaveDate?this.state.leave.leaveDate:''} style={this.state.focus?{fontWeight:'normal'}:{fontWeight:'bold'}}/>            
+            {/* <input ref={this.textInputRef} type="text" value={this.state.leave.leaveDateString?this.state.leave.leaveDateString:''} style={this.state.focus?{fontWeight:'normal'}:{fontWeight:'bold'}}/>             */}
+            {/* 2021  january  Monday  23 */}
+            <div className='show-date'> 
+                <div className='show-year'>{leave.leaveYearString}</div>
+                <div className='wmd-container'>
+                    <div className='show-weekday'>{leave.leaveDayOfWeekString}</div>
+                    <span className='show-month-day'>{leave.leaveMonthString}, {leave.leaveDayOfMonthString}</span>
+                    
+                </div>
+            </div>
             {this.props.isInterpreter?<button name='delete-leave' onClick={this.handleClickDelete}>Delete</button>:null} 
             {this.props.isSupervisor?<button name='approve-leave' onClick={this.handleClickApprove}>Approve</button>:null} 
             {this.props.isSupervisor?<button name='reject-leave' onClick={this.handleClickReject}>Reject</button>:null} 
