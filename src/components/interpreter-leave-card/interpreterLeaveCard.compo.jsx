@@ -5,6 +5,9 @@ import '../interpreter-leave-card/interpreterLeaveCard.style.css'
 import { approveTheLeaveToStore_Action, deleteTheLeaveFromStore_Action, rejectTheLeaveToStore_Action } from "../../redux/redux.actions"
 import { loadLeavesOfTheInterpreterFromDBToStore, updateLeavesArrayOfTheMonthFromStoreToDB } from "../../firebase/dataBaseFunctions";
 import Leave from "../../objects/leaveObj";
+import DeleteLeaveButton from "../delete-leave-button/deleteLeaveButton.compo";
+import { ReactComponent as ApprovedIcon  } from "../../assets/approved.svg";
+import { ReactComponent as RejectedIcon } from "../../assets/rejected.svg";
 // import { leaveStatus } from "../../objects/leaveObj";
 
 
@@ -57,10 +60,22 @@ handleClickReject=async()=>{
     updateLeavesArrayOfTheMonthFromStoreToDB(leaveOwnerEmail,leaveYearMonth)    
 }
 
+showLeaveStatus=()=>{
+    const {leaveStatus}=this.state.leave;
+    if (leaveStatus===Leave.leaveStatus.submitted) {
+        return <lable>{'Submitted & Pending'}</lable>                    
+    } else if (leaveStatus===Leave.leaveStatus.approved) {
+        return <ApprovedIcon/>
+    } else if (leaveStatus===Leave.leaveStatus.rejected) {
+        return <RejectedIcon/>
+    } 
+}
+
 render(){  
     console.log('from intpreterLeaveCard render leaveDate this.props:', this.props)  
     console.log('from intpreterLeaveCard render leaveDate this.state:', this.state)  
     const {leave}=this.state
+    const {isInterpreter,isSupervisor}=this.props
     return(
         <div className={`interpreter-leave-card ${this.state.leave.leaveType}`} onClick={this.handleClick}>
             {this.props.isSupervisor?<lable>{this.state.leave.leaveOwner}</lable>:null}             
@@ -74,11 +89,20 @@ render(){
                     
                 </div>
             </div>
-            {this.props.isInterpreter?<button name='delete-leave' onClick={this.handleClickDelete}>Delete</button>:null} 
-            {this.props.isSupervisor?<button name='approve-leave' onClick={this.handleClickApprove}>Approve</button>:null} 
-            {this.props.isSupervisor?<button name='reject-leave' onClick={this.handleClickReject}>Reject</button>:null} 
-            <br/>
-            <lable>{this.state.leave.leaveStatus}</lable>            
+            <div className='buttons-and-status'>
+                <div className='button-container'>
+                    
+                    {true?<DeleteLeaveButton name='delete-leave' deleteLeaveClicked={this.handleClickDelete}>Delete Leave</DeleteLeaveButton>:null}
+                    {isSupervisor?<button name='approve-leave' onClick={this.handleClickApprove}>Approve</button>:null} 
+                    {isSupervisor?<button name='reject-leave' onClick={this.handleClickReject}>Reject</button>:null} 
+                </div>
+                <div className='status-container'>
+                    {this.showLeaveStatus()}
+                </div>
+            </div>
+            
+            
+            
         </div>
     )
 }
