@@ -30,6 +30,17 @@ export const mLeaveReducer = (state=INITIAL_STATE,action)=>{
                 ...state,
                 mLeaves:[...helpArrApprove]
             }
+        // case actions.deleteTheLeaveFromStore:
+        //     let helpArrDelete = []
+        //     helpArrDelete = state.mLeaves.filter((leave)=>{if (leave.leaveId === action.payload) {
+        //         return false
+        //     } else {
+        //         return true
+        //     }})
+        //     return ({
+        //         ...state,
+        //         mLeaves:[...helpArrDelete]
+        //     })
         case actions.rejectTheLeaveToStore:
             const helpArrReject = state.mLeaves.map((leave)=>{
                 if (action.payload===leave.leaveId) {

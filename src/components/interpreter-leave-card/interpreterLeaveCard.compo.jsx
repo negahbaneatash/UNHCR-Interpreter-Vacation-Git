@@ -8,6 +8,8 @@ import Leave from "../../objects/leaveObj";
 import DeleteLeaveButton from "../delete-leave-button/deleteLeaveButton.compo";
 import { ReactComponent as ApprovedIcon  } from "../../assets/approved.svg";
 import { ReactComponent as RejectedIcon } from "../../assets/rejected.svg";
+import { ReactComponent as ApproveButton } from "../../assets/approve.svg";
+import { ReactComponent as RejectButton } from "../../assets/reject.svg";
 // import { leaveStatus } from "../../objects/leaveObj";
 
 
@@ -92,9 +94,9 @@ render(){
             <div className='buttons-and-status'>
                 <div className='button-container'>
                     
-                    {true?<DeleteLeaveButton name='delete-leave' deleteLeaveClicked={this.handleClickDelete}>Delete Leave</DeleteLeaveButton>:null}
-                    {isSupervisor?<button name='approve-leave' onClick={this.handleClickApprove}>Approve</button>:null} 
-                    {isSupervisor?<button name='reject-leave' onClick={this.handleClickReject}>Reject</button>:null} 
+                    {isInterpreter?<DeleteLeaveButton name='delete-leave' deleteLeaveClicked={this.handleClickDelete}>Delete Leave</DeleteLeaveButton>:null}
+                    {isSupervisor?<ApproveButton className='approve-button' name='approve-leave' onClick={this.handleClickApprove}></ApproveButton>:null} 
+                    {isSupervisor?<RejectButton className='reject-button' name='reject-leave' onClick={this.handleClickReject}></RejectButton>:null} 
                 </div>
                 <div className='status-container'>
                     {this.showLeaveStatus()}
