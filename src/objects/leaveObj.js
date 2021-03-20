@@ -14,6 +14,7 @@ class Leave {
         this.supervisorNote='';        
         this.leaveOwner=theInterpreter.name;
         this.leaveOwnerEmail=theInterpreter.email;
+        this.leaveOwnerGroup=theInterpreter.group;
         this.leaveYearMonth = date.getFullYear().toString()+'-'+(date.getMonth()+1).toString();
         
     }    

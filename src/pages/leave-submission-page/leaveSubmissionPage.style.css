@@ -3,12 +3,11 @@
 
 
 
-.welcome-interpreter-container{
+.welcome-user-container{
     display: flex;
     justify-content: center;
 }
-.welcome-interpreter{
-    align-content: center;
+.welcome-user{
     font-family: 'Redressed', cursive;
 }
 

@@ -2,11 +2,12 @@ import  Dropdown  from "react-dropdown";
 import React from "react";
 import { connect } from "react-redux";
 import { loadAllLeavesOfTheMonthFromDBToStore } from "../../firebase/dataBaseFunctions";
-
+import {Container,Jumbotron} from 'react-bootstrap'
 // import { leaveStatus } from "../../objects/leaveObj";
 
 import InterpreterLeaveCard from "../interpreter-leave-card/interpreterLeaveCard.compo";
 import Leave from "../../objects/leaveObj";
+import CustomCalendar from "../custom-calendar/customCalendar.compo";
 
 
 
@@ -14,11 +15,15 @@ class LeaveManangementStage extends React.Component {
     constructor(){
         super()        
         
-        this.state={Leave_Status_Group:Leave.leaveStatus.submitted}
+        this.state={
+            Leave_Status_Group:Leave.leaveStatus.submitted,
+            viewingDateOnCalendar:new Date(),
+
+        }
     }
     componentDidMount(){        
-        const tempDate = new Date()
-        this.check=loadAllLeavesOfTheMonthFromDBToStore(tempDate)                      
+        
+        this.check=loadAllLeavesOfTheMonthFromDBToStore(this.state.viewingDateOnCalendar)                      
         console.log('from LeaveManagementStage componentDidMount ')
     }
 
@@ -42,12 +47,30 @@ class LeaveManangementStage extends React.Component {
         }
     }
 
+    handleCalendarChange=(changedYear)=>{
+        console.log('OOOOOOOOOOOO from cal handlechange:',changedYear)
+        this.setState({...this.state,viewingDateOnCalendar:changedYear.activeStartDate})
+    }
+
+    handleClickMonth=(newDate)=>{
+        console.log('KKKKKKKKKKKOOOOOOOOOOO from handle clickMonth',newDate)
+        this.setState({...this.state,viewingDateOnCalendar:newDate})
+        loadAllLeavesOfTheMonthFromDBToStore(newDate)                      
+    }
+
     render(){
-        console.log('RRRRRRRRRR from LeaveManagementStage render() ')
+        console.log('from LeaveManagementStage render() ')
         return(
             <div>
-                <Dropdown className='leave-status-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[1]} onChange={this.dropDownSelect} placeholder='Show:'/>                
-                {this.showRelatedLeaveCards()}
+                <Container>
+                    <CustomCalendar showIn='year' clickMonth={this.handleClickMonth} clickDay={this.handleClickDay} viewChanged={this.handleCalendarChange}></CustomCalendar>
+                    <Jumbotron>
+                        <Dropdown className='leave-status-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[1]} onChange={this.dropDownSelect} placeholder='Show:'/>                
+                    </Jumbotron>
+                    {this.showRelatedLeaveCards()}
+                </Container>
+                
+                
             </div>
     )}
 }

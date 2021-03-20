@@ -21,10 +21,9 @@ class LeaveSubmissionPage extends Component{
         return(
             
             <React.Fragment>
-                <div className='welcome-interpreter-container'>
-                <h3 className='welcome-interpreter'>{`Welcome, ${this.props.theInterpreter.name}`}</h3>
+                <div className='welcome-user-container'>
+                    <h3 className='welcome-user'>{`Welcome, ${this.props.theInterpreter.name}`}</h3>
                 </div>
-                
                 <Tabs>
                     <TabList>
                         <Tab>Leave Submission</Tab>                        

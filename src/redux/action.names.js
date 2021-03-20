@@ -11,6 +11,7 @@ export const actions={
     addTheLeaveToStore: "ADD_THE_LEAVE",
     approveTheLeaveToStore: "APPROVE_THE_LEAVE",
     rejectTheLeaveToStore: "REJECT_THE_LEAVE",
+    resetTheLeaveToStore: "RESET_THE_LEAVE",
     setLeavesFromDBToStore: "SET_LEAVES_OF_THE_INTERPRETER_FROM_DB", 
     addToAllLeavesToStore:"ADD_TO_ALL_LEAVES_OF_THE_MONTH_FROM_DB",
     deleteTheLeaveFromStore: "DELETE_THE_LEAVE_FROM_STORE",

@@ -84,4 +84,11 @@ export const rejectTheLeaveToStore_Action =(leaveId)=>{
         payload: leaveId
     }
 }
+
+export const resetTheLeaveToStore_Action =(leaveId)=>{
+    return{
+        type: actions.resetTheLeaveToStore,
+        payload: leaveId
+    }
+}
 // the other actions to be written and centralized here

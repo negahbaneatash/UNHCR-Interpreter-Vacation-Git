@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Tab,TabList, TabPanel, Tabs } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import AddInterpreterToDB from "../add-interpreter-todb/addInterpreterToDB.compo";
@@ -6,8 +7,12 @@ import LeaveManangementStage from "../leave-management-stage/leaveManagementStag
 
 
 
-const SupervisorAdministrationPage =()=>{
+const SupervisorAdministrationPage =(props)=>{
     return (
+        <React.Fragment>
+                <div className='welcome-user-container'>
+                    <h3 className='welcome-user'>{`Welcome, ${props.theSupervisor.name}`}</h3>
+                </div>
         <Tabs>
             <TabList>
                 <Tab>Leave Management</Tab>
@@ -35,9 +40,13 @@ const SupervisorAdministrationPage =()=>{
                 </Tabs>
             </TabPanel>
         </Tabs>
-        
+        </React.Fragment>
     )
 }
 
+const mapStateToProps =(state)=>({
+    theSupervisor:state.Supervisor.theSupervisor
+})
 
-export default SupervisorAdministrationPage;
+
+export default connect(mapStateToProps)(SupervisorAdministrationPage);

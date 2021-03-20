@@ -54,6 +54,18 @@ export const leaveReducer =(state=INITIAL_STATE,action)=>{
                 ...state,
                 leaves:[...helpArrReject]
             }
+        case actions.resetTheLeaveToStore:
+            const helpArrReset = state.leaves.map((leave)=>{
+                if (action.payload===leave.leaveId) {
+                    return {...leave,leaveStatus:Leave.leaveStatus.submitted}
+                } else {
+                    return leave
+                }
+            })
+            return {
+                ...state,
+                leaves:[...helpArrReset]
+            }
         case actions.removeAllLeavesFromStore:
             return INITIAL_STATE
         default:

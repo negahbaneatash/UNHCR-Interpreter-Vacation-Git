@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 
 import '../interpreter-leave-card/interpreterLeaveCard.style.css'
-import { approveTheLeaveToStore_Action, deleteTheLeaveFromStore_Action, rejectTheLeaveToStore_Action } from "../../redux/redux.actions"
+import { approveTheLeaveToStore_Action, deleteTheLeaveFromStore_Action, rejectTheLeaveToStore_Action, resetTheLeaveToStore_Action } from "../../redux/redux.actions"
 import { loadLeavesOfTheInterpreterFromDBToStore, updateLeavesArrayOfTheMonthFromStoreToDB } from "../../firebase/dataBaseFunctions";
 import Leave from "../../objects/leaveObj";
-import DeleteLeaveButton from "../delete-leave-button/deleteLeaveButton.compo";
+import RemoveLeaveButton from "../delete-leave-button/deleteLeaveButton.compo";
 import { ReactComponent as ApprovedIcon  } from "../../assets/approved.svg";
 import { ReactComponent as RejectedIcon } from "../../assets/rejected.svg";
 import { ReactComponent as ApproveButton } from "../../assets/approve.svg";
@@ -73,6 +73,14 @@ showLeaveStatus=()=>{
     } 
 }
 
+handleClickReset=async()=>{
+    const {leaveOwnerEmail,leaveYearMonth,leaveId}=this.state.leave
+    this.setState({...this.state,leave:{...this.state.leave,leaveStatus:Leave.leaveStatus.submitted}})
+    await loadLeavesOfTheInterpreterFromDBToStore(leaveOwnerEmail,leaveYearMonth)
+    this.props.resetTheLeave(resetTheLeaveToStore_Action(leaveId))    
+    updateLeavesArrayOfTheMonthFromStoreToDB(leaveOwnerEmail,leaveYearMonth)  
+}
+
 render(){  
     console.log('from intpreterLeaveCard render leaveDate this.props:', this.props)  
     console.log('from intpreterLeaveCard render leaveDate this.state:', this.state)  
@@ -94,7 +102,8 @@ render(){
             <div className='buttons-and-status'>
                 <div className='button-container'>
                     
-                    {isInterpreter?<DeleteLeaveButton name='delete-leave' deleteLeaveClicked={this.handleClickDelete}>Delete Leave</DeleteLeaveButton>:null}
+                    {(leave.leaveStatus===Leave.leaveStatus.submitted) && isInterpreter?<RemoveLeaveButton name='delete-leave' deleteLeaveClicked={this.handleClickDelete}>Delete Leave</RemoveLeaveButton>:null}
+                    {isSupervisor?<RemoveLeaveButton name='reset-leave' deleteLeaveClicked={this.handleClickReset}>Reset Leave</RemoveLeaveButton>:null}
                     {isSupervisor?<ApproveButton className='approve-button' name='approve-leave' onClick={this.handleClickApprove}></ApproveButton>:null} 
                     {isSupervisor?<RejectButton className='reject-button' name='reject-leave' onClick={this.handleClickReject}></RejectButton>:null} 
                 </div>
@@ -114,7 +123,8 @@ const mapDispatchToProps=(dispatch)=>{
     return{
         deleteTheLeave: (action)=>{dispatch(action)},
         approveTheLeave: (action)=>{dispatch(action)},
-        rejectTheLeave: (action)=>{dispatch(action)}
+        rejectTheLeave: (action)=>{dispatch(action)},
+        resetTheLeave: (action)=>{dispatch(action)}
     }
 }
 

@@ -31,18 +31,14 @@ class InterpreterLeaveSubmission extends React.Component {
         console.log('from InterpreterLeaveSubmission render')
         return(
             <div>
-                {/* <h1>{`Hellooo  ${this.props.theInterpreter.name}`}</h1> */}
                 <Container>
-                    <CustomCalendar clickDay={this.handleClickDay} itChanged={this.handleCalendarChange}></CustomCalendar>
+                    <CustomCalendar showIn='month' clickDay={this.handleClickDay} viewChanged={this.handleCalendarChange}></CustomCalendar>
                     <Jumbotron className='jumbo-add-leave'>                        
                         <AddLeaveCard theInterpreter={this.props.theInterpreter} leaveDay={this.state.clickedDayOnCalendar}  /> 
                     </Jumbotron>
                     <AnnualLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                
                     <UnpaidLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                
                 </Container>
-                
-                
-                
             </div>
         )
     }    
