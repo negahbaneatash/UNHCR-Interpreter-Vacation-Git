@@ -34,9 +34,11 @@ class InterpreterLeaveSubmission extends React.Component {
                 <Container>
                     <CustomCalendar showIn='month' clickDay={this.handleClickDay} viewChanged={this.handleCalendarChange}></CustomCalendar>
                     <Jumbotron className='jumbo-add-leave'>                        
-                        <AddLeaveCard theInterpreter={this.props.theInterpreter} leaveDay={this.state.clickedDayOnCalendar}  /> 
+                        <AddLeaveCard theInterpreter={this.props.theInterpreter} leaveDay={this.state.clickedDayOnCalendar} leavesArray={this.props.interpreterLeaves} /> 
                     </Jumbotron>
+                    <h4 className='annual-leave-title leave-type'>Annual Leave(s):</h4>
                     <AnnualLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                
+                    <h4 className='unpaid-leave-title leave-type'>Extra Leave(s):</h4>
                     <UnpaidLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                
                 </Container>
             </div>

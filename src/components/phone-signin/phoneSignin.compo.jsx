@@ -12,18 +12,26 @@ class PhoneSignin extends React.Component {
     constructor(){
         super()
         this.state={
-            userConfirmed:false
+            userConfirmed:false,
+            userPhoneNumber:''
         }
     }
     
-
+    componentDidMount(){
+        const {theSupervisor,theInterpreter} = this.props;
+        if (theInterpreter) {
+            this.setState({...this.state,userPhoneNumber:theInterpreter.phoneNumber})
+        }else if (theSupervisor) {
+            this.setState({...this.state,userPhoneNumber:theSupervisor.phoneNumber})
+        }
+    }
     
     handleClick = ()=>{
         console.log('from PhoneSignin handle click')
         let myRecapcha =  new firebase.auth.RecaptchaVerifier('recapcha-container');
     
-        const phoneNumber = this.props.theInterpreter.phoneNumber;
-        myFireauth.signInWithPhoneNumber(phoneNumber,myRecapcha)
+        
+        myFireauth.signInWithPhoneNumber(this.state.userPhoneNumber,myRecapcha)
        .then((confirmRes)=>{
             const otpCode=prompt('Enter OTP','')
             if (otpCode === null) return
@@ -45,8 +53,7 @@ class PhoneSignin extends React.Component {
     render(){
         return(
             <div >
-                { this.state.userConfirmed ? <Redirect to='/interpreter/submitleave'/> : null }
-                {/* <div id='recapcha-container'></div> */}
+                { this.state.userConfirmed ? <Redirect to='/interpreter/submitleave'/> : null }                
                 <PhoneSigninButton phoneButtonClicked={this.handleClick}>{`Send OTP to:   ${this.props.phoneNumber}`}</PhoneSigninButton>
             </div>
 
@@ -57,29 +64,11 @@ class PhoneSignin extends React.Component {
 
 const mapStateToProps =(state)=>{
     return{
-    theInterpreter:state.Interpreter.theInterpreter
+    theInterpreter:state.Interpreter.theInterpreter,
+    theSupervisor:state.Supervisor.theSupervisor
     }
 }
 
 export default connect(mapStateToProps)(PhoneSignin);
 
 
-
-
-// new firebase.auth.RecaptchaVerifier('sign-in-button', {
-    //     'size': 'invisible',
-    //     'callback': (response) => {
-    //       // reCAPTCHA solved, allow signInWithPhoneNumber.
-    //       console.log('from recapcha response:',response)
-    //     }
-    //   });
-
-    // .then((confirmationResult) => {
-    //     // SMS sent. Prompt user to type the code from the message, then sign the
-    //     // user in with confirmationResult.confirm(code).
-    //     window.confirmationResult = confirmationResult;
-    //     // ...
-    //   }).catch((error) => {
-    //     // Error; SMS not sent
-    //     // ...
-    //   });

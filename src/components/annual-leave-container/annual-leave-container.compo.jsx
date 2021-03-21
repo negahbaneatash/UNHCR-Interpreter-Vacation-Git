@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 
 import InterpreterLeaveCard from "../interpreter-leave-card/interpreterLeaveCard.compo";
 import { loadLeavesOfTheInterpreterFromDBToStore } from "../../firebase/dataBaseFunctions";
-import Leave, { leaveType } from "../../objects/leaveObj";
+import Leave from "../../objects/leaveObj";
 
 
 class AnnualLeaveContainer extends React.Component{
         
     async componentDidMount(){   
-        {console.log('from annualLeave DidMount *********')}     
+        console.log('from annualLeave DidMount *********')     
         const leaveRef= this.props.viewingDate.getFullYear().toString()+'-'+(this.props.viewingDate.getMonth()+1).toString();
         await loadLeavesOfTheInterpreterFromDBToStore(this.props.theInterpreter.email,leaveRef)        
     }
@@ -21,11 +21,7 @@ class AnnualLeaveContainer extends React.Component{
         }
     }
 
-    focusOnItem =(textInputOfChildRef)=>{
-        if(textInputOfChildRef){
-            textInputOfChildRef.current.value.bold()
-        }     
-    }
+    
     
               
     render(){
@@ -36,14 +32,14 @@ class AnnualLeaveContainer extends React.Component{
                 this.props.leavesArrayFromStore.filter((leave)=>(leave.leaveType===Leave.leaveType.Annual_leave)).map(leaveEntity => {
                     return (        
                         <div>
-                            <InterpreterLeaveCard isInterpreter leave={leaveEntity} compoWasClicked={this.focusOnItem} ></InterpreterLeaveCard>                    
+                            <InterpreterLeaveCard isInterpreter leave={leaveEntity}  ></InterpreterLeaveCard>                    
                         </div>
                     )    
                 })
             )
         }else{
             {console.log('from annualLeave render if false',leavesArrayFromStore)}
-            return <h3 style={{color:'purple'}}>NO SUBMITTED ANNUAL LEAVE TO SHOW</h3>
+            return <h3 className='leave-type' style={{color:'purple'}}>THERE IS NO SUBMITTED ANNUAL LEAVE TO SHOW</h3>
         }
     }
 }

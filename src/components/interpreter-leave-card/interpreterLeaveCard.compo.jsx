@@ -36,10 +36,7 @@ componentDidUpdate(prevProps){
     
 }
 
-// handleClick = ()=>{  
-//     this.props.compoWasClicked(this.textInputRef)    
-//     this.setState({...this.state,focus:!this.state.focus})        
-// }
+
 
 handleClickDelete=()=>{    
     this.props.deleteTheLeave(deleteTheLeaveFromStore_Action(this.state.leave.leaveId))
@@ -87,7 +84,7 @@ render(){
     const {leave}=this.state
     const {isInterpreter,isSupervisor}=this.props
     return(
-        <div className={`interpreter-leave-card ${this.state.leave.leaveType}`} onClick={this.handleClick}>
+        <div className={`interpreter-leave-card ${this.state.leave.leaveType}`}>
             <div className='leave-info-container'>
                 {isSupervisor?<h4 className='leave-owner-name interpreter-name'>{leave.leaveOwnerName}</h4>:null} 
                 {isSupervisor?<lable className='leave-owner-name interpreter-group'>{leave.leaveOwnerGroup}</lable>:null} 

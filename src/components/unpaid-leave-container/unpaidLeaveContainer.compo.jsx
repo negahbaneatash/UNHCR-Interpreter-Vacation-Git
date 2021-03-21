@@ -21,11 +21,6 @@ class UnpaidLeaveContainer extends React.Component{
         }
     }
 
-    focusOnItem =(textInputOfChildRef)=>{
-        if(textInputOfChildRef){
-            textInputOfChildRef.current.value.bold()
-        }
-    }
     
               
     render(){    
@@ -35,15 +30,15 @@ class UnpaidLeaveContainer extends React.Component{
             return (
                 this.props.leavesArrayFromStore.filter((leave)=>(leave.leaveType!==Leave.leaveType.Annual_leave)).map(leaveEntity => {
                     return (        
-                        <div>
-                            <InterpreterLeaveCard isInterpreter leave={leaveEntity} compoWasClicked={this.focusOnItem} ></InterpreterLeaveCard>                    
+                        <div>                            
+                            <InterpreterLeaveCard isInterpreter leave={leaveEntity} ></InterpreterLeaveCard>                    
                         </div>
                     )    
                 })
             )
         }else{
             console.log('from unpaidLeave render if false')
-            return <h1>NO SUBMITTED UNPAID LEAVE TO SHOW</h1>
+            return <h3 className='leave-type' style={{color:'purple'}}>THERE IS NO SUBMITTED EXTRA LEAVE TO SHOW</h3>
         }
     }
 }

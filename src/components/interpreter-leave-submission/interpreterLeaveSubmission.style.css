@@ -6,3 +6,10 @@
     display: flex;
     justify-content: center;
 }
+
+.annual-leave-title{
+    margin-top: 30px;
+}
+.unpaid-leave-title{
+    margin-top: 30px;
+}
