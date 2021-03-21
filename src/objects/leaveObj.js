@@ -9,10 +9,10 @@ class Leave {
         this.leaveDayOfWeekString=Leave.getDayOfWeekName(date);
         this.leaveMonthString=this.constructor.getMonthOfYearName(date);
         this.leaveType=type;        
-        this.submittedOn=new Date();
+        this.leaveSubmittedOn=new Date();
         this.leaveStatus=Leave.leaveStatus.submitted;
-        this.supervisorNote='';        
-        this.leaveOwner=theInterpreter.name;
+        this.leaveSupervisorNote='';        
+        this.leaveOwnerName=theInterpreter.name;
         this.leaveOwnerEmail=theInterpreter.email;
         this.leaveOwnerGroup=theInterpreter.group;
         this.leaveYearMonth = date.getFullYear().toString()+'-'+(date.getMonth()+1).toString();

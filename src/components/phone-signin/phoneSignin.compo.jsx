@@ -22,7 +22,7 @@ class PhoneSignin extends React.Component {
         console.log('from PhoneSignin handle click')
         let myRecapcha =  new firebase.auth.RecaptchaVerifier('recapcha-container');
     
-        const phoneNumber = '+601123109592'
+        const phoneNumber = this.props.theInterpreter.phoneNumber;
         myFireauth.signInWithPhoneNumber(phoneNumber,myRecapcha)
        .then((confirmRes)=>{
             const otpCode=prompt('Enter OTP','')

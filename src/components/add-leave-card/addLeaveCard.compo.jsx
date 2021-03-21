@@ -24,7 +24,7 @@ class AddLeaveCard extends React.Component {
     }
     
     
-dropDownOptions = [{value: Leave.leaveType.Annual_leave, label: 'Annual Leave'}, {value:Leave.leaveType.Unpaid_Leave, label:'Unpaid Leave'}]
+dropDownOptions = [{value: Leave.leaveType.Annual_leave, label: 'Annual Leave'}, {value:Leave.leaveType.Unpaid_Leave, label:'Extra Leave'}]
 
 dropDownSelect=(selectedItem)=>{
     console.log('selected item:',selectedItem)
@@ -67,8 +67,8 @@ componentDidUpdate(prevProps){
                 <div className='text-date-container'>
                     <input className='input-text-date' type="text" value={this.props.leaveDay?this.props.leaveDay.toDateString():''}/>
                 </div>
-                <div className='dropdown-container'>
-                    <Dropdown className='leave-type-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[0]} onChange={this.dropDownSelect} placeholder='Select your leave type'/>
+                <div className='dropdown-container '>
+                    <Dropdown className='leave-type-dropdown leave-type' options={this.dropDownOptions} value={this.dropDownOptions[0]} onChange={this.dropDownSelect} placeholder='Select your leave type'/>
                 </div>
                 <SubmitLeaveButton leaveButtonClicked={this.submitLeave}>Submit Leave</SubmitLeaveButton>
                 <h6 style={{color:'red'}}>{this.state.alarm}</h6>

@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Open+Sans+Condensed:wght@300&display=swap');
 
 
 .interpreter-leave-card {
@@ -53,8 +53,13 @@
 }
 .status-container{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
   /* align-self: flex-end; */
+  
+}
+.submitted-message{
   font-family: 'Teko', sans-serif;
   font-size: 24px;
 }
@@ -66,4 +71,13 @@
 .reject-button{
   cursor: pointer;
   margin-left: 25px;
+}
+
+.leave-info-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.leave-type{
+  font-family: 'Teko', sans-serif;
 }

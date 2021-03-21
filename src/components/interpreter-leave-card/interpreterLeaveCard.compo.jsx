@@ -65,7 +65,7 @@ handleClickReject=async()=>{
 showLeaveStatus=()=>{
     const {leaveStatus}=this.state.leave;
     if (leaveStatus===Leave.leaveStatus.submitted) {
-        return <lable>{'Submitted & Pending'}</lable>                    
+        return <lable className='submitted-message'>{'Submitted & Pending'}</lable>                    
     } else if (leaveStatus===Leave.leaveStatus.approved) {
         return <ApprovedIcon/>
     } else if (leaveStatus===Leave.leaveStatus.rejected) {
@@ -88,9 +88,11 @@ render(){
     const {isInterpreter,isSupervisor}=this.props
     return(
         <div className={`interpreter-leave-card ${this.state.leave.leaveType}`} onClick={this.handleClick}>
-            {this.props.isSupervisor?<lable>{this.state.leave.leaveOwner}</lable>:null}             
-            {/* <input ref={this.textInputRef} type="text" value={this.state.leave.leaveDateString?this.state.leave.leaveDateString:''} style={this.state.focus?{fontWeight:'normal'}:{fontWeight:'bold'}}/>             */}
-            {/* 2021  january  Monday  23 */}
+            <div className='leave-info-container'>
+                {isSupervisor?<h4 className='leave-owner-name interpreter-name'>{leave.leaveOwnerName}</h4>:null} 
+                {isSupervisor?<lable className='leave-owner-name interpreter-group'>{leave.leaveOwnerGroup}</lable>:null} 
+                {isInterpreter?<React.Fragment>{leave.leaveType===Leave.leaveType.Annual_leave?<label className='leave-type'>Annual Leave</label>:<label className='leave-type'>Extra Leave</label>}</React.Fragment>:null} 
+            </div>
             <div className='show-date'> 
                 <div className='show-year'>{leave.leaveYearString}</div>
                 <div className='wmd-container'>
@@ -108,12 +110,10 @@ render(){
                     {isSupervisor?<RejectButton className='reject-button' name='reject-leave' onClick={this.handleClickReject}></RejectButton>:null} 
                 </div>
                 <div className='status-container'>
+                {isSupervisor?<React.Fragment>{leave.leaveType===Leave.leaveType.Annual_leave?<label className='leave-type'>Annual Leave</label>:<label className='leave-type'>Extra Leave</label>}</React.Fragment>:null} 
                     {this.showLeaveStatus()}
                 </div>
             </div>
-            
-            
-            
         </div>
     )
 }

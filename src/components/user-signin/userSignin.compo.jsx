@@ -40,7 +40,7 @@ class UserSignin extends Component {
             
     censorEmail=(gmail)=>{ //it is supposed to be only gmails
         let gmail_name = gmail.split('@gmail.com')[0]
-        gmail_name = gmail_name[0]+gmail_name[1]+' *** '+gmail_name[gmail_name.length-2]+gmail_name[gmail_name.length-1]
+        gmail_name = gmail_name[0]+gmail_name[1]+' ***** '+gmail_name[gmail_name.length-2]+gmail_name[gmail_name.length-1]
         return (gmail_name+'@gmail.com')
     }
     censorPhoneNumber=(phoneNumber)=>{

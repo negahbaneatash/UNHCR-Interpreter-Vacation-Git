@@ -29,18 +29,7 @@ export const mLeaveReducer = (state=INITIAL_STATE,action)=>{
             return {
                 ...state,
                 mLeaves:[...helpArrApprove]
-            }
-        // case actions.deleteTheLeaveFromStore:
-        //     let helpArrDelete = []
-        //     helpArrDelete = state.mLeaves.filter((leave)=>{if (leave.leaveId === action.payload) {
-        //         return false
-        //     } else {
-        //         return true
-        //     }})
-        //     return ({
-        //         ...state,
-        //         mLeaves:[...helpArrDelete]
-        //     })
+            }       
         case actions.rejectTheLeaveToStore:
             const helpArrReject = state.mLeaves.map((leave)=>{
                 if (action.payload===leave.leaveId) {
@@ -53,6 +42,18 @@ export const mLeaveReducer = (state=INITIAL_STATE,action)=>{
                 ...state,
                 mLeaves:[...helpArrReject]
             }
+        case actions.resetTheLeaveToStore:
+            const helpArrReset = state.mLeaves.map((leave)=>{
+                if (action.payload===leave.leaveId) {
+                    return {...leave,leaveStatus:Leave.leaveStatus.submitted}
+                } else {
+                    return leave
+                }
+            })
+            return {
+                ...state,
+                mLeaves:[...helpArrReset]
+            }    
         case actions.removeAllLeavesFromStore:
             return INITIAL_STATE
         default:
