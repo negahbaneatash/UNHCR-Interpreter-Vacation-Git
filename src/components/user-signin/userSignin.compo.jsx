@@ -1,11 +1,11 @@
 import { React, Component } from "react";
 import PhoneSignin from "../phone-signin/phoneSignin.compo";
 import {Container,Jumbotron} from 'react-bootstrap'
-import Button from 'react-bootstrap/Button'
 import './userSignin.style.css'
 import GoogleSignin from "../google-signin/googleSignin.compo";
 import { ReactComponent as GoogleLogo } from "../../assets/google.svg";
 import { ReactComponent as PhoneLogo } from "../../assets/phoneotp.svg";
+import { connect } from "react-redux";
 
 
 class UserSignin extends Component {
@@ -17,7 +17,8 @@ class UserSignin extends Component {
             isShowing:false,
             loginType:'',
             censoredEmail:'',
-            censoredPhoneNumber:''
+            censoredPhoneNumber:'',
+            showTestButton:false,
 
         }
     }
@@ -65,7 +66,9 @@ class UserSignin extends Component {
         this.setState({...this.state, loginType:'',message:'Please choose to login via your Gmail Account or your Phone Number',msgClass:'choose-login'}, ()=>{this.toggleShow()})
     }
    
-
+    showButton=(conf)=>{
+        this.setState({...this.state,showTestButton:conf})
+    }
     render(){
         console.log('from UserSignin render')
         const {isShowing,loginType}=this.state
@@ -77,13 +80,13 @@ class UserSignin extends Component {
                     <Jumbotron>
                         <h6 className={`login-message ${this.state.msgClass}`}  >{this.state.message}</h6>
                         <div className= 'signin-buttons-container'>               
-                            {(!isShowing) && <GoogleLogo className='google-logo'  onClick={this.handleClickGoogleLogo}/>}                            
+                            {(!isShowing) && <GoogleLogo className='google-logo'  onClick={this.handleClickGoogleLogo} />}                            
                             {(!isShowing) && <PhoneLogo className='phone-logo' onClick={this.handleClickPhoneLogo}/>}                                                        
                         </div>
                         
                         {/* {(isShowing) && <h3 className='loginType-message'>{loginType==='googleLogin'?`${this.state.censoredEmail}`:`${this.state.censoredPhoneNumber}`}</h3>}                                   */}
-                        {loginType==='googleLogin'?<GoogleSignin googleAccount={this.state.censoredEmail}/>:null}                  
-                        {loginType==='phoneLogin'?<PhoneSignin phoneNumber={this.state.censoredPhoneNumber}/>:null}                  
+                        {loginType==='googleLogin'?<GoogleSignin googleAccount={this.state.censoredEmail} isConfirmed={this.showButton}/>:null}                  
+                        {loginType==='phoneLogin'?<PhoneSignin phoneNumber={this.state.censoredPhoneNumber} />:null}                  
                         {(isShowing) && <button className='btn-back' onClick={this.handleClickBack}>Back</button>}
                         
 
@@ -92,6 +95,7 @@ class UserSignin extends Component {
                     {/* {loginType==='phoneLogin'?<PhoneSignin/>:null}                   */}
                     <div className='recapcha-container'>
                         <div id='recapcha-container'></div>
+                        {this.props.showTestButton?<button>I am here too</button>:null}
                     </div>
                 </Container>
                 <div className='attribute-the-author'>
@@ -103,5 +107,7 @@ class UserSignin extends Component {
 }
 
 
-
-export default UserSignin;
+const mapStateToProps=(state)=>({
+    showTestButton:state.Waiting.waiting
+})
+export default connect(mapStateToProps)(UserSignin) ;

@@ -11,7 +11,9 @@ class InterpreterLeaveSubmission extends React.Component {
     
     state={
         clickedDayOnCalendar:null,     
-        viewingDateOnCalendar:new Date()         
+        viewingDateOnCalendar:new Date(),
+        leaveMessage:'Please select your leave date from the calendar',
+        msgClass:'notice'         
     }
 
     componentDidMount(){               
@@ -27,14 +29,21 @@ class InterpreterLeaveSubmission extends React.Component {
         this.setState({...this.state,viewingDateOnCalendar:changedMonth.activeStartDate})
     }
     
+    addLeaveMessage=(theMessage,theClass)=>{
+        this.setState({...this.state,leaveMessage:theMessage,msgClass:theClass})
+    }
+    
     render(){
         console.log('from InterpreterLeaveSubmission render')
         return(
             <div>
-                <Container>
+                <Container>                    
+                
                     <CustomCalendar showIn='month' clickDay={this.handleClickDay} viewChanged={this.handleCalendarChange}></CustomCalendar>
+                    
                     <Jumbotron className='jumbo-add-leave'>                        
-                        <AddLeaveCard theInterpreter={this.props.theInterpreter} leaveDay={this.state.clickedDayOnCalendar} leavesArray={this.props.interpreterLeaves} /> 
+                        <h6 className={`select-date-message ${this.state.msgClass}`}  >{this.state.leaveMessage}</h6>        
+                        <AddLeaveCard theInterpreter={this.props.theInterpreter} leaveDay={this.state.clickedDayOnCalendar} leavesArray={this.props.interpreterLeaves} submitLeaveMessage={this.addLeaveMessage}/> 
                     </Jumbotron>
                     <h4 className='annual-leave-title leave-type'>Annual Leave(s):</h4>
                     <AnnualLeaveContainer viewingDate={this.state.viewingDateOnCalendar}/>                

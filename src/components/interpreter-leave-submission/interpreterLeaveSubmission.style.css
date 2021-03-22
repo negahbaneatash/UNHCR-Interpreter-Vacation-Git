@@ -4,7 +4,9 @@
 
 .jumbo-add-leave{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    justify-items: center;
 }
 
 .annual-leave-title{
@@ -12,4 +14,15 @@
 }
 .unpaid-leave-title{
     margin-top: 30px;
+}
+
+.select-date-message{
+    text-align: center;
+    font-size: 100%;    
+}
+.notice{
+    color: purple;
+}
+.alarm{
+    color: red;
 }

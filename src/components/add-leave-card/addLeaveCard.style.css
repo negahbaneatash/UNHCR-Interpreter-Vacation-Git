@@ -10,7 +10,8 @@
     -moz-osx-font-smoothing: grayscale;
     backface-visibility: hidden;
     transform: translateZ(0);
-    transition: transform 0.25s ease-out;       
+    transition: transform 0.25s ease-out;     
+    align-self: center;  
   }
 
   .ANNUAL_LEAVE{
@@ -53,3 +54,4 @@
     width: auto;
     min-width: 140px;
 }
+

@@ -8,6 +8,7 @@ import  theSupervisorReducer  from "./theSupervisor.reducer";
 import  theUserReducer  from "./theUser.reducer";
 import  { leaveReducer } from "./leave.reducer";
 import { mLeaveReducer } from "./mLeave.reducer";
+import isWaitingReducer from "./waiting.reducer";
 
 
 
@@ -25,7 +26,8 @@ const rootReducer =(state={},action)=>{
         Supervisor:theSupervisorReducer(state.Supervisor,action),        
         User:theUserReducer(state.User,action),
         Leaves: leaveReducer(state.Leaves,action),
-        Mleaves:mLeaveReducer(state.Mleaves,action)                
+        Mleaves:mLeaveReducer(state.Mleaves,action),
+        Waiting:isWaitingReducer(state.Waiting,action)
     }
 }
 

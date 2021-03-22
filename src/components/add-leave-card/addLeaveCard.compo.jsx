@@ -16,11 +16,10 @@ import SubmitLeaveButton from "../submit-leave-button/submitLeaveButton.compo";
 class AddLeaveCard extends React.Component {
     constructor(props){
         super(props)
-        this.initialMessage='Please choose your leave date from above calendar'
+        this.initialMessage='Please select your leave date from the calendar'
         this.state={
             Leave_Date:this.props.leaveDay,
-            Leave_Type:Leave.leaveType.Annual_leave,
-            submitLeaveMessage:this.initialMessage
+            Leave_Type:Leave.leaveType.Annual_leave,            
         }
     }
     
@@ -30,8 +29,9 @@ dropDownOptions = [{value: Leave.leaveType.Annual_leave, label: 'Annual Leave'},
 dropDownSelect=(selectedItem)=>{
     console.log('selected item:',selectedItem)
     this.setState({...this.state,Leave_Type:selectedItem.value},()=>{console.log('the state is:', this.state)})
-    
-    
+    if(selectedItem.value===Leave.leaveType.Unpaid_Leave){
+        this.props.submitLeaveMessage(this.initialMessage,'notice')
+    }
 }
 
 checkValidity=()=>{
@@ -44,7 +44,8 @@ checkValidity=()=>{
     }else if (this.state.Leave_Type===Leave.leaveType.Annual_leave && this.moreThanTwoAnnual()){
         return 'You can only apply for two annual leaves each month'
     }else
-    this.setState({...this.state,submitLeaveMessage:this.initialMessage})
+    
+    this.props.submitLeaveMessage(this.initialMessage,'notice')
     return false
 }
 
@@ -70,7 +71,8 @@ submitLeave = async()=>{
         this.props.addNewLeave(addTheLeaveToStore_Action(newLeave))
         await updateLeavesArrayOfTheMonthFromStoreToDB(newLeave.leaveOwnerEmail,newLeave.leaveYearMonth)
     }else{
-        this.setState({...this.state,submitLeaveMessage:this.checkValidity()})
+        
+        this.props.submitLeaveMessage(this.checkValidity(),'alarm')
         console.log('we do nothing')
     }
     
@@ -78,7 +80,8 @@ submitLeave = async()=>{
 
 componentDidUpdate(prevProps){
     if (prevProps.leaveDay !== this.props.leaveDay) {
-        this.setState({...this.state,submitLeaveMessage:this.initialMessage})
+        
+        this.props.submitLeaveMessage(this.initialMessage,'notice')
     }
 }
     render(){        
@@ -91,7 +94,7 @@ componentDidUpdate(prevProps){
                 </div>
                 <div className='dropdown-container '>
                     <Dropdown className='leave-type-dropdown leave-type' options={this.dropDownOptions} value={this.dropDownOptions[0]} onChange={this.dropDownSelect} placeholder='Select your leave type'/>
-                    <h6 style={{color:'red'}}>{this.state.submitLeaveMessage}</h6>
+                    
                     
                 </div>
                 <SubmitLeaveButton leaveButtonClicked={this.submitLeave}>Submit Leave</SubmitLeaveButton>
