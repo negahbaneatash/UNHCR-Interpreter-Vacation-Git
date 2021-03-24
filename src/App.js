@@ -14,23 +14,28 @@ import SupervisorSigninPage from './pages/supervisor-signin-page/supervisorSigni
 import UserSigninPage from './pages/user-signin-page/userSigninPage.compo';
 import SupervisorAdministrationPage from './components/supervisor-administration-page/supervisorAdministrationPage.compo';
 import Header from './components/header/header.compo';
+import { store } from './redux/store';
+import { Login_Status } from './redux/waiting.reducer';
 
 
 class App extends React.Component {  
-  unsubscribeTheUser=null;// onAuthStateChanged returns a function that will unsubscribe from the user when is called
+  // unsubscribeTheUser=null;
+  // onAuthStateChanged returns a function that will unsubscribe from the user when is called
 
   async componentDidMount(){
-    console.log('from App.js componentDidMount state:',this.state)
-    this.unsubscribeTheUser=myFireauth.onAuthStateChanged((user)=>{    
-      this.props.setTheUserToStore(user)
-    })
+    console.log('from App.js componentDidMount this.props:',this.props)
+    
+    // this.unsubscribeTheUser=myFireauth.onAuthStateChanged((user)=>{    
+    //   store.dispatch({type:Login_Status.waitingForConfirmation})
+    //   this.props.setTheUserToStore(user)
+    // })
     // const dbInterpreters =await getAllInterpretersFromDB()        
     // this.props.setAllInterpretersToStore(dbInterpreters)
   }
 
-  componentWillUnmount(){
-    this.unsubscribeTheUser()
-  }
+  // componentWillUnmount(){
+  //   this.unsubscribeTheUser()
+  // }
   
   render(){
     console.log('from App.js render thestate:', this.state)    
@@ -52,7 +57,7 @@ class App extends React.Component {
 
 const myMapDispatchToProps=(dispatch)=>{
   return {
-    setTheUserToStore: (theUser)=>{dispatch(setTheUserToStore_Action(theUser))},
+    // setTheUserToStore: (theUser)=>{dispatch(setTheUserToStore_Action(theUser))},
     // setAllInterpretersToStore: (interpreters)=>{dispatch(setAllInterpretersFromDBToStore_Action(interpreters))}
   }
 }

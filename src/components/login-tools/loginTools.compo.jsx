@@ -11,6 +11,8 @@ import { getAllInterpretersFromDB, getAllSupervisorsFromDB } from '../../firebas
 import TestCard from "../test-component/testCard.compo";
 import UserTypeButton from '../user-type-button/userTypeButton.compo'
 import { SearchCard } from '../search-card/searchCard.compo'
+import { store } from '../../redux/store'
+import { Login_Status } from '../../redux/waiting.reducer'
 
 
 class LoginTools extends React.Component{
@@ -26,6 +28,8 @@ class LoginTools extends React.Component{
         console.log('from loginTool componentDidMount')        
         await getAllInterpretersFromDB()        
         await getAllSupervisorsFromDB()                
+        // store.dispatch({type:'PLEASE_WAIT',payload:false})
+        store.dispatch({type:Login_Status.signinInitialState})
     }
     toggleShow=()=>{
         this.setState({...this.state, isShowing:!this.state.isShowing})                   

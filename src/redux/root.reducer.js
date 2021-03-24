@@ -18,6 +18,7 @@ const myPersistConfig = {
     whiteList:['Interpreter']
 }
 
+
 const rootReducer =(state={},action)=>{
     return{        
         Interpreters:allInterpretersReducer(state.Interpreters,action),

@@ -6,6 +6,7 @@ import GoogleSignin from "../google-signin/googleSignin.compo";
 import { ReactComponent as GoogleLogo } from "../../assets/google.svg";
 import { ReactComponent as PhoneLogo } from "../../assets/phoneotp.svg";
 import { connect } from "react-redux";
+import { Login_Status } from "../../redux/waiting.reducer";
 
 
 class UserSignin extends Component {
@@ -24,7 +25,7 @@ class UserSignin extends Component {
     }
     
     componentDidMount(){
-        console.log('from UserSignin componentDidMount')
+        console.log('from UserSignin componentDidMount this.props',this.props)
         const {theInterpreter,theSupervisor}=this.props
         let censoredEmail =''
         let censoredPhoneNumber =''
@@ -38,7 +39,10 @@ class UserSignin extends Component {
         this.setState({...this.state,censoredEmail,censoredPhoneNumber})
     }
 
-            
+    
+    
+    
+
     censorEmail=(gmail)=>{ //it is supposed to be only gmails
         let gmail_name = gmail.split('@gmail.com')[0]
         gmail_name = gmail_name[0]+gmail_name[1]+' ***** '+gmail_name[gmail_name.length-2]+gmail_name[gmail_name.length-1]
@@ -69,6 +73,37 @@ class UserSignin extends Component {
     showButton=(conf)=>{
         this.setState({...this.state,showTestButton:conf})
     }
+
+    showWaiting=()=>{
+        console.log('from switch this.props.signinState:',this.props.signinState)
+        switch (this.props.signinState) {
+            case Login_Status.googleLoginSuccessful:
+                console.log('case 1')
+                return <h3>SUCCESSFUL</h3>              
+            case Login_Status.waitingForGoogleSignin:
+                console.log('case 2')
+                return <h3>Going to google signin</h3>          
+            case Login_Status.waitingForPhoneSignin:
+                console.log('case 3')
+                return <h3>Enter your OTP</h3>          
+            case Login_Status.googleLoginFailed:
+                console.log('case 4')
+                return <h3>Google Login Failed, signIn Using your own Gmail account</h3>          
+            case Login_Status.phoneLoginFailed:
+                console.log('case 5')
+                return <h3>Phone Login Failed, signin Using your own phone number</h3>          
+            case Login_Status.waitingForConfirmation:
+                console.log('case 6')
+                return <h3>Waiting for confirmation</h3>                                          
+            case Login_Status.signinInitialState:
+                console.log('case 7')
+                return ''
+            default:
+                console.log('case default')
+                return ''
+        }
+    }
+
     render(){
         console.log('from UserSignin render')
         const {isShowing,loginType}=this.state
@@ -95,7 +130,8 @@ class UserSignin extends Component {
                     {/* {loginType==='phoneLogin'?<PhoneSignin/>:null}                   */}
                     <div className='recapcha-container'>
                         <div id='recapcha-container'></div>
-                        {this.props.showTestButton?<button>I am here too</button>:null}
+                        {/* {this.props.showTestButton?<button>Please Wait ...</button>:null} */}
+                        {this.showWaiting()}
                     </div>
                 </Container>
                 <div className='attribute-the-author'>
@@ -108,6 +144,6 @@ class UserSignin extends Component {
 
 
 const mapStateToProps=(state)=>({
-    showTestButton:state.Waiting.waiting
+    signinState:state.Waiting.signingInState
 })
 export default connect(mapStateToProps)(UserSignin) ;
