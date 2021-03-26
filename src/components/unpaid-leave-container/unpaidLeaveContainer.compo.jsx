@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import InterpreterLeaveCard from "../interpreter-leave-card/interpreterLeaveCard.compo";
 import { loadLeavesOfTheInterpreterFromDBToStore } from "../../firebase/dataBaseFunctions";
-import Leave, { leaveType } from "../../objects/leaveObj";
+import Leave from "../../objects/leaveObj";
 
 
 class UnpaidLeaveContainer extends React.Component{

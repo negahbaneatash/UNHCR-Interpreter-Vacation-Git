@@ -1,6 +1,6 @@
   
   .btn-userType {
-    background-color: rgba(42, 10, 54, 0.685) ;    
+    background-color: rgba(28, 4, 37, 0.685) ;    
     height: 50px;
     min-width: 150px;
     border: none;
@@ -24,13 +24,13 @@
   }
   
   .btn-userType #circle {
-    width: 5px;
-    height: 5px;
+    width: 200px;
+    height:20px;
     background: transparent;
     border-radius: 50%;
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 10%;
     overflow: hidden;
     transition: 500ms;
   }
@@ -55,7 +55,7 @@
   
   .btn-userType:hover #circle {
     height: 50px;
-    width: 150px;
+    width: 170px;
     left: 0;
     border-radius: 0;
     border-bottom: 2px solid #eee;

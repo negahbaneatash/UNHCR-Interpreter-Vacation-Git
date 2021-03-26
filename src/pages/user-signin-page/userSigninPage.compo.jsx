@@ -20,6 +20,7 @@ componentDidMount(){
         if (history.action==='POP') {
                 store.dispatch({type:Login_Status.waitingForConfirmation})
         }
+        //make sure below if the user is phone user it still works
         this.unsubscribeTheUser=myFireauth.onAuthStateChanged((user)=>{                    
                 this.props.setTheUserToStore(user)
                 if (user.email!==theInterpreter.email && history.action==='POP') {

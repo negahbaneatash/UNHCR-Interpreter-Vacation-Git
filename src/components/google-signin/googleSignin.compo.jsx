@@ -46,7 +46,7 @@ class GoogleSignin extends Component {
         console.log('from googleSignin render',this.props)
         return(
             <div>
-                <GoogleSigninButton googleButtonClicked={this.handleClick} >{`Sign in with:   ${this.props.googleAccount}`}</GoogleSigninButton>
+                <GoogleSigninButton googleButtonClicked={this.handleClick} >{`Sign in with:   ${this.props.googleAccountHint}`}</GoogleSigninButton>
                  {/* <button onClick={this.handleClickI}>I am here</button> */}
             </div>
         )

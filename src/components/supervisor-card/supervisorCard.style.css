@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Open+Sans+Condensed:wght@300&display=swap');
 .supervisor-card {
     width: 25%;
+    min-width: fit-content;
     display: flex;
     flex-direction: column;
     background-color: rgba(41, 2, 41, 0.2);

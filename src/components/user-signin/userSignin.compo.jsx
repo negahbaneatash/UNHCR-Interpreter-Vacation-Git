@@ -7,6 +7,9 @@ import { ReactComponent as GoogleLogo } from "../../assets/google.svg";
 import { ReactComponent as PhoneLogo } from "../../assets/phoneotp.svg";
 import { connect } from "react-redux";
 import { Login_Status } from "../../redux/waiting.reducer";
+import CustomLoadingIcon from "../custom-loading-icon/customLoadingIcon.compo";
+import { ReactComponent as LoginFailed } from "../../assets/failed.svg";
+import CustomOtpInput from "../custom-otp-input/customOtpInput.compo";
 
 
 class UserSignin extends Component {
@@ -20,7 +23,8 @@ class UserSignin extends Component {
             censoredEmail:'',
             censoredPhoneNumber:'',
             showTestButton:false,
-
+            otpIn:'',
+            otpDone:false
         }
     }
     
@@ -67,11 +71,17 @@ class UserSignin extends Component {
     }
     
     handleClickBack=()=>{
-        this.setState({...this.state, loginType:'',message:'Please choose to login via your Gmail Account or your Phone Number',msgClass:'choose-login'}, ()=>{this.toggleShow()})
+        this.setState({...this.state, loginType:'',message:'Please choose to login via your Gmail Account or your Phone Number',msgClass:'choose-login',otpIn:''}, ()=>{this.toggleShow()})
     }
    
     showButton=(conf)=>{
         this.setState({...this.state,showTestButton:conf})
+    }
+
+    handleOtpInput=(input)=>{
+        this.setState({...this.state,otpIn:input},()=>{if (this.state.otpIn.length===6) {
+            this.setState({...this.state,otpDone:true})
+        }})
     }
 
     showWaiting=()=>{
@@ -79,22 +89,58 @@ class UserSignin extends Component {
         switch (this.props.signinState) {
             case Login_Status.googleLoginSuccessful:
                 console.log('case 1')
-                return <h3>SUCCESSFUL</h3>              
+                return <h6>SUCCESSFUL</h6>              
             case Login_Status.waitingForGoogleSignin:
                 console.log('case 2')
-                return <h3>Going to google signin</h3>          
+                return (
+                    <div className='waiting-container'>
+                        
+                        <h6>Redirecting to google signin</h6>        
+                        <CustomLoadingIcon  iconType={'cylon'} iconColor={'#7e567e'} />
+                    </div>                    
+                  )
             case Login_Status.waitingForPhoneSignin:
                 console.log('case 3')
-                return <h3>Enter your OTP</h3>          
+                return (
+                    <div className='waiting-container'>
+                        <div id='recapcha-container'></div>       
+                        <h6>Please Enter your OTP</h6>   
+                        <CustomOtpInput handleOtpChange={this.handleOtpInput} otpFinished={this.state.otpDone}/>
+                        
+                        {/* <input ></input>
+                        <button >Hello</button> */}
+                    </div>                    
+                  )
+                
             case Login_Status.googleLoginFailed:
                 console.log('case 4')
-                return <h3>Google Login Failed, signIn Using your own Gmail account</h3>          
+                return (
+                    <div className='waiting-container'>
+                        <LoginFailed/>      
+                        <h6>Google Login Failed</h6>          
+                        <h6>Please make sure to sign in using your gmail account mentioned above</h6>          
+                    </div>                    
+                  )
+                
             case Login_Status.phoneLoginFailed:
                 console.log('case 5')
-                return <h3>Phone Login Failed, signin Using your own phone number</h3>          
+                return (
+                    <div className='waiting-container'>
+                        <LoginFailed/>      
+                        <h6>Phone Login Failed</h6>          
+                        <h6>Please make sure to enter correct OTP, refresh and try again</h6>          
+                    </div>                    
+                  )
+
             case Login_Status.waitingForConfirmation:
                 console.log('case 6')
-                return <h3>Waiting for confirmation</h3>                                          
+                return (
+                    <div className='waiting-container'>
+                        
+                        <h6>Loging in</h6>        
+                        <CustomLoadingIcon  iconType='cylon' iconColor='#7e567e' />
+                    </div>                    
+                  )
             case Login_Status.signinInitialState:
                 console.log('case 7')
                 return ''
@@ -120,17 +166,14 @@ class UserSignin extends Component {
                         </div>
                         
                         {/* {(isShowing) && <h3 className='loginType-message'>{loginType==='googleLogin'?`${this.state.censoredEmail}`:`${this.state.censoredPhoneNumber}`}</h3>}                                   */}
-                        {loginType==='googleLogin'?<GoogleSignin googleAccount={this.state.censoredEmail} isConfirmed={this.showButton}/>:null}                  
-                        {loginType==='phoneLogin'?<PhoneSignin phoneNumber={this.state.censoredPhoneNumber} />:null}                  
+                        {loginType==='googleLogin'?<GoogleSignin googleAccountHint={this.state.censoredEmail} isConfirmed={this.showButton}/>:null}                  
+                        {loginType==='phoneLogin'?<PhoneSignin phoneNumberHint={this.state.censoredPhoneNumber} otpEntered={this.state.otpIn} />:null}                  
                         {(isShowing) && <button className='btn-back' onClick={this.handleClickBack}>Back</button>}
                         
 
                     </Jumbotron>
-                    {/* {loginType==='googleLogin'?<GoogleSignin googleAccount={this.state.censoredEmail}/>:null}                   */}
-                    {/* {loginType==='phoneLogin'?<PhoneSignin/>:null}                   */}
-                    <div className='recapcha-container'>
-                        <div id='recapcha-container'></div>
-                        {/* {this.props.showTestButton?<button>Please Wait ...</button>:null} */}
+                    <div className='login-status-container'>
+                    {/* <div id='recapcha-container'></div>        */}
                         {this.showWaiting()}
                     </div>
                 </Container>
