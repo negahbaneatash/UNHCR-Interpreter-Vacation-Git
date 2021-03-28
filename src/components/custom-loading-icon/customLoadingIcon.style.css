@@ -7,3 +7,22 @@
     align-items: flex-end; */
 }
 
+.react-loading-container{
+    min-width: 25%;
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+}
+
+.waiting-loading-leaves{
+    /* min-width: 25%; */
+  /* display: flex;
+  flex-direction: column;  
+  align-items: center; */
+}
+
+.waiting-loging-in{
+    /* min-width: 25%; */
+}
+
+

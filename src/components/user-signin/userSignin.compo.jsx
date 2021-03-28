@@ -93,16 +93,17 @@ class UserSignin extends Component {
             case Login_Status.waitingForGoogleSignin:
                 console.log('case 2')
                 return (
-                    <div className='waiting-container'>
+                    <div className='waiting-items-container'>
                         
                         <h6>Redirecting to google signin</h6>        
-                        <CustomLoadingIcon  iconType={'cylon'} iconColor={'#7e567e'} />
+                    
+                        <CustomLoadingIcon  cliClassName='waiting-loging-in' iconType={'cylon'} iconColor={'#7e567e'}  />
                     </div>                    
                   )
             case Login_Status.waitingForPhoneSignin:
                 console.log('case 3')
                 return (
-                    <div className='waiting-container'>
+                    <div className='waiting-items-container'>
                         <div id='recapcha-container'></div>       
                         <h6>Please Enter your OTP</h6>   
                         <CustomOtpInput handleOtpChange={this.handleOtpInput} otpFinished={this.state.otpDone}/>
@@ -115,7 +116,7 @@ class UserSignin extends Component {
             case Login_Status.googleLoginFailed:
                 console.log('case 4')
                 return (
-                    <div className='waiting-container'>
+                    <div className='waiting-items-container'>
                         <LoginFailed/>      
                         <h6>Google Login Failed</h6>          
                         <h6>Please make sure to sign in using your gmail account mentioned above</h6>          
@@ -125,7 +126,7 @@ class UserSignin extends Component {
             case Login_Status.phoneLoginFailed:
                 console.log('case 5')
                 return (
-                    <div className='waiting-container'>
+                    <div className='waiting-items-container'>
                         <LoginFailed/>      
                         <h6>Phone Login Failed</h6>          
                         <h6>Please make sure to enter correct OTP, refresh and try again</h6>          
@@ -135,7 +136,7 @@ class UserSignin extends Component {
             case Login_Status.waitingForConfirmation:
                 console.log('case 6')
                 return (
-                    <div className='waiting-container'>
+                    <div className='waiting-items-container'>
                         
                         <h6>Loging in</h6>        
                         <CustomLoadingIcon  iconType='cylon' iconColor='#7e567e' />

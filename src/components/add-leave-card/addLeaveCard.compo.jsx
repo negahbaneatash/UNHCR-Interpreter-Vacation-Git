@@ -32,6 +32,7 @@ dropDownSelect=(selectedItem)=>{
     if(selectedItem.value===Leave.leaveType.Unpaid_Leave){
         this.props.submitLeaveMessage(this.initialMessage,'notice')
     }
+    this.props.leaveTypeClass(selectedItem.value)
 }
 
 checkValidity=()=>{
@@ -89,13 +90,10 @@ componentDidUpdate(prevProps){
         return (
             <div className={`add-leave-card ${this.state.Leave_Type===Leave.leaveType.Annual_leave?Leave.leaveType.Annual_leave:Leave.leaveType.Unpaid_Leave}`}>
                 <div className='text-date-container'>
-                    <input className='input-text-date' type="text" value={this.props.leaveDay?this.props.leaveDay.toDateString():''}/>
-                    
+                    <input className='input-text-date' type="text" value={this.props.leaveDay?this.props.leaveDay.toDateString():''}/>                    
                 </div>
                 <div className='dropdown-container '>
-                    <Dropdown className='leave-type-dropdown leave-type' options={this.dropDownOptions} value={this.dropDownOptions[0]} onChange={this.dropDownSelect} placeholder='Select your leave type'/>
-                    
-                    
+                    <Dropdown className='leave-type-dropdown leave-type' options={this.dropDownOptions} value={this.dropDownOptions[0]} onChange={this.dropDownSelect} placeholder='Select your leave type'/>                                        
                 </div>
                 <SubmitLeaveButton leaveButtonClicked={this.submitLeave}>Submit Leave</SubmitLeaveButton>
                 

@@ -1,5 +1,6 @@
 import { addToAllLeavesToStore_Action, removeAllLeavesFromStore_Action, setAllInterpretersFromDBToStore_Action, setAllSupervisorsFromDBToStore_Action, setLeavesFromDBToStore_Action } from "../redux/redux.actions";
 import { store } from "../redux/store";
+import { Login_Status } from "../redux/waiting.reducer";
 import { myFirestore } from "./firebaseConfig"
 
 
@@ -42,7 +43,7 @@ export const  getAllSupervisorsFromDB = async ()=>{
 }
 
 export const updateLeavesArrayOfTheMonthFromStoreToDB = async (theInterpreterEmail,leaveRef)=>{
-    
+    store.dispatch({type:'UPLOADING_TO_DATABASE'})
     const myQueryRefToTheInterpreterLeave = myFirestore.collection('Interpreters').doc(theInterpreterEmail.toString().toLowerCase()).collection('Vacations').doc(leaveRef)
     const mySnapshotFromTheInterpreterLeave = await myQueryRefToTheInterpreterLeave.get()    
     if (mySnapshotFromTheInterpreterLeave.exists) {
@@ -51,6 +52,7 @@ export const updateLeavesArrayOfTheMonthFromStoreToDB = async (theInterpreterEma
     } else {
         await myQueryRefToTheInterpreterLeave.set(store.getState().Leaves)
     }
+    store.dispatch({type:'UPLOADED_TO_DATABASE'})
     myQueryRefToTheInterpreterLeave.onSnapshot((leaveSnapshot)=>{
         console.log('from leaveSnapshot',leaveSnapshot.data())
     },(err)=>{
@@ -59,16 +61,19 @@ export const updateLeavesArrayOfTheMonthFromStoreToDB = async (theInterpreterEma
 }
 
 export const loadLeavesOfTheInterpreterFromDBToStore = async (theInterpreterEmail,leaveRef)=>{
+    store.dispatch({type:Login_Status.loadingFromDB})
     console.log('from loadLeavesOfTheInterpreterFromDBToStore intpEmail, leaveRef:',theInterpreterEmail,leaveRef)
     const myQueryRefToleavesOfTheMonth = myFirestore.collection('Interpreters').doc(theInterpreterEmail.toString().toLowerCase()).collection('Vacations').doc(leaveRef)
     const mySnapshotFromLeavesOfTheMonth = await myQueryRefToleavesOfTheMonth.get()
     const leavesOfThisMonth = mySnapshotFromLeavesOfTheMonth.data();    
-    console.log('from loadLeavesOfTheInterpreterFromDBToStore', leavesOfThisMonth)
+    console.log('from loadLeavesOfTheInterpreterFromDBToStore leavesOfThisMonth:', leavesOfThisMonth)
     store.dispatch(setLeavesFromDBToStore_Action(leavesOfThisMonth))
+    store.dispatch({type:Login_Status.loadedFromDB})
     return leavesOfThisMonth
 }
 
 export const loadAllLeavesOfTheMonthFromDBToStore = (inTime)=>{
+    store.dispatch({type:Login_Status.loadingFromDB})
     store.dispatch(removeAllLeavesFromStore_Action())
     const leaveRef= inTime.getFullYear().toString()+'-'+(inTime.getMonth()+1).toString();
     const All_Interpreters = store.getState().Interpreters.allInterpreters
@@ -80,6 +85,7 @@ export const loadAllLeavesOfTheMonthFromDBToStore = (inTime)=>{
             store.dispatch(addToAllLeavesToStore_Action(leavesOfThisMonth))
         }    
     )
+    store.dispatch({type:Login_Status.loadedFromDB})
     return true
 }
 

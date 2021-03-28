@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap');
 
 .add-leave-card {
     width: 80%;    
@@ -18,7 +18,7 @@
     background: linear-gradient(
     to left,
     rgba(126, 86, 126, 0.6) 0%,    
-    rgba(131, 161, 235,.7) 100%
+    rgba(57, 77, 126, 0.712) 100%
   )   
   }
 
@@ -26,7 +26,7 @@
     background: linear-gradient(
     to left,
     rgba(126, 86, 126, 0.6) 0%,    
-    rgba(219, 68, 55,.4) 100%
+    rgba(104, 31, 24, 0.664) 100%
   )   
   }
 
@@ -41,6 +41,7 @@
   text-align: center;
   font-weight: bold;
   pointer-events: none;
+  font-family: 'Old Standard TT', serif;
 }
 
 

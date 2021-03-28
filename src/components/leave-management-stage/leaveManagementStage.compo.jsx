@@ -63,7 +63,7 @@ class LeaveManangementStage extends React.Component {
         return(
             <div>
                 <Container>
-                    <CustomCalendar showIn='year' clickMonth={this.handleClickMonth} clickDay={this.handleClickDay} viewChanged={this.handleCalendarChange}></CustomCalendar>
+                    <CustomCalendar showIn='year' clickMonth={this.handleClickMonth} clickDay={this.handleClickDay} viewChanged={this.handleCalendarChange} calendarColorClass='supervisor-card'></CustomCalendar>
                     <Jumbotron>
                         <Dropdown className='leave-status-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[1]} onChange={this.dropDownSelect} placeholder='Show:'/>                
                     </Jumbotron>

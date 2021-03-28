@@ -23,9 +23,18 @@ componentDidMount(){
         //make sure below if the user is phone user it still works
         this.unsubscribeTheUser=myFireauth.onAuthStateChanged((user)=>{                    
                 this.props.setTheUserToStore(user)
-                if (user.email!==theInterpreter.email && history.action==='POP') {
-                        store.dispatch({type:Login_Status.googleLoginFailed})
+                if (user && theInterpreter) {
+                        if (user.email!==theInterpreter.email && history.action==='POP') {
+                                store.dispatch({type:Login_Status.googleLoginFailed})
+                        }
+                }else if (user && theSupervisor) {
+                        if (user.email!==theSupervisor.email && history.action==='POP') {
+                                store.dispatch({type:Login_Status.googleLoginFailed})
+                        }        
+                }else {
+                        store.dispatch({type:Login_Status.signinInitialState})
                 }
+                
         })
 }
 

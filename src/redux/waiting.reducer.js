@@ -7,7 +7,11 @@ export const Login_Status ={
     phoneLoginSuccessful:'PHONE_LOGIN_SUCCESSFUL',
     googleLoginFailed:'GOOGLE_LOGIN_FAILED',
     phoneLoginFailed:'PHONE_LOGIN_fAILED',
-    signinInitialState:'SIGNIN_INITIAL_STATE'
+    signinInitialState:'SIGNIN_INITIAL_STATE',
+    loadingFromDB:'LOADING_FROM_DATABASE',
+    loadedFromDB:'LOADED_FROM_DATABASE',
+    uploadingToDB:'UPLOADING_TO_DATABASE',
+    uploadedToDB:'UPLOADED_TO_DATABASE'
 }
 
 const INITIAL_STATE = {
@@ -50,6 +54,16 @@ const isWaitingReducer = (state=INITIAL_STATE,action)=>{
             return {
                 ...state,
                 signingInState:Login_Status.phoneLoginFailed,
+            }
+            case Login_Status.loadingFromDB:
+            return {
+                ...state,
+                signingInState:Login_Status.loadingFromDB,
+            }
+            case Login_Status.loadedFromDB:
+            return {
+                ...state,
+                signingInState:Login_Status.loadedFromDB,
             }
             case Login_Status.signinInitialState:
             return INITIAL_STATE

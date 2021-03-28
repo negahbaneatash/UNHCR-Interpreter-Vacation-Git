@@ -8,7 +8,10 @@ class CustomLoadingIcon extends React.Component{
 
     render(){
         return(
-            <ReactLoading type={this.props.iconType} color={this.props.iconColor}  height={'30%'} width={'20%'} className='loader-icon'/>
+            <div className={`react-loading-container ${this.props.cliClassName}`}>
+                <ReactLoading type={this.props.iconType} color={this.props.iconColor}  height={50} width={50} />
+            </div>
+            
         )
     }
 }
