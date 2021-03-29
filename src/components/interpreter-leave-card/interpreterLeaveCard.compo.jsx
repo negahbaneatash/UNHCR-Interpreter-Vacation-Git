@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import ReactTooltip from 'react-tooltip';
 
 import '../interpreter-leave-card/interpreterLeaveCard.style.css'
 import { approveTheLeaveToStore_Action, deleteTheLeaveFromStore_Action, rejectTheLeaveToStore_Action, resetTheLeaveToStore_Action } from "../../redux/redux.actions"
@@ -103,14 +104,26 @@ render(){
                     
                     {(leave.leaveStatus===Leave.leaveStatus.submitted) && isInterpreter?<RemoveLeaveButton name='delete-leave' deleteLeaveClicked={this.handleClickDelete}>Delete Leave</RemoveLeaveButton>:null}
                     {isSupervisor?<RemoveLeaveButton name='reset-leave' deleteLeaveClicked={this.handleClickReset}>Reset Leave</RemoveLeaveButton>:null}
-                    {isSupervisor?<ApproveButton className='approve-button' name='approve-leave' onClick={this.handleClickApprove}></ApproveButton>:null} 
-                    {isSupervisor?<RejectButton className='reject-button' name='reject-leave' onClick={this.handleClickReject}></RejectButton>:null} 
+                    {isSupervisor?<ApproveButton  className='approve-button' name='approve-leave' data-tip data-for='approve-tooltip' onClick={this.handleClickApprove}></ApproveButton>:null} 
+                    {isSupervisor?<RejectButton  className='reject-button' name='reject-leave' data-tip data-for='reject-tooltip' onClick={this.handleClickReject}></RejectButton>:null} 
+                    
                 </div>
-                <div className='status-container'>
-                {isSupervisor?<React.Fragment>{leave.leaveType===Leave.leaveType.Annual_leave?<label className='leave-type'>Annual Leave</label>:<label className='leave-type'>Extra Leave</label>}</React.Fragment>:null} 
+                <div className='status-container' data-tip data-for='status-tooltip'>
+                    {isSupervisor?<React.Fragment>{leave.leaveType===Leave.leaveType.Annual_leave?<label className='leave-type'>Annual Leave</label>:<label className='leave-type'>Extra Leave</label>}</React.Fragment>:null} 
                     {this.showLeaveStatus()}
+                    
+                    
                 </div>
             </div>
+            <ReactTooltip id='reject-tooltip' type='error' place='bottom' effect='solid'>
+                        <span>Reject The Leave</span>
+            </ReactTooltip>
+            <ReactTooltip id='approve-tooltip' type='info' place='bottom' effect='solid'>
+                        <span>Accept The Leave</span>
+            </ReactTooltip>
+            <ReactTooltip id='status-tooltip' type='light' place='bottom' effect='float'>
+                        <span>Leave Status</span>
+            </ReactTooltip>
         </div>
     )
 }

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { loadAllLeavesOfTheMonthFromDBToStore } from "../../firebase/dataBaseFunctions";
 import {Container,Jumbotron} from 'react-bootstrap'
 // import { leaveStatus } from "../../objects/leaveObj";
-
+import './leaveManagementStage.style.css'
 import InterpreterLeaveCard from "../interpreter-leave-card/interpreterLeaveCard.compo";
 import Leave from "../../objects/leaveObj";
 import CustomCalendar from "../custom-calendar/customCalendar.compo";
@@ -65,7 +65,12 @@ class LeaveManangementStage extends React.Component {
                 <Container>
                     <CustomCalendar showIn='year' clickMonth={this.handleClickMonth} clickDay={this.handleClickDay} viewChanged={this.handleCalendarChange} calendarColorClass='supervisor-card'></CustomCalendar>
                     <Jumbotron>
-                        <Dropdown className='leave-status-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[1]} onChange={this.dropDownSelect} placeholder='Show:'/>                
+                        <h6 className='select-date-message select-month-message'>Please select the month from the calendar</h6>        
+                        <div className='status-dropdown-container'>
+                            <label>Select Leave Status</label>
+                            <Dropdown className='leave-status-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[1]} onChange={this.dropDownSelect} placeholder='Show:'/>                
+                        </div>
+                        
                     </Jumbotron>
                     {this.showRelatedLeaveCards()}
                 </Container>
