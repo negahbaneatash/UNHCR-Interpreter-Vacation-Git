@@ -10,6 +10,7 @@ import { Login_Status } from "../../redux/waiting.reducer";
 import CustomLoadingIcon from "../custom-loading-icon/customLoadingIcon.compo";
 import { ReactComponent as LoginFailed } from "../../assets/failed.svg";
 import CustomOtpInput from "../custom-otp-input/customOtpInput.compo";
+import { store } from "../../redux/store";
 
 
 class UserSignin extends Component {
@@ -64,14 +65,17 @@ class UserSignin extends Component {
     
     handleClickGoogleLogo=()=>{
         this.setState({...this.state, loginType:'googleLogin',message:'You will be redirected to login via your following Gmail Account',msgClass:'google-login'}, ()=>{this.toggleShow()})
+        store.dispatch({type:Login_Status.signinInitialState})
     }
 
     handleClickPhoneLogo=()=>{        
         this.setState({...this.state, loginType:'phoneLogin',message:'An OTP will be sent to your following Phone Number',msgClass:'phone-login'}, ()=>{this.toggleShow()})
+        store.dispatch({type:Login_Status.signinInitialState})
     }
     
     handleClickBack=()=>{
         this.setState({...this.state, loginType:'',message:'Please choose to login via your Gmail Account or your Phone Number',msgClass:'choose-login',otpIn:''}, ()=>{this.toggleShow()})
+        store.dispatch({type:Login_Status.signinInitialState})
     }
    
     showButton=(conf)=>{
@@ -87,61 +91,96 @@ class UserSignin extends Component {
     showWaiting=()=>{
         console.log('from switch this.props.signinState:',this.props.signinState)
         switch (this.props.signinState) {
-            case Login_Status.googleLoginSuccessful:
-                console.log('case 1')
-                return <h6>SUCCESSFUL</h6>              
+                
             case Login_Status.waitingForGoogleSignin:
-                console.log('case 2')
+                console.log('case 1 waitingForggleSignin')
                 return (
                     <div className='waiting-items-container'>
-                        
-                        <h6>Redirecting to google signin</h6>        
-                    
+                        <h6>Redirecting to google signin</h6>
                         <CustomLoadingIcon  cliClassName='waiting-loging-in' iconType={'cylon'} iconColor={'#7e567e'}  />
                     </div>                    
-                  )
-            case Login_Status.waitingForPhoneSignin:
-                console.log('case 3')
+                )
+            case Login_Status.waitingForConfirmation:
+                console.log('case 2 waiting for confirmation')
                 return (
                     <div className='waiting-items-container'>
-                        <div id='recapcha-container'></div>       
-                        <h6>Please Enter your OTP</h6>   
-                        <CustomOtpInput handleOtpChange={this.handleOtpInput} otpFinished={this.state.otpDone}/>
-                        
-                        {/* <input ></input>
-                        <button >Hello</button> */}
+                        <h6>Please wait while logging in to your account</h6>        
+                        <CustomLoadingIcon  iconType='cylon' iconColor='#7e567e' />
                     </div>                    
-                  )
-                
+                )
             case Login_Status.googleLoginFailed:
-                console.log('case 4')
+                console.log('case 3 googleLoginFailed')
                 return (
                     <div className='waiting-items-container'>
                         <LoginFailed/>      
                         <h6>Google Login Failed</h6>          
-                        <h6>Please make sure to sign in using your gmail account mentioned above</h6>          
+                        <h6>Please make sure to sign in using your own gmail account mentioned above</h6>          
                     </div>                    
-                  )
-                
-            case Login_Status.phoneLoginFailed:
+                )
+            case Login_Status.googleLoginSuccessful:
+                console.log('case 4 googleLoginSuccessful')
+                return (
+                    <div className='waiting-items-container'>
+                        <h6>Login Successful</h6>          
+                    </div>                    
+                )
+//phone signin                
+            case Login_Status.waitingForPhoneSignin:
+                console.log('case 5 waitingForPhoneSignin')
+                return (
+                    <div className='waiting-items-container'>
+                        <div  id='recapcha-container'></div>       
+                    </div>                    
+                )
+            case Login_Status.recapchaWasSolved:
+                console.log('case 6 recapchaWasSolved')
+                return(
+                    <div className='waiting-items-container'>
+                        <div  id='recapcha-container'></div>       
+                        <h6>Thank you, a message is being sent to you</h6>   
+                        {/* <CustomOtpInput handleOtpChange={this.handleOtpInput} otpFinished={this.state.otpDone}/> */}
+                    </div>                    
+                )
+                case Login_Status.recapchaWasExpired:
+                    console.log('case 7 recapchaWasExpireded')
+                    return (
+                        <div className='waiting-items-container'>
+                            {/* <div aria-disabled id='recapcha-container'></div>        */}
+                            <h6 style={{color:'red'}}>It took too long, please try again</h6>   
+                        </div>                    
+                    )
+                case Login_Status.otpSendingDone:
+                    return(
+                        <div className='waiting-items-container'>
+                            <h6>Please Enter your OTP</h6>   
+                            <CustomOtpInput handleOtpChange={this.handleOtpInput} otpFinished={this.state.otpDone}/>
+                        </div>                      
+                    )
+                case Login_Status.otpSendingFailed:
+                    return(
+                        <div className='waiting-items-container'>
+                            <h6>There was an error while sending you the OTP code, Please try again</h6>   
+                            
+                        </div>                      
+                    )
+                    
+
+            case Login_Status.otpIsWrong:
                 console.log('case 5')
                 return (
                     <div className='waiting-items-container'>
                         <LoginFailed/>      
                         <h6>Phone Login Failed</h6>          
-                        <h6>Please make sure to enter correct OTP, refresh and try again</h6>          
+                        <h6>Please make sure to enter the OTP correctly, and try again</h6>          
                     </div>                    
                   )
-
-            case Login_Status.waitingForConfirmation:
-                console.log('case 6')
+            case Login_Status.otpIsCorrect:
                 return (
                     <div className='waiting-items-container'>
-                        
-                        <h6>Loging in</h6>        
-                        <CustomLoadingIcon  iconType='cylon' iconColor='#7e567e' />
+                        <h6>Login Successful</h6>          
                     </div>                    
-                  )
+                  )     
+            
             case Login_Status.signinInitialState:
                 console.log('case 7')
                 return ''

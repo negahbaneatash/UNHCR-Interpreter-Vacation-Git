@@ -2,7 +2,7 @@
 
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+
 import firebase, { myFireauth }  from "../../firebase/firebaseConfig";
 import { store } from "../../redux/store";
 import { Login_Status } from "../../redux/waiting.reducer";
@@ -18,7 +18,6 @@ class PhoneSignin extends React.Component {
             // userConfirmed:false,
             userPhoneNumber:'',
             userOTP:'',
-            otpSent:false
         }
     }
     otpWasSent=null;
@@ -42,12 +41,12 @@ class PhoneSignin extends React.Component {
             'callback':(resolve)=>{
                 console.log('recapcha solved, probably a msg will be sent to you')
                 console.log('from recapcha callback resolve',resolve)   
-                store.dispatch({type:'RECAPCHA_SOLVED'})             
+                store.dispatch({type:Login_Status.recapchaWasSolved})             
             },
             'expired-callback':()=>{
                 console.log('from recapcha expired callback')
                 console.log('your time to enter OTP ended, please refresh and try again')
-                store.dispatch({type:'RECAPCHA_EXPIRED'})
+                store.dispatch({type:Login_Status.recapchaWasExpired})
             }
         });
                 
@@ -56,12 +55,12 @@ class PhoneSignin extends React.Component {
         .then((confirmationResult)=>{
             //SMS sent
             this.otpWasSent=confirmationResult
-            store.dispatch({type:'OTP_SENT'})
-            this.setState({...this.state,otpSent:true})
+            store.dispatch({type:Login_Status.otpSendingDone})
+            
         }).catch((error)=>{
             console.log('there was an error sms not sent, please refresh and try again')
             console.log('from signInWithPhoneNumber error: ',error)
-            store.dispatch({type:'OTP_COULDNNOT_SENT'})
+            store.dispatch({type:Login_Status.otpSendingFailed})
             // If signInWithPhoneNumber results in an error, reset the reCAPTCHA so the user can try again:
             // Or, if you haven't stored the widget ID:
             // window.recaptchaVerifier.render().then(function(widgetId) {
@@ -95,18 +94,18 @@ class PhoneSignin extends React.Component {
     }
 
     componentDidUpdate(){
-        if (this.props.otpEntered.length>=6) {
+        if (this.props.otpEntered.length===6) {
             //info: after msg sent, confirm the entered code:
             // const otpCode=prompt('Enter OTP','')
             const otpCode=this.props.otpEntered;
             this.otpWasSent.confirm(otpCode).then((result)=>{
-            store.dispatch({type:'OTP_CORRECT'})
+            store.dispatch({type:Login_Status.otpIsCorrect})
             const user=result.user;
             console.log('from otpConfirmClick user:',user)
             // onAuthStateChanged will be called and will set the user 
             // set the user 
         }).catch((error)=>{
-            store.dispatch({type:'OTP_WRONG'})
+            store.dispatch({type:Login_Status.otpIsWrong})
             console.log('from otp cinfirmation error:',error)
             console.log('the OTP is wrong, please refresh and try again')
             })
@@ -134,10 +133,7 @@ class PhoneSignin extends React.Component {
         return(
             <div >
                 {/* { this.state.userConfirmed ? <Redirect to='/interpreter/submitleave'/> : null }                 */}
-                <PhoneSigninButton phoneButtonClicked={this.handleClick}>{`Send OTP to:   ${this.props.phoneNumberHint}`}</PhoneSigninButton>
-                {this.state.otpSent && <input name='userInput' value={this.state.userOTP} onChange={this.handleInputChange}/>}
-                {this.state.otpSent && <button onClick={this.otpConfirmClick}>submit OTP</button>}
-                <label>{this.props.otpEntered}</label>
+                <PhoneSigninButton phoneButtonClicked={this.handleClick}>{`Send OTP to:   ${this.props.phoneNumberHint}`}</PhoneSigninButton>              
             </div>
 
         )
