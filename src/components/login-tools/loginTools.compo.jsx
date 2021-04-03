@@ -72,9 +72,7 @@ class LoginTools extends React.Component{
                 return(
                     <div>
                         <IndividualCardContainer searchField={this.state.searchField} userType={this.state.userType}/>
-                        <TestCard/>
                     </div>
-                    
                 )                
             case 'interpreter':
                 return(
