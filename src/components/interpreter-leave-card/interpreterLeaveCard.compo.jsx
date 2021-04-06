@@ -63,7 +63,7 @@ handleClickReject=async()=>{
 showLeaveStatus=()=>{
     const {leaveStatus}=this.state.leave;
     if (leaveStatus===Leave.leaveStatus.submitted) {
-        return <lable className='submitted-message'>{'Submitted & Pending'}</lable>                    
+        return <lable className='submitted-message' data-tip data-for='status-tooltip'>{'Submitted & Pending'}</lable>                    
     } else if (leaveStatus===Leave.leaveStatus.approved) {
         return <ApprovedIcon/>
     } else if (leaveStatus===Leave.leaveStatus.rejected) {
@@ -103,12 +103,12 @@ render(){
                 <div className='button-container'>
                     
                     {(leave.leaveStatus===Leave.leaveStatus.submitted) && isInterpreter?<RemoveLeaveButton name='delete-leave' deleteLeaveClicked={this.handleClickDelete}>Delete Leave</RemoveLeaveButton>:null}
-                    {isSupervisor?<RemoveLeaveButton name='reset-leave' deleteLeaveClicked={this.handleClickReset}>Reset Leave</RemoveLeaveButton>:null}
-                    {isSupervisor?<ApproveButton  className='approve-button' name='approve-leave' data-tip data-for='approve-tooltip' onClick={this.handleClickApprove}></ApproveButton>:null} 
-                    {isSupervisor?<RejectButton  className='reject-button' name='reject-leave' data-tip data-for='reject-tooltip' onClick={this.handleClickReject}></RejectButton>:null} 
+                    {leave.leaveStatus!==Leave.leaveStatus.submitted && isSupervisor?<RemoveLeaveButton name='reset-leave' deleteLeaveClicked={this.handleClickReset}>Reset Status</RemoveLeaveButton>:null}
+                    {leave.leaveStatus===Leave.leaveStatus.submitted && isSupervisor?<ApproveButton  className='approve-button' name='approve-leave' data-tip data-for='approve-tooltip' onClick={this.handleClickApprove}></ApproveButton>:null} 
+                    {leave.leaveStatus===Leave.leaveStatus.submitted && isSupervisor?<RejectButton  className='reject-button' name='reject-leave' data-tip data-for='reject-tooltip' onClick={this.handleClickReject}></RejectButton>:null} 
                     
                 </div>
-                <div className='status-container' data-tip data-for='status-tooltip'>
+                <div className='status-container' >
                     {isSupervisor?<React.Fragment>{leave.leaveType===Leave.leaveType.Annual_leave?<label className='leave-type'>Annual Leave</label>:<label className='leave-type'>Extra Leave</label>}</React.Fragment>:null} 
                     {this.showLeaveStatus()}
                     
@@ -122,7 +122,7 @@ render(){
                         <span>Accept The Leave</span>
             </ReactTooltip>
             <ReactTooltip id='status-tooltip' type='light' place='bottom' effect='float'>
-                        <span>Leave Status</span>
+                        <span>{`Submitted on: ${leave.leaveSubmittedOn}`}</span>
             </ReactTooltip>
         </div>
     )

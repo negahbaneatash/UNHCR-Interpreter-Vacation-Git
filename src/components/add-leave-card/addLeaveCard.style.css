@@ -15,19 +15,36 @@
   }
 
   .ANNUAL_LEAVE{
-    background: linear-gradient(
-    to left,
-    rgba(126, 86, 126, 0.6) 0%,    
-    rgba(57, 77, 126, 0.712) 100%
-  )   
+        /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,84,166,1) 0%, rgba(132,189,201,1) 90% ); */
+      /*22 background-image: linear-gradient( 99.6deg,  rgba(112,128,152,1) 10.6%, rgba(242,227,234,1) 32.9%, rgba(234,202,213,1) 52.7%, rgba(220,227,239,1) 72.8%, rgba(185,205,227,1) 81.1%, rgba(154,180,212,1) 102.4% ); */
+      /* background-image: radial-gradient( circle farthest-corner at 110.5% -0.8%,  rgba(206,176,213,1) 0%, rgba(132,120,181,1) 90% ); */
+           /* background-image: linear-gradient(to top, #2e539c 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%); */
+      /* background-image: linear-gradient(to top, #673ca0c5 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%); */
+    /* 11 background-image: linear-gradient(to top, #29022946 0%, #dddddd 100%, #dddddd77 100%, #dddddd 100%); */
+    /* background-image: linear-gradient( 358.7deg,  rgba(42,136,157,1) 1.7%, rgba(122,197,214,1) 51.1%, rgba(211,232,242,1) 95.5% );   */
+     /* 4 background-image: linear-gradient( 358.7deg,  rgba(42,136,157,1) 1.7%, rgba(122,197,214,1) 51.1%, rgba(211,232,242,1) 95.5% ); */
+     /* banafsh background-image: radial-gradient( circle farthest-corner at 110.5% -0.8%,  rgba(206,176,213,1) 0%, rgba(132,120,181,1) 90% ); */
+     /* abi sade background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(51,102,153,1) 0%, rgba(68,116,163,1) 90% ); */
+     /* background-image: linear-gradient( 90.9deg,  rgba(172,230,246,1) -0.5%, rgba(68,100,145,1) 99.8% ); */
+     /* 111 background-image: linear-gradient( 0.2deg,  rgba(79,104,112,1) -13.8%, rgba(177,234,252,1) 100.2% ); */
+     background-image: linear-gradient( 0.2deg,  rgba(41, 2, 41, 0.774) -13.8%, rgba(41, 2, 41, 0.2) 100.2% );
   }
+  
+  
+  
 
   .UNPAID_LEAVE{
-    background: linear-gradient(
-    to left,
-    rgba(126, 86, 126, 0.6) 0%,    
-    rgba(104, 31, 24, 0.664) 100%
-  )   
+
+
+    
+    background-image: linear-gradient( 0.2deg,  rgb(48, 40, 43) -13.8%, rgba(165, 155, 162, 0.514) 100.2% );
+      /* background-image: radial-gradient( circle 666px at 0.4% 48%,  rgba(202,204,227,1) 0%, rgba(89,89,99,1) 97.5% ); */
+      /* background-image: linear-gradient( 1.3deg,  rgba(91,117,163,1) 11.4%, rgba(68,98,128,1) 77% ); */
+    
+    
+    
+    
+    
   }
 
 .text-date-container{

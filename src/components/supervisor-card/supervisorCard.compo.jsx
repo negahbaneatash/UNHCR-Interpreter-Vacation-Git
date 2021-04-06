@@ -29,7 +29,8 @@ class SupervisorCard extends React.Component {
         console.log('from SupervisorCard render this.props',this.props) 
         return(   
             <div className='supervisor-card' onClick={this.handleClick} >
-                <h3 className='supervisor-name'>{this.props.supervisor.name}</h3>                
+                <h3 className='supervisor-name'>{this.props.supervisor.name}</h3>      
+                <span className='supervisor-group'>{this.props.supervisor.group}</span>          
             </div>
         )
     }

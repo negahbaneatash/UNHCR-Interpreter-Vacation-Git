@@ -14,16 +14,12 @@
     backface-visibility: hidden;
     transform: translateZ(0);
     transition: transform 0.25s ease-out;
-    align-items: flex-start;
+    align-items: center;
   }
   
   .supervisor-card:hover {
     transform: scale(1.05);
-    background: linear-gradient(
-    to left,
-    rgba(167, 43, 39,0.8) 0%,    
-    rgba(235, 96, 15, 0.8) 100%
-  )   
+    background: linear-gradient( 0.2deg,  rgba(41, 2, 41, 0.664) -13.8%, rgba(41, 2, 41, 0.2) 100.2% );
   }
   
   .supervisor-name{
@@ -31,4 +27,8 @@
     align-self: center;
     color: rgb(41, 2, 2);
     font-weight: bold;
+  }
+
+  .supervisor-group{
+    color: #55140c;
   }

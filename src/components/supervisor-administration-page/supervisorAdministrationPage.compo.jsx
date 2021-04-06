@@ -24,18 +24,19 @@ const SupervisorAdministrationPage =(props)=>{
             <TabPanel>
                 <Tabs>
                     <TabList>
-                        <Tab>Add Interpreter</Tab>
-                        <Tab disabled>Edit Interpreter</Tab>
-                        <Tab>Remove Interpreter</Tab>
+                        <Tab >Add Interpreter</Tab>
+                        <Tab >Edit Interpreter</Tab>
+                        <Tab >Remove Interpreter</Tab>
                     </TabList>
                     <TabPanel>
-                        <AddInterpreterToDB/>
+                        <h6>These sections to be completed ...</h6>
+                        {/* <AddInterpreterToDB/> */}
                     </TabPanel>
                     <TabPanel>
-                        <h1>Here we Edit an Existing Interpreter</h1>
+                        <h6>These sections to be completed ...</h6>
                     </TabPanel>
                     <TabPanel>
-                        <h2>Here we remove an Interpreter</h2>
+                        <h6>These sections to be completed ...</h6>
                     </TabPanel>
                 </Tabs>
             </TabPanel>

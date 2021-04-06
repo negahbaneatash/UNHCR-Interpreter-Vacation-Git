@@ -67,7 +67,7 @@ class LeaveManangementStage extends React.Component {
                     <Jumbotron>
                         <h6 className='select-date-message select-month-message'>Please select the month from the calendar</h6>        
                         <div className='status-dropdown-container'>
-                            <label>Select Leave Status</label>
+                            <label>Show leaves:</label>
                             <Dropdown className='leave-status-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[1]} onChange={this.dropDownSelect} placeholder='Show:'/>                
                         </div>
                         
