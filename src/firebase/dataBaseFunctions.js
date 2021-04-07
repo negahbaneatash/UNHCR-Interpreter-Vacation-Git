@@ -73,19 +73,21 @@ export const loadLeavesOfTheInterpreterFromDBToStore = async (theInterpreterEmai
 }
 
 export const loadAllLeavesOfTheMonthFromDBToStore = (inTime)=>{
+    let result=null;
     store.dispatch({type:Login_Status.loadingFromDB})
     store.dispatch(removeAllLeavesFromStore_Action())
     const leaveRef= inTime.getFullYear().toString()+'-'+(inTime.getMonth()+1).toString();
-    const All_Interpreters = store.getState().Interpreters.allInterpreters
-    All_Interpreters.map(
+    const All_Interpreters = store.getState().Interpreters.allInterpreters;
+     All_Interpreters.map(
         async (theInterpreter)=>{
             const myQueryRefToleavesOfTheMonth = myFirestore.collection('Interpreters').doc(theInterpreter.email.toString().toLowerCase()).collection('Vacations').doc(leaveRef)
             const mySnapshotFromLeavesOfTheMonth = await myQueryRefToleavesOfTheMonth.get()        
             const leavesOfThisMonth = mySnapshotFromLeavesOfTheMonth.data();   
             store.dispatch(addToAllLeavesToStore_Action(leavesOfThisMonth))
+            store.dispatch({type:Login_Status.loadedFromDB})        
         }    
     )
-    store.dispatch({type:Login_Status.loadedFromDB})
+    
     return true
 }
 

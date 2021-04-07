@@ -8,6 +8,9 @@ import './leaveManagementStage.style.css'
 import InterpreterLeaveCard from "../interpreter-leave-card/interpreterLeaveCard.compo";
 import Leave from "../../objects/leaveObj";
 import CustomCalendar from "../custom-calendar/customCalendar.compo";
+import CustomLoadingIcon from "../custom-loading-icon/customLoadingIcon.compo";
+import { Login_Status } from "../../redux/waiting.reducer";
+import { store } from "../../redux/store";
 
 
 
@@ -18,12 +21,14 @@ class LeaveManangementStage extends React.Component {
         this.state={
             Leave_Status_Group:Leave.leaveStatus.submitted,
             viewingDateOnCalendar:new Date(),
+            
 
         }
     }
     componentDidMount(){        
         
-        this.check=loadAllLeavesOfTheMonthFromDBToStore(this.state.viewingDateOnCalendar)                      
+        loadAllLeavesOfTheMonthFromDBToStore(this.state.viewingDateOnCalendar)                      
+        
         console.log('from LeaveManagementStage componentDidMount ')
     }
 
@@ -37,13 +42,14 @@ class LeaveManangementStage extends React.Component {
         const {leavesOfTheMonth}=this.props
         switch (this.state.Leave_Status_Group) {
             case Leave.leaveStatus.submitted:
-                return leavesOfTheMonth.filter( leave => leave.leaveStatus===Leave.leaveStatus.submitted ).map(leave=> <InterpreterLeaveCard isSupervisor leave={leave}/> )                
+                console.log('from swich----------',leavesOfTheMonth.length)
+                return (leavesOfTheMonth.filter( leave => leave.leaveStatus===Leave.leaveStatus.submitted).length===0)?<h6 class='no-leave-msg'>There is no submitted leave to show</h6> :leavesOfTheMonth.filter( leave => leave.leaveStatus===Leave.leaveStatus.submitted).map(leave=> <InterpreterLeaveCard isSupervisor leave={leave}/> )                
             case Leave.leaveStatus.approved:
-                return leavesOfTheMonth.filter( leave => leave.leaveStatus===Leave.leaveStatus.approved ).map(leave=> <InterpreterLeaveCard isSupervisor leave={leave}/> )
+                return (leavesOfTheMonth.filter( leave => leave.leaveStatus===Leave.leaveStatus.approved ).length===0)?<h6 class='no-leave-msg'>There is no approved leave to show</h6> :leavesOfTheMonth.filter( leave => leave.leaveStatus===Leave.leaveStatus.approved ).map(leave=> <InterpreterLeaveCard isSupervisor leave={leave}/> )
             case Leave.leaveStatus.rejected:
-                return leavesOfTheMonth.filter( leave => leave.leaveStatus===Leave.leaveStatus.rejected).map(leave=> <InterpreterLeaveCard isSupervisor leave={leave}/>)                
+                return (leavesOfTheMonth.filter( leave => leave.leaveStatus===Leave.leaveStatus.rejected).length===0)?<h6 class='no-leave-msg'>There is no rejected leave to show</h6> :leavesOfTheMonth.filter( leave => leave.leaveStatus===Leave.leaveStatus.rejected).map(leave=> <InterpreterLeaveCard isSupervisor leave={leave}/>)                
             default:
-                return leavesOfTheMonth.map( leave => <InterpreterLeaveCard isSupervisor leave={leave}/> )
+                return (leavesOfTheMonth.length===0)?<h6 class='no-leave-msg'>There is no leave to show</h6>:leavesOfTheMonth.map( leave => <InterpreterLeaveCard isSupervisor leave={leave}/> )
         }
     }
 
@@ -53,13 +59,14 @@ class LeaveManangementStage extends React.Component {
     }
 
     handleClickMonth=(newDate)=>{
-        console.log('KKKKKKKKKKKOOOOOOOOOOO from handle clickMonth',newDate)
+        console.log('KKKKKKKKKKKOOOOOOOOOOO from handle clickMonth ')
         this.setState({...this.state,viewingDateOnCalendar:newDate})
-        loadAllLeavesOfTheMonthFromDBToStore(newDate)                      
+        loadAllLeavesOfTheMonthFromDBToStore(newDate)
+        
     }
 
     render(){
-        console.log('from LeaveManagementStage render() ')
+        console.log('from LeaveManagementStage render() this.props: ', this.props)
         return(
             <div>
                 <Container>
@@ -70,8 +77,8 @@ class LeaveManangementStage extends React.Component {
                             <label>Show leaves:</label>
                             <Dropdown className='leave-status-dropdown' options={this.dropDownOptions} value={this.dropDownOptions[1]} onChange={this.dropDownSelect} placeholder='Show:'/>                
                         </div>
-                        
                     </Jumbotron>
+                    {this.props.signinState===Login_Status.loadingFromDB && <CustomLoadingIcon cliClassName='waiting-loading-leaves' iconType={'spokes'} iconColor={'#7e567e'} />}
                     {this.showRelatedLeaveCards()}
                 </Container>
                 
@@ -83,8 +90,11 @@ class LeaveManangementStage extends React.Component {
 const mapStateToProps =(state)=>{
     return{
         allInterpreters:state.Interpreters.allInterpreters,
-        leavesOfTheMonth:state.Mleaves.mLeaves
+        leavesOfTheMonth:state.Mleaves.mLeaves,
+        signinState:state.Waiting.signingInState
     }
 }
+
+
 
 export default connect(mapStateToProps)(LeaveManangementStage)
